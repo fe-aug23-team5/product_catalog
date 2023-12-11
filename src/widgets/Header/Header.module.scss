@@ -1,15 +1,6 @@
-@import '../../styles/variables.scss';
-@mixin onTablet {
-  @media (min-width: 640px) {
-    @content;
-  }
-}
+@import '../../shared/styles/variables.scss';
+@import '../../shared/styles/mixin.scss';
 
-@mixin onDesktop {
-  @media (min-width: 1200px) {
-    @content;
-  }
-}
 
 .header {
   display: flex;
