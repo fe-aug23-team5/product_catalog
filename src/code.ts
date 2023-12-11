@@ -1,6 +1,6 @@
 const num1 = 5;
 const num2 = 8;
-const num5 = 8;
+// const num5 = 8;
 
 function check(value) {
   if (value == undefined) {
