@@ -1,0 +1,92 @@
+@import '../../shared/styles/variables.scss';
+@import '../../shared/styles/mixin.scss';
+@import '../../shared/styles/mixin.scss';
+
+.footer {
+  font-family: 'Mont-bold';
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 32px 16px;
+  color: $secondary;
+
+  @include onTablet {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 24px;
+  }
+
+  @include onDesktop {
+    padding: 32px 152px;
+  }
+}
+
+.logo {
+  &__icon {
+    display: block;
+  }
+}
+
+.nav {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    @include onTablet {
+      flex-direction: row;
+    }
+
+    @include onDesktop {
+      gap: 107px;
+    }
+  }
+
+  &__link {
+    display: block;
+
+    font-size: 0.75rem;
+    line-height: 11px;
+    font-weight: 800;
+    letter-spacing: 4%;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.back_to_top {
+  @include flex-justify-center-align-center;
+  gap: 16px;
+
+  &__discription {
+    font-size: 0.75rem;
+    line-height: 15px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  &__icon {
+    @include flex-justify-center-align-center;
+
+    border-radius: 50%;
+    border: 1px solid $secondary;
+    width: 32px;
+    height: 32px;
+
+    color: inherit;
+
+    transition: border 0.3s linear;
+    transform: rotate(-90deg);
+  }
+
+  &__icon:hover {
+    border: 1px solid $primary;
+  }
+}
