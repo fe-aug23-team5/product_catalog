@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../img/icons/Logo.svg';
 import rightArrowIcon from '../../img/icons/right_arrow.svg';
-import styles from './Footer.module.scss'; 
+import styles from './Footer.module.scss';
 
 enum NavTitle {
   GITHUB = 'github',
