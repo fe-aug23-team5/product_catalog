@@ -6,13 +6,11 @@ export const ProductCard: React.FC = () => {
   return (
     <>
       <article className={classes.card}>
-        <img
-          className={classes.photo}
-          src={img}
-          alt="Phone card"
-        />
+        <img className={classes.photo} src={img} alt="Phone card" />
 
-        <h3 className={classes.header}>Apple iPhone Xs 64GB Silver (iMT9G2FS/A)</h3>
+        <h3 className={classes.header}>
+          Apple iPhone Xs 64GB Silver (iMT9G2FS/A)
+        </h3>
 
         <p className={classes.price}>
           <span className={classes.actual}>$799</span>
@@ -40,3 +38,4 @@ export const ProductCard: React.FC = () => {
       </article>
     </>
   );
+};
