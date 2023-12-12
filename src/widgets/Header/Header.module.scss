@@ -1,7 +1,6 @@
 @import '../../shared/styles/variables.scss';
 @import '../../shared/styles/mixin.scss';
 
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -16,14 +15,12 @@
     gap: 24px;
   }
 
-
-
   &__logo {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0px 16px;
-  
+
     @include onDesktop {
       padding: 0px 24px;
     }
@@ -41,7 +38,6 @@
 
 .nav {
   display: flex;
-  
 
   @include onTablet {
     gap: 32px;
@@ -52,7 +48,6 @@
   }
 
   &__item {
-    
     @include onTablet {
       text-decoration: none;
       color: $secondary;
@@ -64,7 +59,7 @@
       letter-spacing: 0.48px;
       text-transform: uppercase;
     }
-  
+
     @include onDesktop {
       text-decoration: none;
       color: $secondary;
@@ -78,7 +73,6 @@
     }
 
     &__active {
-
       @include onTablet {
         box-sizing: border-box;
         text-decoration: none;
@@ -92,7 +86,7 @@
         text-transform: uppercase;
         border-bottom: 3px solid $primary;
       }
-    
+
       @include onDesktop {
         box-sizing: border-box;
         text-decoration: none;
