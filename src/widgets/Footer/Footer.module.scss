@@ -1,19 +1,18 @@
 @import '../../shared/styles/variables.scss';
 @import '../../shared/styles/mixin.scss';
-@import '../../shared/styles/mixin.scss';
 
 .footer {
   font-family: 'Mont-bold';
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+  // display: flex;
+  // flex-direction: column;
+  // gap: 32px;
   padding: 32px 16px;
   color: $secondary;
 
   @include onTablet {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    // flex-direction: row;
+    // justify-content: space-between;
+    // align-items: center;
     padding: 32px 24px;
   }
 
@@ -21,6 +20,21 @@
     padding: 32px 152px;
   }
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @include onTablet {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
 
 .logo {
   &__icon {
@@ -44,7 +58,8 @@
     }
 
     @include onDesktop {
-      gap: 107px;
+      width: 379px;
+      justify-content: space-between;
     }
   }
 
