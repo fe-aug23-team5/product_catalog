@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.scss';
+import { Header } from '../widgets/Header';
 
 export const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">App</header>
+      <Header />
     </div>
   );
 };
