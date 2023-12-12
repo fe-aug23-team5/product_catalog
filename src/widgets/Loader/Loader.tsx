@@ -1,5 +1,10 @@
 import React from 'react';
+import './Loader.scss';
 
 export const Loader: React.FC = () => {
-  return <h1>Loader</h1>;
+  return (
+    <div className="loader">
+      <div className="loader_item" />
+    </div>
+  );
 };
