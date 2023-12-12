@@ -27,4 +27,9 @@ jobs:
           git config --global user.name "Yuliia Bakun"
 
       - name: Deploy to GitHub Pages
-        run: npm run deploy
+        run: |
+          npm run deploy
+        env:
+          CI: true
+          NODE_ENV: production
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
