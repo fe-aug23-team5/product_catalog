@@ -73,7 +73,6 @@
     }
 
     &_active {
-
       @include onTablet {
         box-sizing: border-box;
         text-decoration: none;
@@ -131,6 +130,6 @@
     @include onDesktop {
       height: 64px;
       width: 64px;
-    }  
+    }
   }
 }
