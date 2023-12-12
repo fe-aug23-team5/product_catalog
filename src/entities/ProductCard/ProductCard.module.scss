@@ -1,17 +1,19 @@
 @font-face {
   font-family: 'Mont-Bold';
-  src: url('../../../public/fonts/Mont-Bold.otf') format('opentype');
+  src: url('../../../public/fonts/Mont-Bold.otf');
 }
 
 @font-face {
   font-family: 'Mont-Regular';
-  src: url('../../../public/fonts/Mont-Regular.otf') format('opentype');
+  src: url('../../../public/fonts/Mont-Regular.otf');
 }
 
 @font-face {
   font-family: 'Mont-SemiBold';
-  src: url('../../../public/fonts/Mont-SemiBold.otf') format('opentype');
+  src: url('../../../public/fonts/Mont-SemiBold.otf');
 }
+
+@import '~/src/styles/variables.scss';
 
 * {
   box-sizing: border-box;
@@ -19,9 +21,9 @@
 
 .card {
   width: 272px;
-  border: 1px solid #E2E6E9;
+  border: 1px solid $elements;
   border-radius: 8px;
-  background-color: #FFFFFF;
+  background-color: $white;
   padding: 32px;
   padding-top: 32px;
 }
@@ -33,43 +35,42 @@
 }
 
 .header {
-  text-align: left;
   font-family: "Mont-Regular", sans-serif;
-  margin: 8px 0;
-  padding-top: 16px;
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 600;
   line-height: 21px;
-  color: #0F0F11;
+  text-align: left;
+  margin: 8px 0;
+  color: $primary;
+  padding-top: 16px;
 }
 
 .price {
   display: flex;
-  width: 108px;
   justify-content: space-between;
   align-items: center;
+  font-size: 1.38rem;
+  width: 108px;
   margin: 0 0 8px;
 }
 
 .actual {
   font-family: "Mont-Bold", sans-serif;
-  font-size: 22px;
   font-weight: 800;
-  line-height: 30.8px;
-  color: #0F0F11;
+  line-height: 31px;
+  color: $primary;
 }
 
 .preliminary {
   font-family: "Mont-Regular", sans-serif;
-  font-size: 22px;
   font-weight: 500;
-  color: #89939A;
-  line-height: 28.12px;
+  color: $secondary;
+  line-height: 28px;
   text-decoration: line-through;
 }
 
 .line {
-  border-bottom: 1px solid #E2E6E9;
+  border-bottom: 1px solid $elements;
 }
 
 .information {
@@ -80,20 +81,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  line-height: 15.34px;
+  font-size: 0.75rem;
+  line-height: 15px;
   margin: 8px 0;
-  font-family: "Mont-SemiBold", sans-serif;
 }
 
 .text {
-  color: #89939A;
-  font-size: 12px;
+  font-family: "Mont-SemiBold", sans-serif;
   font-weight: 600;
+  color: $secondary;
 }
 
 .value {
-  font-size: 12px;
-  font-weight: 700;
-  color: #0F0F11;
   font-family: "Mont-Bold", sans-serif;
+  font-weight: 700;
+  color: $primary;
 }
