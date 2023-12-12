@@ -16,11 +16,15 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          # your node version
           node-version: 16
 
       - name: Install Dependencies
         run: npm install
+
+      - name: Set Git Identity
+        run: |
+          git config --global user.email "bakunyuliia@gmail.com"
+          git config --global user.name "Yuliia Bakun"
 
       - name: Deploy to GitHub Pages
         run: npm run deploy
