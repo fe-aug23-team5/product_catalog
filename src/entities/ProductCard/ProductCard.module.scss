@@ -1,0 +1,99 @@
+@font-face {
+  font-family: 'Mont-Bold';
+  src: url('../../../public/fonts/Mont-Bold.otf');
+}
+
+@font-face {
+  font-family: 'Mont-Regular';
+  src: url('../../../public/fonts/Mont-Regular.otf');
+}
+
+@font-face {
+  font-family: 'Mont-SemiBold';
+  src: url('../../../public/fonts/Mont-SemiBold.otf');
+}
+
+@import '~/src/styles/variables.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+.card {
+  width: 272px;
+  border: 1px solid $elements;
+  border-radius: 8px;
+  background-color: $white;
+  padding: 32px;
+  padding-top: 32px;
+}
+
+.photo {
+  display: block;
+  height: 196px;
+  margin: 0 auto 8px;
+}
+
+.header {
+  font-family: "Mont-Regular", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 21px;
+  text-align: left;
+  margin: 8px 0;
+  color: $primary;
+  padding-top: 16px;
+}
+
+.price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.38rem;
+  width: 108px;
+  margin: 0 0 8px;
+}
+
+.actual {
+  font-family: "Mont-Bold", sans-serif;
+  font-weight: 800;
+  line-height: 31px;
+  color: $primary;
+}
+
+.preliminary {
+  font-family: "Mont-Regular", sans-serif;
+  font-weight: 500;
+  color: $secondary;
+  line-height: 28px;
+  text-decoration: line-through;
+}
+
+.line {
+  border-bottom: 1px solid $elements;
+}
+
+.information {
+  padding: 8px 0;
+}
+
+.block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  line-height: 15px;
+  margin: 8px 0;
+}
+
+.text {
+  font-family: "Mont-SemiBold", sans-serif;
+  font-weight: 600;
+  color: $secondary;
+}
+
+.value {
+  font-family: "Mont-Bold", sans-serif;
+  font-weight: 700;
+  color: $primary;
+}
