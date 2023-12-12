@@ -1,0 +1,23 @@
+@import '../../shared//styles/mixin.scss';
+@import '../../shared/styles/variables.scss';
+
+.content {
+  &_container {
+    @include pageGrid();
+    width: 100%;
+    max-width: 1184px;
+    padding-inline: 16px;
+
+    @include onTablet {
+      padding-inline: 24px;
+    }
+
+    @include onDesktop {
+      padding-inline: auto;
+    }
+
+    &_item {
+      grid-column: 1 / -1;
+    }
+  }
+}

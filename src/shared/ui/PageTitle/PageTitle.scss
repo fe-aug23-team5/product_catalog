@@ -1,0 +1,15 @@
+@import '../../styles/mixin.scss';
+
+.title_primary {
+  @include style-primary-title;
+
+  margin-bottom: 24px;
+
+  @include onTablet {
+    margin-bottom: 32px;
+  }
+
+  @include onDesktop {
+    margin-bottom: 56px;
+  }
+}
