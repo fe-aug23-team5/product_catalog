@@ -1,6 +1,8 @@
 import React from 'react';
 import classes from './ProductCard.module.scss';
 import img from '../../img/phones/apple-iphone-7/silver/00.jpg';
+import { PrimaryButton } from '../../shared/ui/PrimaryButton';
+import { IconButton } from '../../shared/ui/IconButton';
 
 export const ProductCard: React.FC = () => {
   return (
@@ -33,6 +35,11 @@ export const ProductCard: React.FC = () => {
           <p className={classes.block}>
             <span className={classes.text}>RAM</span>
             <span className={classes.value}>4 GB</span>
+          </p>
+
+          <p className={classes.block}>
+            <PrimaryButton />
+            <IconButton />
           </p>
         </div>
       </article>
