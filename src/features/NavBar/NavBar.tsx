@@ -9,11 +9,11 @@ enum NavTitles {
   PHONES = 'phones',
   TABLETS = 'tablets',
   ACCESSORIES = 'accessories',
-};
+}
 
 export const NavBar: React.FC = () => {
   const isActiveItem = ({ isActive } : { isActive: boolean }) => {
-    return cn(styles.nav__link, { [styles.nav__link_active]: isActive })
+    return cn(styles.nav__link, { [styles.nav__link_active]: isActive });
   };
 
   return (
