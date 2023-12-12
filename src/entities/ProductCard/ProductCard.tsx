@@ -40,4 +40,3 @@ export const ProductCard: React.FC = () => {
       </article>
     </>
   );
-};
