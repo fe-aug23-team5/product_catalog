@@ -29,7 +29,7 @@ export const Header: React.FC = () => {
         </nav>
       </div>
       <div className={styles.header__rightSide}>
-        <NavLink to="/favorites" className={isActiveIcon}>
+        <NavLink to="/favourites" className={isActiveIcon}>
           <Favorites />
         </NavLink>
         <NavLink to="/cart" className={isActiveIcon}>
