@@ -1,7 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../img/icons/Logo.svg';
 import rightArrowIcon from '../../img/icons/right_arrow.svg';
 import styles from './Footer.module.scss'; 
+
+enum NavTitle {
+  GITHUB = 'github',
+  CONTACTS = 'contacts',
+  RIGHTS = 'rights',
+}
 
 export const Footer: React.FC = () => {
   return (
@@ -14,39 +21,28 @@ export const Footer: React.FC = () => {
             alt="Nice Gadgets logo"
           />
         </a>
+
         <nav className={styles.nav}>
           <ul className={styles.nav__list}>
-            <li className={styles.nav__item}>
-              <a
-                className={styles.nav__link}
-                href="github"
-              >
-                Github
-              </a>
-            </li>
-            <li className={styles.nav__item}>
-              <a
-                className={styles.nav__link}
-                href="contacts"
-              >
-                Contacts
-              </a>
-            </li>
-            <li className={styles.nav__item}>
-              <a
-                className={styles.nav__link}
-                href="rights"
-              >
-                Rights
-              </a>
-            </li>
+            {Object.values(NavTitle).map(title => (
+              <li className={styles.nav__item} key={title}>
+                <Link
+                  className={styles.nav__link}
+                  to={`/${title}`}
+                >
+                  {title}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
+
         <div className={styles.back_to_top}>
           <p className={styles.back_to_top__discription}>
             Back to top
           </p>
-          <a className={styles.back_to_top__icon} href="#home">
+
+          <a className={styles.back_to_top__icon} href="#root">
             <img
               className={styles.footer__icon}
               src={rightArrowIcon}
