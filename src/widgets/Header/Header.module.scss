@@ -72,7 +72,8 @@
       text-transform: uppercase;
     }
 
-    &__active {
+    &_active {
+
       @include onTablet {
         box-sizing: border-box;
         text-decoration: none;
@@ -115,5 +116,21 @@
   @include onDesktop {
     height: 64px;
     width: 64px;
+  }
+
+  &_active {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    width: 48px;
+    box-shadow: -1px 0px 0px 0px $elements;
+    border-bottom: 3px solid $primary;
+
+    @include onDesktop {
+      height: 64px;
+      width: 64px;
+    }  
   }
 }
