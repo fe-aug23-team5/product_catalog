@@ -1,3 +1,4 @@
+import React from 'react';
 import { AccessoriesPage } from '../pages/AccessoriesPage/AccessoriesPage';
 import { CartPage } from '../pages/CartPage/CartPage';
 import { FavouritesPage } from '../pages/FavouritesPage/FavouritesPage';
@@ -12,7 +13,7 @@ import {
   HashRouter as Router,
   Routes,
 } from 'react-router-dom';
-import './Root.scss';
+import ''
 
 export const Root = () => {
   return (

@@ -1,7 +1,6 @@
 @import '../../shared/styles/variables.scss';
 @import '../../shared/styles/mixin.scss';
 
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -30,7 +29,7 @@
   &__logo {
     @include flex-justify-center-align-center;
     padding: 0px 16px;
-  
+
     @include onDesktop {
       padding: 0px 24px;
     }

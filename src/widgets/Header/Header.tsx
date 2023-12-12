@@ -3,7 +3,7 @@ import cn from 'classnames';
 import styles from './Header.module.scss';
 import { NavLink, Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../img/icons/Logo.svg';
-import { ReactComponent as Favorites } from '../../img/icons/Favourites (Heart Like).svg'
+import { ReactComponent as Favorites } from '../../img/icons/Favourites (Heart Like).svg';
 import { ReactComponent as Cart } from '../../img/icons/Shopping bag (Cart).svg';
 import { ReactComponent as MenuIcon } from '../../img/icons/Menu.svg';
 import { NavBar } from '../../features/NavBar';
