@@ -17,7 +17,7 @@ export interface PhoneDetails {
   camera: string;
   zoom: string;
   cell: string[];
-};
+}
 
 interface PhoneDescription {
   title: string;
