@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './Header.module.scss';
 import { ReactComponent as Logo } from '../../img/icons/Logo.svg';
@@ -9,7 +9,7 @@ import {
 import {
   ReactComponent as Cart,
 } from '../../img/icons/Shopping bag (Cart).svg';
-import { ReactComponent as MenuIcon } from '../../img/icons/Menu.svg';
+import menuIcon from '../../img/icons/Menu.svg';
 import { NavBar } from '../../features/NavBar';
 import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
 
@@ -27,7 +27,7 @@ export const Header: React.FC = () => {
         </NavLink>
 
         <div className={styles.header__nav_wrap}>
-          <NavBar />
+          <NavBar setIsShownMenu={setIsShownMenu} />
         </div>
       </div>
 
@@ -41,16 +41,19 @@ export const Header: React.FC = () => {
         </NavLink>
       </div>
 
-      {/* eslint-disable jsx-a11y/anchor-is-valid */}
-      <Link
-        to=""
+      <button
         className={styles.header__menu_button}
         onClick={() => {
-          setIsShownMenu(!isShownMenu);
+          setIsShownMenu(true);
         }}
+        type="button"
       >
-        <MenuIcon />
-      </Link>
+        <img
+          src={menuIcon}
+          alt="Menu icon"
+          // className={styles.open_menu_button}
+        />
+      </button>
 
       <BurgerMenu
         isShownMenu={isShownMenu}

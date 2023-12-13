@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../img/icons/Logo.svg';
-import rightArrowIcon from '../../img/icons/right_arrow.svg';
+import upArrow from '../../img/icons/up_arrow.svg';
 import styles from './Footer.module.scss';
 
 enum NavTitle {
@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <a className={styles.logo} href="#home">
+        <a className={styles.logo} href="/">
           <img
             className={styles.logo__icon}
             src={logo}
@@ -42,10 +42,10 @@ export const Footer: React.FC = () => {
             Back to top
           </p>
 
-          <a className={styles.back_to_top__icon} href="#root">
+          <a className={styles.back_to_top__icon} href="/">
             <img
               className={styles.footer__icon}
-              src={rightArrowIcon}
+              src={upArrow}
               alt="Back to top button"
             />
           </a>

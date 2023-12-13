@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {} from 'react';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 
@@ -11,7 +11,11 @@ enum NavTitles {
   ACCESSORIES = 'accessories',
 }
 
-export const NavBar: React.FC = () => {
+type Props = {
+  setIsShownMenu: (value: boolean) => void;
+};
+
+export const NavBar: React.FC<Props> = ({ setIsShownMenu }) => {
   const isActiveItem = ({ isActive } : { isActive: boolean }) => {
     return cn(styles.nav__link, { [styles.nav__link_active]: isActive });
   };
@@ -24,6 +28,7 @@ export const NavBar: React.FC = () => {
             <NavLink
               to={title === NavTitles.HOME ? '/' : `/${title}`}
               className={isActiveItem}
+              onClick={() => setIsShownMenu(false)}
             >
               {title}
             </NavLink>

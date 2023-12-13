@@ -1,6 +1,6 @@
 import React from 'react';
-import classNames from 'classnames';
-import { NavLink, Link } from 'react-router-dom';
+import cn from 'classnames';
+import { NavLink } from 'react-router-dom';
 import styles from './BurgerMenu.module.scss';
 import logo from '../../img/icons/Logo.svg';
 import closeIcon from '../../img/icons/close_icon.svg';
@@ -17,9 +17,14 @@ export const BurgerMenu: React.FC<Props> = ({
   isShownMenu,
   setIsShownMenu,
 }) => {
+  const isActiveIcon = ({ isActive }: { isActive: boolean }) => {
+    return cn(styles.bottom__link, { [styles.bottom__link_active]: isActive });
+  };
+
   return (
     <aside
-      className={classNames(styles.aside, {
+      id="menu"
+      className={cn(styles.aside, {
         [styles.active]: isShownMenu,
       })}
     >
@@ -32,25 +37,24 @@ export const BurgerMenu: React.FC<Props> = ({
           />
         </NavLink>
 
-        {/* eslint-disable jsx-a11y/anchor-is-valid */}
-        <Link
+        <button
           onClick={() => setIsShownMenu(false)}
-          className={styles.close_icon}
-          to=""
+          className={styles.close_menu_button}
+          type="button"
         >
           <img
             className={styles.icon}
             src={closeIcon}
             alt="Close icon"
           />
-        </Link>
+        </button>
       </div>
 
       <div className={styles.wrapper}>
-        <NavBar />
+        <NavBar setIsShownMenu={setIsShownMenu} />
 
         <div className={styles.aside__bottom}>
-          <NavLink className={styles.bottom__link} to="/favourites">
+          <NavLink className={isActiveIcon} to="/favourites">
             <img
               className={styles.icon}
               src={heartLikeIcon}
@@ -58,7 +62,7 @@ export const BurgerMenu: React.FC<Props> = ({
             />
           </NavLink>
 
-          <NavLink className={styles.bottom__link} to="/carts">
+          <NavLink className={isActiveIcon} to="/carts">
             <img
               className={styles.icon}
               src={basketIcon}
