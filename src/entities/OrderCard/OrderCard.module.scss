@@ -1,17 +1,23 @@
 @import '../../shared/styles/variables.scss';
-@import '../../shared/styles/fonts.scss';
+@import '../../shared/styles/mixin.scss';
 
 .phone__card {
   background-color: #fff;
   margin-bottom: 16px;
   list-style: none;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   padding: 24px;
   border-radius: 16px;
   border: 1px solid $elements;
-  gap: 24px;
+  gap: 16px;
+
+  @include onTablet {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 24px;
+  }
 
   &_container {
     display: flex;
@@ -26,7 +32,9 @@
   }
 
   &_title {
+    font-family: 'Mont-Regular';
     font-size: 14px;
+    line-height: 21px;
   }
 
   &_delete_button {
@@ -42,8 +50,14 @@
   &_quantity_container {
     display: flex;
     align-items: center;
-    gap: 24px;
-    border: 1px solid brown;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid $secondary;
+
+    @include onTablet {
+      width: auto;
+      gap: 24px;
+    }
   }
 
   &_button_container {
@@ -66,10 +80,16 @@
   }
 
   &_price {
+    font-family: 'Mont-bold';
     font-size: 24px;
-    font-weight: 800;
     padding-left: 29px;
     text-align: end;
+  }
+
+  &_message {
+    font-family: 'Mont-bold';
+    text-align: center;
+    margin-bottom: 16px;
   }
 }
 
@@ -78,12 +98,23 @@
   &_container {
     display: flex;
     flex-direction: column;
+    margin-top: 32px;
+
+    @include onDesktop {
+      flex-direction: row;
+    }
   }
   
   &_amount {
     padding: 24px;
     border-radius: 16px;
     border: 1px solid $elements;
+
+    @include onDesktop {
+      margin-left: 16px;
+      width: 368px;
+      height: 206px;
+    }
   }
 
   &_price {
@@ -91,13 +122,22 @@
   }
 
   &_total_price {
+    font-family: 'Mont-bold';
     font-size: 32px;
-    font-weight: 800;
     line-height: 41px;
   }
 
   &_items_length {
-    border-bottom: 1px solid red;
+    font-family: 'Mont-SemiBold';
+    font-size: 14px;
+    line-height: 21px;
+    color: $secondary;
+  }
+
+  &_break_line {
+    height: 1px;
+    background-color: $elements;
+    margin: 16px 0;
   }
 }
 
