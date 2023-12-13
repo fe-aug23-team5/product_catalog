@@ -1,36 +1,23 @@
 @import '../shared/styles/mixin.scss';
-
-@font-face {
-  font-family: 'Mont-bold';
-  font-weight: 800;
-  src: url('../../public/fonts/Mont-Bold.otf');
-}
-
-@font-face {
-  font-family: 'Mont-Regular';
-  font-weight: 400;
-  src: url('../../public/fonts/Mont-Regular.otf');
-}
-
-@font-face {
-  font-family: 'Mont-SemiBold';
-  font-weight: 700;
-  src: url('../../public/fonts/Mont-SemiBold.otf');
-}
+@import '../shared/styles/variables.scss';
 
 .main {
   width: 100%;
-  margin-top: 24px;
-  margin-bottom: 64px;
+  min-height: calc(100vh - 321px);
+  padding-top: 24px;
+  padding-bottom: 64px;
+  background-color: $hover-and-bg;
 
   @include flex-justify-center-align-center;
 
   @include onTablet {
-    margin-top: 32px;
+    min-height: calc(100vh - 144px);
+    padding-top: 32px;
   }
 
   @include onDesktop {
-    margin-top: 56px;
-    margin-bottom: 80px;
+    min-height: calc(100vh - 160px);
+    padding-top: 56px;
+    padding-bottom: 80px;
   }
 }

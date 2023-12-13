@@ -46,6 +46,7 @@
     }
 
     &.nav__link_active::after {
+      height: 3px;
       transform: translateX(0);
     }
 

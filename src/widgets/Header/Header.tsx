@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './Header.module.scss';
 import { ReactComponent as Logo } from '../../img/icons/Logo.svg';
@@ -9,14 +9,27 @@ import {
 import {
   ReactComponent as Cart,
 } from '../../img/icons/Shopping bag (Cart).svg';
-import { ReactComponent as MenuIcon } from '../../img/icons/Menu.svg';
+import menuIcon from '../../img/icons/Menu.svg';
 import { NavBar } from '../../features/NavBar';
 import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
 
 export const Header: React.FC = () => {
   const [isShownMenu, setIsShownMenu] = useState(false);
+
   const isActiveIcon = ({ isActive }: { isActive: boolean }) => {
     return cn(styles.icon__item, { [styles.icon__item_active]: isActive });
+  };
+
+  const openMenu = (value: boolean) => {
+    const body = document.querySelector('body') as HTMLElement;
+
+    if (value) {
+      body.classList.add(styles.disable_scroll);
+    } else {
+      body.classList.remove(styles.disable_scroll);
+    }
+
+    setIsShownMenu(value);
   };
 
   return (
@@ -27,7 +40,7 @@ export const Header: React.FC = () => {
         </NavLink>
 
         <div className={styles.header__nav_wrap}>
-          <NavBar />
+          <NavBar openMenu={setIsShownMenu} />
         </div>
       </div>
 
@@ -41,20 +54,22 @@ export const Header: React.FC = () => {
         </NavLink>
       </div>
 
-      {/* eslint-disable jsx-a11y/anchor-is-valid */}
-      <Link
-        to=""
+      <button
         className={styles.header__menu_button}
         onClick={() => {
-          setIsShownMenu(!isShownMenu);
+          openMenu(true);
         }}
+        type="button"
       >
-        <MenuIcon />
-      </Link>
+        <img
+          src={menuIcon}
+          alt="Menu icon"
+        />
+      </button>
 
       <BurgerMenu
         isShownMenu={isShownMenu}
-        setIsShownMenu={setIsShownMenu}
+        openMenu={openMenu}
       />
     </header>
   );

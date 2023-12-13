@@ -1,5 +1,35 @@
+@import './shared/styles/mixin.scss';
+
+@font-face {
+  font-family: 'Mont-bold';
+  font-weight: 800;
+  src: url('../public/fonts/Mont-Bold.otf');
+}
+
+@font-face {
+  font-family: 'Mont-Regular';
+  font-weight: 400;
+  src: url('../public/fonts/Mont-Regular.otf');
+}
+
+@font-face {
+  font-family: 'Mont-SemiBold';
+  font-weight: 700;
+  src: url('../public/fonts/Mont-SemiBold.otf');
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  margin-top: 48px;
+  font-size: 16px;
+  scroll-behavior: smooth;
+
+  @include onDesktop {
+    margin-top: 64px;
+  }
 }
