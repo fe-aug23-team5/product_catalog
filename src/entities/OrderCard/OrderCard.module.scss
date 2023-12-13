@@ -1,0 +1,103 @@
+@import '../../shared/styles/variables.scss';
+@import '../../shared/styles/fonts.scss';
+
+.phone__card {
+  background-color: #fff;
+  margin-bottom: 16px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid $elements;
+  gap: 24px;
+
+  &_container {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  &_image {
+    width: 52px;
+    height: 66px;
+    padding: 7px;
+  }
+
+  &_title {
+    font-size: 14px;
+  }
+
+  &_delete_button {
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  &_quantity {
+    margin: 0 16px;
+  }
+
+  &_quantity_container {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    border: 1px solid brown;
+  }
+
+  &_button_container {
+    display: flex;
+    align-items: center;
+  }
+
+  &_quantity_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 48px;
+    border: 1px solid  $icons;
+    background-color: $white;
+  
+    cursor: pointer;
+    transition: border 0.3s;
+  }
+
+  &_price {
+    font-size: 24px;
+    font-weight: 800;
+    padding-left: 29px;
+    text-align: end;
+  }
+}
+
+.cart__page {
+
+  &_container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  &_amount {
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid $elements;
+  }
+
+  &_price {
+    text-align: center;
+  }
+
+  &_total_price {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 41px;
+  }
+
+  &_items_length {
+    border-bottom: 1px solid red;
+  }
+}
+
