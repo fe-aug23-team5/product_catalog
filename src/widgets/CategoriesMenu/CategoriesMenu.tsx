@@ -1,9 +1,9 @@
 import React from 'react';
 import './CategiesMenu.scss';
 import { Link } from 'react-router-dom';
-import phonesImg from '../../img/category-phones.png';
-import tabletsImg from '../../img/category-tablets.png';
-import accImg from '../../img/category-accessories.png';
+import phonesImg from '../../shared/static/categories_phones.jpg';
+import tabletsImg from '../../shared/static/categories_tablets.jpg';
+import accImg from '../../shared/static/categories_acc.jpg';
 
 export const CategoriesMenu: React.FC = () => {
   return (

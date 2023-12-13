@@ -86,3 +86,11 @@
       transition: transform 0.3s linear;
       transform: translateX(-101%);
 }
+
+@mixin hover($property, $toValue) {
+  transition: #{$property} 0.3s linear;
+
+  &:hover {
+    #{$property}: $toValue;
+  }
+}
