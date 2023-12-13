@@ -1,25 +1,55 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import classes from './ProductCard.module.scss';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 import { IconButton } from '../../shared/ui/IconButton';
 import { Phone } from '../../shared/types/Phone';
-// import { GlobalContext } from '../../shared/utils/GlobalProvider';
+import { GlobalContext } from '../../shared/utils/GlobalProvider';
 
 type Props = {
   phone: Phone;
 };
 
 export const ProductCard: React.FC<Props> = ({ phone }) => {
-  // const { addCartItem, deleteCartItem } = useContext(GlobalContext);
+  const [isButtonActive, setIsButtonActive] = useState(false);
+  const [isIconActive, setIsIconActive] = useState(false);
 
-  // const handleAddToButton = () => {
-  //   addCartItem(phone);
-  // };
+  const {
+    cart,
+    addCartItem,
+    deleteCartItem,
+    favourites,
+    addFavouriteItem,
+    deleteFavouriteItem,
+  } = useContext(GlobalContext);
 
-  // const handleRemoveButton = () => {
-  //   deleteCartItem(phone.phoneId);
-  // };
+  useEffect(() => {
+    const isPhoneInCart = cart.some(item => item.phoneId === phone.phoneId);
+
+    setIsButtonActive(isPhoneInCart);
+  }, [cart.length]);
+
+  useEffect(() => {
+    const isInLiked = favourites.some(item => item.phoneId === phone.phoneId);
+
+    setIsIconActive(isInLiked);
+  }, [favourites.length]);
+
+  const handleAddToCart = () => {
+    addCartItem(phone);
+  };
+
+  const handleDeleteFromCart = () => {
+    deleteCartItem(phone.phoneId);
+  };
+
+  const handleAddToLikes = () => {
+    addFavouriteItem(phone);
+  };
+
+  const handleDeleteFromLikes = () => {
+    deleteFavouriteItem(phone.phoneId);
+  };
 
   return (
     <article className={classes.card}>
@@ -62,9 +92,19 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
         <p className={classes.block}>
           <div className={classes.button}>
-            <PrimaryButton />
+            <PrimaryButton
+              isActive={isButtonActive}
+              defaultAction={handleAddToCart}
+              activeAction={handleDeleteFromCart}
+              defaultTitle="Add to card"
+              activeTitle="Remove from card"
+            />
           </div>
-          <IconButton />
+          <IconButton
+            isActive={isIconActive}
+            defaultAction={handleAddToLikes}
+            activeAction={handleDeleteFromLikes}
+          />
         </p>
       </div>
     </article>

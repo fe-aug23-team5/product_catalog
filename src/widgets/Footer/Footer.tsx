@@ -11,6 +11,13 @@ enum NavTitle {
 }
 
 export const Footer: React.FC = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -42,13 +49,17 @@ export const Footer: React.FC = () => {
             Back to top
           </p>
 
-          <a className={styles.back_to_top__icon} href="/">
+          <button
+            type="button"
+            className={styles.back_to_top__icon}
+            onClick={scrollToTop}
+          >
             <img
               className={styles.footer__icon}
               src={upArrow}
               alt="Back to top button"
             />
-          </a>
+          </button>
         </div>
       </div>
     </footer>
