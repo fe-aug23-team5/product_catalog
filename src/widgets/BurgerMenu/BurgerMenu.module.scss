@@ -41,12 +41,16 @@
   display: block;
 }
 
-.close_icon {
+.close_menu_button {
   @include flex-justify-center-align-center;
   width: 48px;
   height: 48px;
 
+  border: none;
   border-left: 1px solid $elements;
+
+  background-color: $white;
+  cursor: pointer;
 }
 
 .wrapper {
@@ -99,18 +103,13 @@
 
   overflow: hidden;
   transition: color 0.3s linear;
-}
 
-.bottom__link::after,
-.nav__link::after {
-  @include pseudo-element-after;
-}
+  &::after {
+    @include pseudo-element-after;
+  }
 
-.bottom__link:hover::after,
-.nav__link:hover::after {
-  transform: translateX(0);
-}
-
-.nav__link:hover {
-  color: $primary;
+  &.bottom__link_active::after {
+    height: 3px;
+    transform: translateX(0);
+  }
 }

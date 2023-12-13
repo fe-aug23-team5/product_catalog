@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './ProductCard.module.scss';
-import img from '../../img/phones/apple-iphone-7/silver/00.jpg';
+import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 import { IconButton } from '../../shared/ui/IconButton';
 import { Phone } from '../../shared/types/Phone';
@@ -12,8 +12,6 @@ type Props = {
 
 export const ProductCard: React.FC<Props> = ({ phone }) => {
   // const { addCartItem, deleteCartItem } = useContext(GlobalContext);
-  // console.log(phone.image);
-  // console.log(`../../${phone.image}`);
 
   // const handleAddToButton = () => {
   //   addCartItem(phone);
@@ -25,13 +23,10 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
   return (
     <article className={classes.card}>
-      {/* handle issue with images
-      when passing {phone.image} it is not connecting img
-      even the path is the same as  */}
       <div>
         <img
           className={classes.photo}
-          src={img}
+          src={`${BASE_URL_IMG}${phone.image}`}
           alt="Phone card"
         />
 
@@ -66,25 +61,6 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
         </div>
 
         <p className={classes.block}>
-          {/* add props text on Default,
-          text on active
-          is active will be passed as a prop also
-          functions on change default
-          on change when active
-          create container for button to handle it width (80% from containe) */}
-          {/* <button
-            type="button"
-            onClick={handleAddToButton}
-          >
-            Addd to cart
-          </button>
-
-          <button
-            type="button"
-            onClick={handleRemoveButton}
-          >
-            delete from local storage
-          </button> */}
           <div className={classes.button}>
             <PrimaryButton />
           </div>

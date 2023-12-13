@@ -1,6 +1,7 @@
 @import '../shared/styles/reset.scss';
 @import '../shared/styles/fonts.scss';
 @import '../shared/styles/mixin.scss';
+@import '../shared/styles/variables.scss';
 
 :root {
   font-family: 'Mont', sans-serif;
@@ -9,17 +10,21 @@
 
 .main {
   width: 100%;
-  margin-top: 24px;
-  margin-bottom: 64px;
+  min-height: calc(100vh - 321px);
+  padding-top: 24px;
+  padding-bottom: 64px;
+  background-color: $hover-and-bg;
 
   @include flex-justify-center-align-center;
 
   @include onTablet {
-    margin-top: 32px;
+    min-height: calc(100vh - 144px);
+    padding-top: 32px;
   }
 
   @include onDesktop {
-    margin-top: 56px;
-    margin-bottom: 80px;
+    min-height: calc(100vh - 160px);
+    padding-top: 56px;
+    padding-bottom: 80px;
   }
 }

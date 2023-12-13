@@ -79,10 +79,18 @@
       bottom: 0;
 
       display: block;
-      height: 3px;
+      height: 0;
       width: 100%;
 
       background-color: $primary;
       transition: transform 0.3s linear;
       transform: translateX(-101%);
+}
+
+@mixin hover($property, $toValue) {
+  transition: #{$property} 0.3s linear;
+
+  &:hover {
+    #{$property}: $toValue;
+  }
 }
