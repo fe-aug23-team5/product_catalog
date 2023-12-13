@@ -1,21 +1,10 @@
+@import '../shared/styles/reset.scss';
+@import '../shared/styles/fonts.scss';
 @import '../shared/styles/mixin.scss';
 
-@font-face {
-  font-family: 'Mont-bold';
-  font-weight: 800;
-  src: url('../../public/fonts/Mont-Bold.otf');
-}
-
-@font-face {
-  font-family: 'Mont-Regular';
-  font-weight: 400;
-  src: url('../../public/fonts/Mont-Regular.otf');
-}
-
-@font-face {
-  font-family: 'Mont-SemiBold';
-  font-weight: 700;
-  src: url('../../public/fonts/Mont-SemiBold.otf');
+:root {
+  font-family: 'Mont', sans-serif;
+  scroll-behavior: smooth;
 }
 
 .main {
