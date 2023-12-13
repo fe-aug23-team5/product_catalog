@@ -17,6 +17,10 @@
 @import '../../shared//styles/mixin.scss';
 
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Adjust horizontal spacing */
+
   grid-column: span 6;
   width: 100%;
   min-width: 250px;
@@ -24,7 +28,6 @@
   border-radius: 8px;
   background-color: $white;
   padding: 32px;
-  padding-top: 32px;
 }
 
 .photo {
@@ -45,11 +48,8 @@
 }
 
 .price {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   font-size: 1.38rem;
-  width: 108px;
   margin: 0 0 8px;
 }
 
@@ -58,6 +58,7 @@
   font-weight: 800;
   line-height: 31px;
   color: $primary;
+  padding-right: 8px;
 }
 
 .preliminary {
@@ -95,4 +96,9 @@
   font-family: 'Mont-Bold', sans-serif;
   font-weight: 700;
   color: $primary;
+}
+
+.button {
+  width: 100%;
+  padding-right: 8px;
 }
