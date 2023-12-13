@@ -34,7 +34,9 @@ export const HomePage: React.FC = () => {
       </div>
 
       <div className="content_container_item">
-        <ProductSlider />
+        <ProductSlider>
+          {allPhones.map(phone => <ProductCard key={phone.id} phone={phone} />)}
+        </ProductSlider>
       </div>
 
       <div className="content_container_item">
@@ -42,10 +44,10 @@ export const HomePage: React.FC = () => {
       </div>
 
       <div className="content_container_item">
-        <ProductSlider />
+        <ProductSlider>
+          {allPhones.map(phone => <ProductCard key={phone.id} phone={phone} />)}
+        </ProductSlider>
       </div>
-
-      {allPhones.map(phone => <ProductCard key={phone.id} phone={phone} />)}
     </div>
   );
 };
