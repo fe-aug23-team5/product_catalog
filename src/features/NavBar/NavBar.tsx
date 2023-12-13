@@ -12,10 +12,10 @@ enum NavTitles {
 }
 
 type Props = {
-  setIsShownMenu: (value: boolean) => void;
+  openMenu: (value: boolean) => void;
 };
 
-export const NavBar: React.FC<Props> = ({ setIsShownMenu }) => {
+export const NavBar: React.FC<Props> = ({ openMenu }) => {
   const isActiveItem = ({ isActive } : { isActive: boolean }) => {
     return cn(styles.nav__link, { [styles.nav__link_active]: isActive });
   };
@@ -28,7 +28,7 @@ export const NavBar: React.FC<Props> = ({ setIsShownMenu }) => {
             <NavLink
               to={title === NavTitles.HOME ? '/' : `/${title}`}
               className={isActiveItem}
-              onClick={() => setIsShownMenu(false)}
+              onClick={() => openMenu(false)}
             >
               {title}
             </NavLink>

@@ -15,8 +15,21 @@ import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
 
 export const Header: React.FC = () => {
   const [isShownMenu, setIsShownMenu] = useState(false);
+
   const isActiveIcon = ({ isActive }: { isActive: boolean }) => {
     return cn(styles.icon__item, { [styles.icon__item_active]: isActive });
+  };
+
+  const openMenu = (value: boolean) => {
+    const body = document.querySelector('body') as HTMLElement;
+
+    if (value) {
+      body.classList.add(styles.disable_scroll);
+    } else {
+      body.classList.remove(styles.disable_scroll);
+    }
+
+    setIsShownMenu(value);
   };
 
   return (
@@ -27,7 +40,7 @@ export const Header: React.FC = () => {
         </NavLink>
 
         <div className={styles.header__nav_wrap}>
-          <NavBar setIsShownMenu={setIsShownMenu} />
+          <NavBar openMenu={setIsShownMenu} />
         </div>
       </div>
 
@@ -44,20 +57,19 @@ export const Header: React.FC = () => {
       <button
         className={styles.header__menu_button}
         onClick={() => {
-          setIsShownMenu(true);
+          openMenu(true);
         }}
         type="button"
       >
         <img
           src={menuIcon}
           alt="Menu icon"
-          // className={styles.open_menu_button}
         />
       </button>
 
       <BurgerMenu
         isShownMenu={isShownMenu}
-        setIsShownMenu={setIsShownMenu}
+        openMenu={openMenu}
       />
     </header>
   );

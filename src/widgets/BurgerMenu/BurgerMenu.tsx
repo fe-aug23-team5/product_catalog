@@ -10,12 +10,12 @@ import { NavBar } from '../../features/NavBar';
 
 type Props = {
   isShownMenu: boolean;
-  setIsShownMenu: (value: boolean) => void;
+  openMenu: (value: boolean) => void;
 };
 
 export const BurgerMenu: React.FC<Props> = ({
   isShownMenu,
-  setIsShownMenu,
+  openMenu,
 }) => {
   const isActiveIcon = ({ isActive }: { isActive: boolean }) => {
     return cn(styles.bottom__link, { [styles.bottom__link_active]: isActive });
@@ -38,7 +38,7 @@ export const BurgerMenu: React.FC<Props> = ({
         </NavLink>
 
         <button
-          onClick={() => setIsShownMenu(false)}
+          onClick={() => openMenu(false)}
           className={styles.close_menu_button}
           type="button"
         >
@@ -51,7 +51,7 @@ export const BurgerMenu: React.FC<Props> = ({
       </div>
 
       <div className={styles.wrapper}>
-        <NavBar setIsShownMenu={setIsShownMenu} />
+        <NavBar openMenu={openMenu} />
 
         <div className={styles.aside__bottom}>
           <NavLink className={isActiveIcon} to="/favourites">
