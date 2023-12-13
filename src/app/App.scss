@@ -3,18 +3,21 @@
 
 .main {
   width: 100%;
-  padding-top: 72px;
+  min-height: calc(100vh - 321px);
+  padding-top: 24px;
   padding-bottom: 64px;
   background-color: $hover-and-bg;
 
   @include flex-justify-center-align-center;
 
   @include onTablet {
-    padding-top: 88px;
+    min-height: calc(100vh - 144px);
+    padding-top: 32px;
   }
 
   @include onDesktop {
-    padding-top: 120px;
+    min-height: calc(100vh - 160px);
+    padding-top: 56px;
     padding-bottom: 80px;
   }
 }
