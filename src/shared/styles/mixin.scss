@@ -1,3 +1,20 @@
+@import './variables.scss';
+
+@font-face {
+  font-family: 'Mont-Bold';
+  src: url('../../../public/fonts/Mont-Bold.otf');
+}
+
+@font-face {
+  font-family: 'Mont-Regular';
+  src: url('../../../public/fonts/Mont-Regular.otf');
+}
+
+@font-face {
+  font-family: 'Mont-SemiBold';
+  src: url('../../../public/fonts/Mont-SemiBold.otf');
+}
+
 @mixin onTablet {
   @media (min-width: 640px) {
     @content;
@@ -14,4 +31,58 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@mixin pageGrid() {
+  --columns: 4;
+  --columnSize: 1fr;
+  display: grid;
+  row-gap: 56px;
+  column-gap: $gap;
+
+  grid-template-columns: repeat(var(--columns), var(--columnSize));
+  grid-template-rows: repeat(1fr);
+
+  @include onTablet {
+    --columns: 12;
+    --columnSize: 1fr;
+    row-gap: 64px;
+  }
+
+  @include onDesktop {
+    --columns: 24;
+    --columnSize: 32px;
+    row-gap: 80px;
+  }
+}
+
+@mixin style-primary-title {
+  color: $primary;
+  font-family: 'Mont-Bold';
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 41px;
+  letter-spacing: -0.32px;
+
+  @include onTablet {
+    font-size: 48px;
+    line-height: 56px;
+    letter-spacing: -0.48px;
+  }
+}
+
+@mixin pseudo-element-after {
+  content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+
+      display: block;
+      height: 3px;
+      width: 100%;
+
+      background-color: $primary;
+      transition: transform 0.3s linear;
+      transform: translateX(-101%);
 }

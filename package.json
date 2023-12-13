@@ -30,7 +30,7 @@
     "eject": "react-scripts eject",
     "format": "prettier . --ignore-path .gitignore --write",
     "lint": "eslint . --ignore-path .eslintignore --fix",
-    "fix-style": "npm run format & npm run lint",
+    "fix-style": "npm run lint",
     "prepare": "husky install"
   },
   "eslintConfig": {

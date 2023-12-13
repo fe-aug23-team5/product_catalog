@@ -1,0 +1,25 @@
+@import '../../styles/variables.scss';
+
+.base-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 48px;
+  border: 1px solid  $icons;
+  background-color: $white;
+
+  cursor: pointer;
+  transition: border 0.3s;
+}
+
+.base-button-hover {
+  &:hover {
+    border: 1px solid $primary;
+  }
+}
+
+.base-class--active {
+  border: 1px solid $elements;
+}

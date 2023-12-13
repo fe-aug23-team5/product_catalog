@@ -5,14 +5,18 @@ import {
   HashRouter as Router,
   Routes,
 } from 'react-router-dom';
-import { AccessoriesPage } from '../pages/AccessoriesPage/AccessoriesPage';
-import { CartPage } from '../pages/CartPage/CartPage';
-import { FavouritesPage } from '../pages/FavouritesPage/FavouritesPage';
+import App from './App';
 import { HomePage } from '../pages/HomePage/HomePage';
-import { NotFoundPage } from '../pages/NotFoundPage/NotFoundPage';
 import { PhonesPage } from '../pages/PhonesPage/PhonesPage';
 import { TabletsPage } from '../pages/TabletsPage/TabletsPage';
-import App from './App';
+import { AccessoriesPage } from '../pages/AccessoriesPage/AccessoriesPage';
+import { FavouritesPage } from '../pages/FavouritesPage/FavouritesPage';
+import { CartPage } from '../pages/CartPage/CartPage';
+import { NotFoundPage } from '../pages/NotFoundPage/NotFoundPage';
+
+import {
+  ProductDetailsPage,
+} from '../pages/ProductDetailsPage/ProductDetailsPage';
 
 export const Root = () => {
   return (
@@ -21,9 +25,9 @@ export const Root = () => {
         <Route path="/" element={<App />}>
           <Route index element={<HomePage />} />
           <Route path="home" element={<Navigate to="/" replace />} />
-          <Route path="phones" element={<PhonesPage />} />
-          {/* <Route path=':id'/>
-          </Route> */}
+          <Route path="phones" element={<PhonesPage />}>
+            <Route path=":id" element={<ProductDetailsPage />} />
+          </Route>
           <Route path="tablets" element={<TabletsPage />} />
           <Route path="accessories" element={<AccessoriesPage />} />
           <Route path="favourites" element={<FavouritesPage />} />

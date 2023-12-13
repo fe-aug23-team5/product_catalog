@@ -1,5 +1,10 @@
 import React from 'react';
+import './PageTitle.scss';
 
-export const PageTitle: React.FC = () => {
-  return <h1>PageTitle</h1>;
+type Props = {
+  children: string;
+};
+
+export const PageTitle: React.FC<Props> = ({ children }) => {
+  return <h1 className="title_primary">{children}</h1>;
 };
