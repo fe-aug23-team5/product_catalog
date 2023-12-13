@@ -14,10 +14,12 @@
 }
 
 @import '../../shared/styles/variables.scss';
+@import '../../shared//styles/mixin.scss';
 
 .card {
-  grid-column: span 4;
+  grid-column: span 6;
   width: 100%;
+  min-width: 250px;
   border: 1px solid $elements;
   border-radius: 8px;
   background-color: $white;
