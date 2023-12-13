@@ -1,0 +1,7 @@
+@import '../../shared//styles/mixin.scss';
+
+.phones {
+  &_container {
+    @include pageGrid;
+  }
+}
