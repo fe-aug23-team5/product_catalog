@@ -1,15 +1,14 @@
 {
   "files": {
-    "main.css": "/product_catalog/static/css/main.9138b866.css",
-    "main.js": "/product_catalog/static/js/main.be732a07.js",
-    "static/media/category-tablets.png": "/product_catalog/static/media/category-tablets.51782e18205a1ca01ce8.png",
-    "static/media/category-phones.png": "/product_catalog/static/media/category-phones.af93d992917380dfe206.png",
-    "static/media/category-accessories.png": "/product_catalog/static/media/category-accessories.e47d6d6df68a6548e82b.png",
+    "main.css": "/product_catalog/static/css/main.59431cab.css",
+    "main.js": "/product_catalog/static/js/main.37b8459f.js",
     "static/media/Logo.svg": "/product_catalog/static/media/Logo.c6f2f3eda1b32d5740ad62b825eab096.svg",
     "static/media/Mont-Regular.otf": "/product_catalog/static/media/Mont-Regular.1d26d89f7339866d3133.otf",
     "static/media/Mont-SemiBold.otf": "/product_catalog/static/media/Mont-SemiBold.8979d71a3146ca1d761f.otf",
     "static/media/Mont-Bold.otf": "/product_catalog/static/media/Mont-Bold.03c8c2f6127c1da0fc39.otf",
-    "static/media/00.jpg": "/product_catalog/static/media/00.1527915c0e38812465eb.jpg",
+    "static/media/categories_tablets.jpg": "/product_catalog/static/media/categories_tablets.cabb19b133dcf9061222.jpg",
+    "static/media/categories_phones.jpg": "/product_catalog/static/media/categories_phones.973e14efb588d188c93d.jpg",
+    "static/media/categories_acc.jpg": "/product_catalog/static/media/categories_acc.9d20d8d548f1e6c03ac7.jpg",
     "static/media/Shopping bag (Cart).svg": "/product_catalog/static/media/Shopping bag (Cart).df23e4fbb25ff3701b16978082a61721.svg",
     "static/media/Favourites (Heart Like).svg": "/product_catalog/static/media/Favourites (Heart Like).cc696932b63c19f487763e75a935dfcb.svg",
     "static/media/Favorites (Heart LIke Active).svg": "/product_catalog/static/media/Favorites (Heart LIke Active).e67f1c93f359190a6beb379522552bc2.svg",
@@ -17,11 +16,11 @@
     "static/media/Menu.svg": "/product_catalog/static/media/Menu.73ddde2c093f9fb313b993eaba038f9a.svg",
     "static/media/right_arrow.svg": "/product_catalog/static/media/right_arrow.1681557de013e6041c2470380f71392b.svg",
     "index.html": "/product_catalog/index.html",
-    "main.9138b866.css.map": "/product_catalog/static/css/main.9138b866.css.map",
-    "main.be732a07.js.map": "/product_catalog/static/js/main.be732a07.js.map"
+    "main.59431cab.css.map": "/product_catalog/static/css/main.59431cab.css.map",
+    "main.37b8459f.js.map": "/product_catalog/static/js/main.37b8459f.js.map"
   },
   "entrypoints": [
-    "static/css/main.9138b866.css",
-    "static/js/main.be732a07.js"
+    "static/css/main.59431cab.css",
+    "static/js/main.37b8459f.js"
   ]
 }
