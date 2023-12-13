@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classes from './ProductCard.module.scss';
 import img from '../../img/phones/apple-iphone-7/silver/00.jpg';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 import { IconButton } from '../../shared/ui/IconButton';
 import { Phone } from '../../shared/types/Phone';
+import { GlobalContext } from '../../shared/utils/GlobalProvider';
 
 type Props = {
   phone: Phone;
 };
 
 export const ProductCard: React.FC<Props> = ({ phone }) => {
+  const { addCartItem, deleteCartItem } = useContext(GlobalContext);
   // console.log(phone.image);
   // console.log(`../../${phone.image}`);
+
+  const handleAddToButton = () => {
+    addCartItem(phone);
+  };
+
+  const handleRemoveButton = () => {
+    deleteCartItem(phone.phoneId);
+  };
 
   return (
     <article className={classes.card}>
@@ -58,6 +68,19 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
           functions on change default
           on change when active
           create container for button to handle it width (80% from containe) */}
+          <button
+            type="button"
+            onClick={handleAddToButton}
+          >
+            Addd to cart
+          </button>
+
+          <button
+            type="button"
+            onClick={handleRemoveButton}
+          >
+            delete from local storage
+          </button>
           <PrimaryButton />
           <IconButton />
         </p>
