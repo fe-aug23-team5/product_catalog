@@ -2,7 +2,7 @@ export const BASE_URL_IMG
 // eslint-disable-next-line max-len
   = 'https://raw.githubusercontent.com/fe-aug23-team5/product_catalog-static/main/';
 
-const BASE_URL = 'https://product-catalog-backend-2ffw.onrender.com';
+const BASE_URL = 'https://product-catalog-backend-decvelop.onrender.com';
 
 export function getData<T>(url: string): Promise<T> {
   return fetch(`${BASE_URL}${url}`)
