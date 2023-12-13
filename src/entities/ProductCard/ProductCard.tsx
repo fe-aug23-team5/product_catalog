@@ -27,12 +27,14 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
     const isPhoneInCart = cart.some(item => item.phoneId === phone.phoneId);
 
     setIsButtonActive(isPhoneInCart);
+    // eslint-disable-next-line
   }, [cart.length]);
 
   useEffect(() => {
     const isInLiked = favourites.some(item => item.phoneId === phone.phoneId);
 
     setIsIconActive(isInLiked);
+    // eslint-disable-next-line
   }, [favourites.length]);
 
   const handleAddToCart = () => {
