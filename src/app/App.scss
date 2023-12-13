@@ -1,5 +1,12 @@
+@import '../shared/styles/reset.scss';
+@import '../shared/styles/fonts.scss';
 @import '../shared/styles/mixin.scss';
 @import '../shared/styles/variables.scss';
+
+:root {
+  font-family: 'Mont', sans-serif;
+  scroll-behavior: smooth;
+}
 
 .main {
   width: 100%;
