@@ -11,7 +11,7 @@ export const PhonesPage: React.FC = () => {
     try {
       const phones = await getAllPhones();
 
-      setAllPhones(phones);
+      setAllPhones(phones.rows);
     } catch (error) {
       throw new Error('Unexpected Error');
     }
