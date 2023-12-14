@@ -59,44 +59,23 @@ export const ProductSlider: React.FC<SliderCustomProps> = ({ children }) => {
     ),
     responsive: [
       {
-        breakpoint: 1170,
-        settings: {
-          slidesToShow: 3.5,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 1060,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 840,
+        breakpoint: 1025,
         settings: {
           slidesToShow: 2.5,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 710,
+        breakpoint: 740,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 560,
+        breakpoint: 480,
         settings: {
           slidesToShow: 1.5,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 430,
-        settings: {
-          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
