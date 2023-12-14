@@ -1,5 +1,80 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Listbox } from '@headlessui/react';
+import cn from 'classnames';
+import iconDown from '../../../img/icons/Chevron (Arrow Down).svg';
+import iconUp from '../../../img/icons/Chevron (Arrow Up).svg';
+import './Dropdown.scss';
 
-export const Dropdown: React.FC = () => {
-  return <h1>Dropdown</h1>;
+interface Props {
+  options: {
+    label: string;
+    value: string | number;
+  }[];
+  value?: string | number;
+  onChange?: (value: string | number) => void;
+}
+
+export const Dropdown: React.FC<Props> = ({ options, value, onChange }) => {
+  const [selectedOption, setSelectedOption] = useState(value);
+
+  useEffect(() => {
+    if (value !== undefined) {
+      setSelectedOption(value);
+    }
+  }, [value]);
+
+  const handleChange = (selectedValue: string | number) => {
+    setSelectedOption(selectedValue);
+    if (onChange) {
+      onChange(selectedValue);
+    }
+  };
+
+  return (
+    <div className="base-container">
+      <Listbox
+        value={selectedOption}
+        onChange={handleChange}
+      >
+        {({ open }) => (
+          <>
+            <Listbox.Button
+              className={cn('base-select', { 'base-select-open': open })}
+            >
+              {options.find((opt) => opt.value === selectedOption)
+                ?.label
+                || 'Select'}
+              <span className="icon">
+                {open ? (
+                  <img src={iconUp} alt="icon-up" />
+                ) : (
+                  <img src={iconDown} alt="icon-up" />
+                )}
+              </span>
+            </Listbox.Button>
+
+            {open && (
+              <Listbox.Options className="options">
+                {options.map(({ label, value: optionValue }) => (
+                  <Listbox.Option
+                    key={optionValue}
+                    value={optionValue}
+                  >
+                    {({ active }) => (
+                      <div
+                        className={cn('list',
+                          { 'base-select-hover': active })}
+                      >
+                        {label}
+                      </div>
+                    )}
+                  </Listbox.Option>
+                ))}
+              </Listbox.Options>
+            )}
+          </>
+        )}
+      </Listbox>
+    </div>
+  );
 };
