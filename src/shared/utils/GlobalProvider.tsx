@@ -8,6 +8,7 @@ export const GlobalContext = React.createContext<Context>({
   cart: [],
   addCartItem: () => { },
   deleteCartItem: () => { },
+  updateCartItemQuantity: () => { },
   favourites: [],
   addFavouriteItem: () => { },
   deleteFavouriteItem: () => { },
@@ -19,13 +20,27 @@ export const GlobalProvider: React.FC<ProviderProps> = ({ children }) => {
     = useLocalStorage<Phone[]>('favourites', []);
 
   const addCartItem = (value: Phone) => {
-    const updatedCart: Phone[] = [...cart, value];
+    const updatedValue: Phone = { ...value, quantity: 1 };
+
+    const updatedCart: Phone[] = [...cart, updatedValue];
 
     setCart(updatedCart);
   };
 
   const deleteCartItem = (phoneId: string) => {
     const updatedCart = cart.filter(item => item.phoneId !== phoneId);
+
+    setCart(updatedCart);
+  };
+
+  const updateCartItemQuantity = (phoneId: string, newQuantity: number) => {
+    const updatedCart = cart.map(item => {
+      if (item.phoneId === phoneId) {
+        return { ...item, quantity: newQuantity };
+      }
+
+      return item;
+    });
 
     setCart(updatedCart);
   };
@@ -47,6 +62,7 @@ export const GlobalProvider: React.FC<ProviderProps> = ({ children }) => {
     cart,
     addCartItem,
     deleteCartItem,
+    updateCartItemQuantity,
     favourites,
     addFavouriteItem,
     deleteFavouriteItem,

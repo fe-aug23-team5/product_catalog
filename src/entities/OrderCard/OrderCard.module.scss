@@ -1,0 +1,141 @@
+@import '../../shared/styles/variables.scss';
+@import '../../shared/styles/mixin.scss';
+
+.phone__card {
+  background-color: #fff;
+  margin-bottom: 16px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid $elements;
+  gap: 16px;
+
+  @include onTablet {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  &_container {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  &_image {
+    width: 52px;
+    height: 66px;
+    padding: 7px;
+  }
+
+  &_title {
+    font-family: 'Mont-Regular';
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  &_delete_button {
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  &_quantity {
+    margin: 0 16px;
+  }
+
+  &_quantity_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    // border: 1px solid $secondary;
+
+    @include onTablet {
+      width: auto;
+      gap: 24px;
+    }
+  }
+
+  &_button_container {
+    display: flex;
+    align-items: center;
+  }
+
+  &_quantity_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 48px;
+    border: 1px solid  $icons;
+    background-color: $white;
+  
+    cursor: pointer;
+    transition: border 0.3s;
+  }
+
+  &_price {
+    font-family: 'Mont-bold';
+    font-size: 24px;
+    padding-left: 29px;
+    text-align: end;
+  }
+
+  &_message {
+    font-family: 'Mont-bold';
+  }
+}
+
+.cart__page {
+
+  &_container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+
+    @include onDesktop {
+      flex-direction: row;
+    }
+  }
+  
+  &_amount {
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid $elements;
+
+    @include onDesktop {
+      margin-left: 16px;
+      width: 368px;
+      height: 206px;
+    }
+  }
+
+  &_price {
+    text-align: center;
+  }
+
+  &_total_price {
+    font-family: 'Mont-bold';
+    font-size: 32px;
+    line-height: 41px;
+  }
+
+  &_items_length {
+    font-family: 'Mont-SemiBold';
+    font-size: 14px;
+    line-height: 21px;
+    color: $secondary;
+  }
+
+  &_break_line {
+    height: 1px;
+    background-color: $elements;
+    margin: 16px 0;
+  }
+}
+
