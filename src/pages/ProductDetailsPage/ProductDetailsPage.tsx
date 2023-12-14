@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getPhoneById } from '../../shared/api/phones';
 import { PhoneDetails } from '../../shared/types/PhoneDetails';
+import styles from './ProductDetails.module.scss';
 
 export const ProductDetailsPage: React.FC = () => {
   const [productDetail, setProductDetail] = useState<PhoneDetails | null>(null);
@@ -14,6 +15,8 @@ export const ProductDetailsPage: React.FC = () => {
   }, []);
 
   return (
-    <h1>ProductDetailsPage</h1>
+    <div className={styles.product_details}>
+      <h1>{productDetail?.name}</h1>
+    </div>
   );
 };

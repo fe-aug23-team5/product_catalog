@@ -74,17 +74,17 @@
 
 @mixin pseudo-element-after {
   content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
 
-      display: block;
-      height: 0;
-      width: 100%;
+  display: block;
+  height: 0;
+  width: 100%;
 
-      background-color: $primary;
-      transition: transform 0.3s linear;
-      transform: translateX(-101%);
+  background-color: $primary;
+  transition: transform 0.3s linear;
+  transform: translateX(-101%);
 }
 
 @mixin hover($property, $toValue) {
