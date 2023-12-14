@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixin.scss';
+
+.secondary_title {
+  color: $primary;
+
+
+  font-family: 'Mont-bold';
+  font-size: 22px;
+  line-height: 30.8px;
+
+  margin-bottom: 24px;
+
+  @include onTablet {
+    font-size: 32px;
+    line-height: 41px;
+    letter-spacing: -0.32px;
+  }
+}

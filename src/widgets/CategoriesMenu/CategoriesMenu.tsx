@@ -4,26 +4,30 @@ import { Link } from 'react-router-dom';
 import phonesImg from '../../shared/static/categories_phones.jpg';
 import tabletsImg from '../../shared/static/categories_tablets.jpg';
 import accImg from '../../shared/static/categories_acc.jpg';
+import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 
 export const CategoriesMenu: React.FC = () => {
   return (
     <section className="categories_section">
-      <h2 className="categories_title">Shop by category</h2>
+      <SecondaryTitle>
+        Shop by category
+      </SecondaryTitle>
 
       <div className="categories_menu">
         <article className="category_item">
-          <Link to="/phones" className="category_link">
+          <div className="category_link">
+            {/* to="/phones" */}
             <img
               className="category_image"
               src={phonesImg}
               alt="brand new phone"
             />
-          </Link>
+          </div>
 
           <h3 className="category_title">Mobile Phones</h3>
 
           <p className="category_desc">
-            95 Models Available
+            95 Models
           </p>
         </article>
 
@@ -39,7 +43,7 @@ export const CategoriesMenu: React.FC = () => {
           <h3 className="category_title">Tablets</h3>
 
           <p className="category_desc">
-            95 Models Available
+            24 Models
           </p>
         </article>
 
@@ -54,9 +58,9 @@ export const CategoriesMenu: React.FC = () => {
 
           <h3 className="category_title">Accessories</h3>
 
-          <p className="category_desc">
-            95 Models Available
-          </p>
+          <h4 className="category_desc">
+            100 Models
+          </h4>
         </article>
       </div>
     </section>
