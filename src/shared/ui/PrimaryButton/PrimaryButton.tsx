@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import cn from 'classnames';
 import classes from './PrimaryButton.module.scss';
 
-export const PrimaryButton: React.FC = () => {
-  const [isActive, setIsActive] = useState(false);
+type Props = {
+  isActive?: boolean;
+  defaultAction: () => void;
+  activeAction?: () => void;
+  defaultTitle: string;
+  activeTitle?: string;
+};
 
-  const handleButtonClick = () => {
-    setIsActive(!isActive);
-  };
-
+export const PrimaryButton: React.FC<Props> = ({
+  isActive,
+  defaultAction,
+  activeAction,
+  defaultTitle,
+  activeTitle,
+}) => {
   return (
     <button
       type="submit"
@@ -16,9 +24,9 @@ export const PrimaryButton: React.FC = () => {
         [classes['base-class--active']]: isActive,
         [classes['base-button-hover']]: !isActive,
       })}
-      onClick={handleButtonClick}
+      onClick={isActive ? activeAction : defaultAction}
     >
-      Add to cart
+      {isActive ? activeTitle : defaultTitle}
     </button>
   );
 };
