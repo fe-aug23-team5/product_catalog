@@ -11,10 +11,10 @@ export const App: React.FC = () => {
     <div className="App">
       <Header />
 
-      <div className="main">
+      <main className="main">
         {/* <Outlet /> */}
         <ProductDetailsPage />
-      </div>
+      </main>
 
       <Footer />
     </div>
