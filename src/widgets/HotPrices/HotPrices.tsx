@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 import { ProductSlider } from '../../features/ProductSlider';
 import { Loader } from '../Loader';
-import { getNewestPhones } from '../../shared/api/phones';
+import { getDiscountPhones } from '../../shared/api/phones';
 import { Phone } from '../../shared/types/Phone';
 import { ProductCard } from '../../entities/ProductCard';
 
@@ -12,7 +12,7 @@ export const HotPrices: React.FC = () => {
 
   const fetchNewPhones = async () => {
     try {
-      const phones = await getNewestPhones();
+      const phones = await getDiscountPhones();
 
       setDiscountPhones(phones);
     } catch (error) {
