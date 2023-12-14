@@ -105,9 +105,6 @@ export const ProductSlider: React.FC<SliderCustomProps> = ({ children }) => {
 
   return (
     <div className="slider-container">
-      <div className="slider-container__header">
-        <h1 className="slider-container__title">Product Slider</h1>
-      </div>
       <Slider {...settings} className="slider-container__slider">
         {children}
       </Slider>
