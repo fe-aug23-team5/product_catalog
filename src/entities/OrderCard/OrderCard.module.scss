@@ -52,7 +52,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    border: 1px solid $secondary;
+    // border: 1px solid $secondary;
 
     @include onTablet {
       width: auto;
@@ -88,8 +88,6 @@
 
   &_message {
     font-family: 'Mont-bold';
-    text-align: center;
-    margin-bottom: 16px;
   }
 }
 
