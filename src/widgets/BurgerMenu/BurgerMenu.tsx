@@ -62,7 +62,7 @@ export const BurgerMenu: React.FC<Props> = ({
             />
           </NavLink>
 
-          <NavLink className={isActiveIcon} to="/carts">
+          <NavLink className={isActiveIcon} to="/cart">
             <img
               className={styles.icon}
               src={basketIcon}
