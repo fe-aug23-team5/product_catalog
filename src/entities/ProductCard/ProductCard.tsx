@@ -99,7 +99,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
               defaultAction={handleAddToCart}
               activeAction={handleDeleteFromCart}
               defaultTitle="Add to card"
-              activeTitle="Remove from card"
+              activeTitle="Added"
             />
           </div>
           <IconButton

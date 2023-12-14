@@ -1,0 +1,35 @@
+@import '../../shared/styles/mixin.scss';
+
+.favpage {
+  &_container {
+    @include cardAndFavPageGrid;
+    width: 100%;
+    max-width: $fixed-desktop-grid;
+    margin-top: 24px;
+    margin-bottom: 64px;
+    padding-inline: 16px;
+
+    @include onTablet {
+      margin-top: 32px;
+      padding-inline: 24px;
+    }
+
+    @include onDesktop {
+      margin-top: 56px;
+      margin-bottom: 80px;
+      padding-inline: auto;
+    }
+
+    &_title {
+      @include element-full-width-grid;
+    }
+
+    &_empty {
+      @include element-full-width-grid;
+    }
+
+    &_offers {
+      @include element-full-width-grid;
+    }
+  }
+}

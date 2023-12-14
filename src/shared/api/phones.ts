@@ -7,4 +7,5 @@ export const getAllPhones = () => getData<ServerResponce>('/phones');
 // (smth like that apple-iphone-7-32gb-black)
 export const getPhoneById = (phoneId: string) => getData<Phone>(`/phones/${phoneId}`);
 export const getNewestPhones = () => getData<Phone[]>('/phones/new');
-export const getSuggestedPhones = () => getData<Phone[]>('/phones/suggested');
+export const getDiscountPhones = () => getData<Phone[]>('/phones/discount');
+export const getSuggestedPhones = () => getData<Phone[]>('/phones/recommended');
