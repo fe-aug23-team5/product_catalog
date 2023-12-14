@@ -1,6 +1,30 @@
 @import '../../shared/styles/variables.scss';
 @import '../../shared/styles/mixin.scss';
 
+.card_page_container_cart {
+  grid-column: span $columns-mobile;
+
+  @include onTablet {
+    grid-column: span $columns-tablet;
+  }
+
+  @include onDesktop {
+    grid-column: 1 / 16;
+  }
+}
+
+.card_page_container_total {
+  grid-column: span $columns-mobile;
+
+  @include onTablet {
+    grid-column: span $columns-tablet;
+  }
+
+  @include onDesktop {
+    grid-column: 16 / 25;
+  }
+}
+
 .phone__card {
   background-color: #fff;
   margin-bottom: 16px;
@@ -54,10 +78,10 @@
     width: 100%;
     // border: 1px solid $secondary;
 
-    @include onTablet {
-      width: auto;
-      gap: 24px;
-    }
+    // @include onTablet {
+    //   // width: auto;
+    //   gap: 24px;
+    // }
   }
 
   &_button_container {
@@ -88,6 +112,7 @@
 
   &_message {
     font-family: 'Mont-bold';
+    grid-column: span 4;
   }
 }
 
@@ -107,10 +132,10 @@
     padding: 24px;
     border-radius: 16px;
     border: 1px solid $elements;
+    width: 100%;
 
     @include onDesktop {
       margin-left: 16px;
-      width: 368px;
       height: 206px;
     }
   }
