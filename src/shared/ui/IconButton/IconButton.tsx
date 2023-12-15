@@ -5,9 +5,9 @@ import favorite from '../../../img/icons/Favourites (Heart Like).svg';
 import favoriteAct from '../../../img/icons/Favorites (Heart LIke Active).svg';
 
 type Props = {
-  isActive: boolean;
+  isActive?: boolean;
   defaultAction: () => void;
-  activeAction: () => void;
+  activeAction?: () => void;
 };
 
 export const IconButton: React.FC<Props> = ({

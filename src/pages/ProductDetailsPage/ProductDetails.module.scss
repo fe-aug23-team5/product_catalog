@@ -2,17 +2,71 @@
 @import '../../shared/styles/variables.scss';
 
 .product_details {
-  &__section_wrapper {
-    @include onDesktop {
-      @include pageGrid();
-      // margin-top: 91px;
-    }
+  @include pageGrid();
+  width: 100%;
+  max-width: 1184px;
+  margin-top: 24px;
+  margin-bottom: 64px;
+  padding-inline: 16px;
+
+  @include onTablet {
+    margin-top: 32px;
+    padding-inline: 24px;
+  }
+
+  @include onDesktop {
+    margin-top: 56px;
+    margin-bottom: 80px;
+    padding-inline: auto;
   }
 
   &__path {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+}
+
+.block {
+  &_top {
+    @include element-full-width-grid;
+  }
+}
+
+// .block_top {
+//   @include element-full-width-grid;
+// }
+
+.block_gallery {
+  @include element-full-width-grid;
+
+  @include onDesktop {
+    grid-column: 1 / 13;
+  }
+}
+
+.block_info {
+  @include element-full-width-grid;
+
+  @include onDesktop {
+    grid-column: 14 / 25;
+  }
+}
+
+.block_about {
+  @include element-full-width-grid;
+
+  @include onDesktop {
+    grid-column: 1 / 13;
+  }
+}
+
+.block_tech {
+  @include element-full-width-grid;
+
+  
+  @include onDesktop {
+    grid-column: 14 / 25;
   }
 }
 
@@ -58,10 +112,6 @@
   font-weight: 600;
   color: $secondary;
 
-  @include onTablet {
-    @include pageGrid();
-  }
-
   &__image_wrapper {
     width: 287px;
     height: 287px;
@@ -86,7 +136,7 @@
     display: flex;
     justify-content: center;
     gap: 8px;
-  
+
     margin-top: 23px;
 
     @include onTablet {
@@ -238,12 +288,12 @@
 }
 
 .details {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
-    margin-top: 32px;
-    font-size: 0.75rem;
+  margin-top: 32px;
+  font-size: 0.75rem;
 
   &__text {
     display: flex;
@@ -257,17 +307,6 @@
 }
 
 .about {
-  grid-column: span 4;
-  margin-top: 56px;
-  
-  @include onTablet {
-    margin-top: 64px;
-  }
-
-  @include onDesktop {
-    margin-top: 80px;
-  }
-
   color: $primary;
 
   &__title {
@@ -283,10 +322,6 @@
       font-weight: 800;
       line-height: 31px;
     }
-  }
-
-  @include onDesktop {
-    grid-column: 1 / 12;
   }
 }
 
@@ -313,16 +348,6 @@
 }
 
 .tech {
-  margin-top: 56px;
-
-  @include onTablet {
-    margin-top: 64px;
-  }
-
-  @include onDesktop {
-    margin-top: 80px;
-  }
-
   &__title {
     border-bottom: 1px solid $secondary;
     padding-bottom: 16px;
@@ -362,9 +387,5 @@
     font-weight: 600;
     text-align: right;
     color: $primary;
-  }
-
-  @include onDesktop {
-    grid-column: 14 / -1;
   }
 }

@@ -133,8 +133,13 @@ export const ProductDetailsPage: React.FC = () => {
               </p>
 
               <div className={styles.price__buttons}>
-                <PrimaryButton />
-                <IconButton />
+                <PrimaryButton
+                  defaultAction={() => { }}
+                  defaultTitle="Checkout"
+                />
+                <IconButton
+                  defaultAction={() => { }}
+                />
               </div>
 
               <div className={styles.details}>
