@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Listbox } from '@headlessui/react';
+import { Listbox, Transition } from '@headlessui/react';
 import cn from 'classnames';
 import iconDown from '../../../img/icons/Chevron (Arrow Down).svg';
 import iconUp from '../../../img/icons/Chevron (Arrow Up).svg';
@@ -41,8 +41,8 @@ export const Dropdown: React.FC<Props> = ({ options, value, onChange }) => {
             <Listbox.Button
               className={cn('base-select', { 'base-select-open': open })}
             >
-              {options.find((opt) => opt.value === selectedOption)
-                ?.label
+              {(options.find((opt) => opt.value === selectedOption)
+                || options[0])?.label
                 || 'Select'}
               <span className="icon">
                 {open ? (
@@ -54,23 +54,33 @@ export const Dropdown: React.FC<Props> = ({ options, value, onChange }) => {
             </Listbox.Button>
 
             {open && (
-              <Listbox.Options className="options">
-                {options.map(({ label, value: optionValue }) => (
-                  <Listbox.Option
-                    key={optionValue}
-                    value={optionValue}
-                  >
-                    {({ active }) => (
-                      <div
-                        className={cn('list',
-                          { 'base-select-hover': active })}
-                      >
-                        {label}
-                      </div>
-                    )}
-                  </Listbox.Option>
-                ))}
-              </Listbox.Options>
+              <Transition
+                show={open}
+                enter="transition-opacity duration-75"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="transition-opacity duration-150"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                <Listbox.Options className="options">
+                  {options.map(({ label, value: optionValue }) => (
+                    <Listbox.Option
+                      key={optionValue}
+                      value={optionValue}
+                    >
+                      {({ active }) => (
+                        <div
+                          className={cn('list',
+                            { 'base-select-hover': active })}
+                        >
+                          {label}
+                        </div>
+                      )}
+                    </Listbox.Option>
+                  ))}
+                </Listbox.Options>
+              </Transition>
             )}
           </>
         )}
