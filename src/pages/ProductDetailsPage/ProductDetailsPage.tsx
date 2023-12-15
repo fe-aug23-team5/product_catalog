@@ -1,21 +1,28 @@
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
-import { getPhoneById } from '../../shared/api/phones';
-import { PhoneDetails } from '../../shared/types/PhoneDetails';
 import styles from './ProductDetails.module.scss';
+import { getPhoneById, getSuggestedPhones } from '../../shared/api/phones';
+import { PhoneDetails } from '../../shared/types/PhoneDetails';
+import { Phone } from '../../shared/types/Phone';
 import leftArrow from '../../img/icons/Chevron (Arrow Right).svg';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 import { IconButton } from '../../shared/ui/IconButton';
 import { Breadcrumbs } from '../../features/Breadcrumbs';
 import { Loader } from '../../widgets/Loader';
+import { ProductSlider } from '../../features/ProductSlider';
+import { ProductCard } from '../../entities/ProductCard';
 
 export const ProductDetailsPage: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [productDetail, setProductDetail] = useState<PhoneDetails | null>(null);
+  const [
+    recommendedProducts, setRecommendedProducts,
+  ] = useState<Phone[] | null>(null);
   const [productImage, setProductImage] = useState('');
   const [isLoad, setIsLoad] = useState(true);
   const [capacity, setCapacity] = useState(productDetail?.capacity);
@@ -39,6 +46,15 @@ export const ProductDetailsPage: React.FC = () => {
       .finally(() => setIsLoad(false));
   }, [capacity, productColor]);
 
+  useEffect(() => {
+    getSuggestedPhones()
+      .then(setRecommendedProducts)
+      .catch(error => {
+        throw error;
+      })
+      .finally(() => setIsLoad(false));
+  }, []);
+
   const changeProductColor = (color: string) => {
     if (color === productColor) {
       return;
@@ -59,13 +75,21 @@ export const ProductDetailsPage: React.FC = () => {
     setCapacity(value);
   };
 
+  const goBack = () => {
+    navigate('..');
+  };
+
   return isLoad
     ? (<Loader />)
     : (
       <div className={styles.product_details}>
         <div className={styles.block_top}>
           <Breadcrumbs />
-          <button className={styles.goback_button} type="button">
+          <button
+            className={styles.goback_button}
+            type="button"
+            onClick={goBack}
+          >
             <img
               className={styles.icon}
               src={leftArrow}
@@ -80,24 +104,28 @@ export const ProductDetailsPage: React.FC = () => {
         </div>
 
         <div className={styles.block_gallery}>
-          <div className={styles.product__image_wrapper}>
+          <div className={styles.block_gallery__image_wrapper}>
             <img
-              className={styles.product_main_image}
+              className={styles.block_gallery_main_image}
               src={productImage}
               alt="Product"
             />
           </div>
 
-          <ul className={styles.product__list}>
+          <ul className={styles.block_gallery__list}>
             {productDetail?.images.map(image => (
-              <li key={image} className={styles.product__item}>
+              <li key={image} className={styles.block_gallery__item}>
                 <button
-                  className={styles.product__button}
+                  className={cn(styles.block_gallery__button, {
+                    [
+                    styles.block_gallery__button_active
+                    ]: productImage === `${BASE_URL_IMG}${image}`,
+                  })}
                   type="button"
                   onClick={() => setProductImage(`${BASE_URL_IMG}${image}`)}
                 >
                   <img
-                    className={styles.product__image}
+                    className={styles.block_gallery__image}
                     src={`${BASE_URL_IMG}${image}`}
                     alt="Product"
                   />
@@ -108,7 +136,7 @@ export const ProductDetailsPage: React.FC = () => {
         </div>
 
         <div className={styles.block_info}>
-          <article className={styles.product__info}>
+          <article className={styles.block_info__information}>
             <div className={styles.color}>
               <div className={styles.color__text}>
                 <span className={styles.color__description}>
@@ -350,6 +378,17 @@ export const ProductDetailsPage: React.FC = () => {
             </article>
           </section>
         </div>
+
+        <section className={styles.slider}>
+          <ProductSlider>
+            {
+              recommendedProducts !== null && recommendedProducts
+                .map((phone) => {
+                  return <ProductCard key={phone.phoneId} phone={phone} />;
+                })
+            }
+          </ProductSlider>
+        </section>
       </div>
     );
 };
