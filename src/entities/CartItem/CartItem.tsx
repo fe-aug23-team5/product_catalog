@@ -35,7 +35,7 @@ export const CartItem: React.FC<CartItemProps> = ({
         />
         <h3 className={styles.phone__card_title}>{name}</h3>
       </div>
-      <div className={styles.phone__card_quantity_container}>
+      <div className={styles.phone__card_manuals_container}>
         <div className={styles.phone__card_button_container}>
           <button
             type="button"
@@ -44,7 +44,9 @@ export const CartItem: React.FC<CartItemProps> = ({
           >
             <img src={minusIcon} alt="minus icon" />
           </button>
-          <p className={styles.phone__card_quantity}>{quantity}</p>
+          <div className={styles.phone__card_quantity_container}>
+            <p className={styles.phone__card_quantity}>{quantity}</p>
+          </div>
           <button
             type="button"
             className={styles.phone__card_quantity_button}
@@ -53,9 +55,11 @@ export const CartItem: React.FC<CartItemProps> = ({
             <img src={plusIcon} alt="plus icon" />
           </button>
         </div>
-        <p className={styles.phone__card_price}>
-          {`$${calculatePrice(price, quantity)}`}
-        </p>
+        <div className={styles.phone__card_price_container}>
+          <p className={styles.phone__card_price}>
+            {`$${calculatePrice(price, quantity)}`}
+          </p>
+        </div>
       </div>
     </li>
   );

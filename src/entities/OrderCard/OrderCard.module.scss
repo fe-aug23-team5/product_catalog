@@ -21,7 +21,7 @@
   }
 
   @include onDesktop {
-    grid-column: 1 / 16;
+    grid-column: 16 / 25;
   }
 }
 
@@ -37,7 +37,7 @@
   }
 
   @include onDesktop {
-    grid-column: 16 / 25;
+    grid-column: 1 / 25;
   }
 }
 

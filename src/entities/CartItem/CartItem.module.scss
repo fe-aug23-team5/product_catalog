@@ -53,11 +53,15 @@
   }
 
   &_quantity_container {
+    width: 50px;
+    text-align: center;
+  }
+
+  &_manuals_container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    border: 1px solid burlywood;
 
     @include onTablet {
       width: auto;
@@ -87,8 +91,10 @@
   &_price {
     font-family: 'Mont-bold';
     font-size: 24px;
-    padding-left: 29px;
-    border: 1px solid palevioletred;
-    // text-align: end;
+    text-align: end;
+  }
+  
+  &_price_container {
+    width: 100px;
   }
 }
