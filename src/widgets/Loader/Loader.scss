@@ -1,6 +1,8 @@
 @import '../../shared//styles/variables.scss';
+@import '../../shared/styles/mixin.scss';
 
 .loader {
+  @include element-full-width-grid;
   display: flex;
   align-items: center;
   justify-content: center;
