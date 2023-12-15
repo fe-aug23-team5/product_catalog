@@ -1,0 +1,28 @@
+@import '../../shared/styles/mixin.scss';
+@import '../../shared/styles/variables.scss';
+
+.breadcrumbs {
+  @include element-full-width-grid;
+  display: flex;
+  align-items: center;
+
+  &_link {
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+  }
+
+  &_link img {
+    margin-right: 4px;
+    vertical-align: middle; 
+  }
+
+  &_link a {
+    text-decoration: none;
+    color: $primary;
+  }
+
+  &_last {
+    color: $secondary;
+  }
+}

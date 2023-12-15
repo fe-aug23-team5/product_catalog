@@ -1,15 +1,21 @@
 @import '../../shared/styles/variables.scss';
 @import '../../shared/styles/mixin.scss';
 
-.slider-container__slider {
-
-  .slick-list {
-    padding: 0 -10px;
-  }
+.slick-list {
+  padding: 0 -10px;
 }
 
 .slick-slide {
-  padding: 0 10px;
+  padding: 20px 10px;
+}
+
+.slick-track {
+  display: flex;
+}
+
+.slick-track .slick-slide {
+  display: flex;
+  height: auto;
 }
 
 .arrow {

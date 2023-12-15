@@ -1,0 +1,42 @@
+@import '../../shared/styles/mixin.scss';
+@import '../../shared/styles/variables.scss';
+// .content {
+//   &_container {
+//    display: flex;
+//   }
+// }
+
+
+.content {
+  &_container {
+    @include pageGrid();
+    width: 100%;
+    max-width: 1184px;
+    margin-top: 24px;
+    margin-bottom: 64px;
+    padding-inline: 16px;
+
+    @include onTablet {
+      margin-top: 32px;
+      padding-inline: 24px;
+    }
+
+    @include onDesktop {
+      margin-top: 56px;
+      margin-bottom: 80px;
+      padding-inline: auto;
+    }
+  }
+}
+
+.cart_page_title {
+  grid-column: span $columns-mobile;
+
+  @include onTablet {
+    grid-column: span $columns-tablet;
+  }
+
+  @include onDesktop {
+    grid-column: span $columns-desktop;
+  }
+}
