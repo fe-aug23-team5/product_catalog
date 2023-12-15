@@ -15,8 +15,6 @@ body {
   display: flex;
   justify-content: space-around;
 
-  // @include flex-justify-center-align-center;
-
   @include onTablet {
     min-height: calc(100vh - 144px);
   }

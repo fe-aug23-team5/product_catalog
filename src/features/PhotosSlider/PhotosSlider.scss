@@ -1,0 +1,104 @@
+@import '../../shared/styles/variables.scss';
+@import '../../shared/styles/mixin.scss';
+
+.photo__item {
+  aspect-ratio: 0.7/0.7;
+  border-radius: 10px;
+  background-image: url(../../shared/static/BannerPhoto/PhoneBanner.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  @include onTablet {
+    aspect-ratio: 4.5/1.7;
+    border-radius: 10px;
+    background-image: url(../../shared/static/BannerPhoto/TabletBanner.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+}
+
+.photo-slider__slider {
+  .slick-list {
+    width: calc(100% - 80px);
+    margin: 0 auto;
+  }
+}
+
+.slick {
+  @include onTablet {
+    &-list {
+      border-radius: 10px;
+    }
+    &-prev,
+    &-next {
+      top: 49.5%;
+      height: 99%;
+      width: 32px;
+      border: 1px solid #b4bdc4;
+      border-radius: 48px;
+      padding: 14px;
+
+      &:hover {
+        border: 1px solid #0f0f11;
+      }
+
+      &::before {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    &-prev {
+      left: 0;
+
+      &::before {
+        content: '';
+        display: block;
+        width: 16px;
+        height: 16px;
+        background-image: url('../../img/icons/Arrow\ Left.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+      }
+    }
+
+    &-next {
+      right: 0;
+
+      &::before {
+        content: '';
+        display: block;
+        width: 16px;
+        height: 16px;
+        background-image: url('../../img/icons/Arrow\ Right.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+      }
+    }
+  }
+}
+
+
+
+
+.slick-dots {
+  li {
+    margin: 0 5px;
+    width: 15px;
+    height: 5px;
+    background-color: #d1d1d1;
+
+    &.slick-active {
+      background-color: $primary;
+    }
+
+    button:before {
+      content: '';
+    }
+  }
+}
