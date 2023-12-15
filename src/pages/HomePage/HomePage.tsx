@@ -8,22 +8,22 @@ import { HotPrices } from '../../widgets/HotPrices';
 
 export const HomePage: React.FC = () => {
   return (
-    <div className="content_container">
-      <div className="content_container_item">
+    <div className="homepage">
+      <div className="homepage__item">
         <PageTitle>Welcome to Nice Gadgets Store</PageTitle>
 
         <PhotosSlider />
       </div>
 
-      <div className="content_container_item">
+      <div className="homepage__item">
         <BrandNewModels />
       </div>
 
-      <div className="content_container_item">
+      <div className="homepage__item">
         <CategoriesMenu />
       </div>
 
-      <div className="content_container_item">
+      <div className="homepage__item">
         <HotPrices />
       </div>
     </div>

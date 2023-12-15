@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './CategiesMenu.scss';
 import { Link } from 'react-router-dom';
-import phonesImg from '../../shared/static/categories_phones.jpg';
-import tabletsImg from '../../shared/static/categories_tablets.jpg';
-import accImg from '../../shared/static/categories_acc.jpg';
+import phonesImg from '../../shared/static/category-phones.png';
+import tabletsImg from '../../shared/static/category-tablets.png';
+import accImg from '../../shared/static/category-cases.png';
 import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
+import { getAllPhones } from '../../shared/api/phones';
 
 export const CategoriesMenu: React.FC = () => {
+  const [phonesCount, setPhonesCount] = useState(0);
+
+  const fetchPhonesCount = async () => {
+    try {
+      const phones = await getAllPhones();
+
+      setPhonesCount(phones.totalCount);
+    } catch (error) {
+      throw new Error('Unexpected Error');
+    }
+  };
+
+  useEffect(() => {
+    fetchPhonesCount();
+  }, []);
+
   return (
     <section className="categories_section">
       <SecondaryTitle>
@@ -15,19 +32,18 @@ export const CategoriesMenu: React.FC = () => {
 
       <div className="categories_menu">
         <article className="category_item">
-          <div className="category_link">
-            {/* to="/phones" */}
+          <Link to="/phones" className="category_link">
             <img
               className="category_image"
               src={phonesImg}
-              alt="brand new phone"
+              alt="brand new tablets"
             />
-          </div>
+          </Link>
 
           <h3 className="category_title">Mobile Phones</h3>
 
           <p className="category_desc">
-            95 Models
+            {`${phonesCount} Models`}
           </p>
         </article>
 
