@@ -1,31 +1,74 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 import { CartTotalProps } from '../../shared/types/CartTotalProps';
 import styles from './CartTotal.module.scss';
+import { ModalWindow } from '../../features/ModalWindow';
+import { GlobalContext } from '../../shared/utils/GlobalProvider';
 
 export const CartTotal: React.FC<CartTotalProps> = ({
   calculateTotalPrice,
   calculateTotalItems,
-  handleDefaultAction,
 }) => {
-  return (
-    <div className={styles.cart__total_container}>
-      <div className={styles.cart__total_box}>
-        <p className={styles.cart__total_price}>
-          {`$${calculateTotalPrice()}`}
-        </p>
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-        <p className={styles.cart__total_items_length}>
-          {`Total for ${calculateTotalItems()} items`}
-        </p>
+  const { clearCart } = useContext(GlobalContext);
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  return (
+    <>
+      <div className={styles.cart__total_container}>
+        <div className={styles.cart__total_box}>
+          <p className={styles.cart__total_price}>
+            {`$${calculateTotalPrice()}`}
+          </p>
+
+          <p className={styles.cart__total_items_length}>
+            {`Total for ${calculateTotalItems()} items`}
+          </p>
+        </div>
+
+        <div className={styles.cart__total_break_line} />
+
+        <PrimaryButton
+          defaultAction={handleModalOpen}
+          defaultTitle="Checkout"
+        />
       </div>
 
-      <div className={styles.cart__total_break_line} />
-
-      <PrimaryButton
-        defaultAction={handleDefaultAction}
-        defaultTitle="Checkout"
-      />
-    </div>
+      {isModalOpen && (
+        <ModalWindow onClose={closeModal}>
+          <div className={styles.modal__wrapper}>
+            <h2 className={styles.modal__text}>
+              Checkout is not implemented yet. Do you want to clear the Cart?
+            </h2>
+            <div className={styles.button__container}>
+              <PrimaryButton
+                defaultAction={clearCart}
+                defaultTitle="Confirm"
+                additionalStyles={{
+                  height: '48px',
+                }}
+              />
+              <PrimaryButton
+                defaultAction={closeModal}
+                defaultTitle="Cancel"
+                additionalStyles={{
+                  backgroundColor: '#89939a',
+                  border: '1px solid #89939a',
+                  height: '48px',
+                }}
+              />
+            </div>
+          </div>
+        </ModalWindow>
+      )}
+    </>
   );
 };

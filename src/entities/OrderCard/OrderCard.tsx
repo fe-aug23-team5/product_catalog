@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../shared/utils/GlobalProvider';
 import { CartItem } from '../CartItem';
@@ -41,10 +40,6 @@ export const OrderCard: React.FC = () => {
     return cart.reduce((total, phone) => total + phone.quantity, 0);
   };
 
-  const handleDefaultAction = () => {
-    console.log('Default action');
-  };
-
   return (
     <>
       {cart.length > 0 ? (
@@ -68,7 +63,6 @@ export const OrderCard: React.FC = () => {
             <CartTotal
               calculateTotalPrice={calculateTotalPrice}
               calculateTotalItems={calculateTotalItems}
-              handleDefaultAction={handleDefaultAction}
             />
           </div>
         </>

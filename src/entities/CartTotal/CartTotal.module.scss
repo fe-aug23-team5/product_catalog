@@ -37,3 +37,24 @@
     margin: 16px 0;
   }
 }
+
+.modal__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.modal__text {
+  font-family: 'Mont-Semibold';
+  text-align: center;
+  font-size: 14px;
+
+  @include onTablet {
+    font-size: 22px;
+  }
+}
+
+.button__container {
+  display: flex;
+  gap: 15px;
+}
