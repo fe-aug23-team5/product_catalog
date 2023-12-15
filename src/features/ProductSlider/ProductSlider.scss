@@ -7,15 +7,19 @@
 
 .slick-slide {
   padding: 20px 10px;
+  height: auto;
 }
 
 .slick-track {
   display: flex;
+  height: auto;
 }
 
-.slick-track .slick-slide {
-  display: flex;
-  height: auto;
+// that styles are used expand all items inside slick-container
+// to the size of slick-slide div
+div.slick-slide > div {
+  height: 100%;
+  width: 100%;
 }
 
 .arrow {
