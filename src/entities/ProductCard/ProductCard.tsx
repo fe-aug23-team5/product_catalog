@@ -69,8 +69,8 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
       <div>
         <p className={classes.price}>
-          <span className={classes.actual}>{`$${phone.fullPrice}`}</span>
-          <span className={classes.preliminary}>{`$${phone.price}`}</span>
+          <span className={classes.actual}>{`$${phone.price}`}</span>
+          <span className={classes.preliminary}>{`$${phone.fullPrice}`}</span>
         </p>
 
         <div className={classes.line} />
@@ -99,7 +99,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
               defaultAction={handleAddToCart}
               activeAction={handleDeleteFromCart}
               defaultTitle="Add to card"
-              activeTitle="Remove from card"
+              activeTitle="Added"
             />
           </div>
           <IconButton
