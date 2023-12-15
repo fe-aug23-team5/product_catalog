@@ -25,14 +25,14 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
   } = useContext(GlobalContext);
 
   useEffect(() => {
-    const isPhoneInCart = cart.some(item => item.phoneId === phone.phoneId);
+    const isPhoneInCart = cart.some((item) => item.phoneId === phone.phoneId);
 
     setIsButtonActive(isPhoneInCart);
     // eslint-disable-next-line
   }, [cart.length]);
 
   useEffect(() => {
-    const isInLiked = favourites.some(item => item.phoneId === phone.phoneId);
+    const isInLiked = favourites.some((item) => item.phoneId === phone.phoneId);
 
     setIsIconActive(isInLiked);
     // eslint-disable-next-line
@@ -65,9 +65,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
           />
         </Link>
 
-        <h3 className={classes.header}>
-          {phone.name}
-        </h3>
+        <h3 className={classes.header}>{phone.name}</h3>
       </div>
 
       <div>
@@ -95,13 +93,13 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
           </p>
         </div>
 
-        <p className={classes.block}>
+        <div className={classes.block}>
           <div className={classes.button}>
             <PrimaryButton
               isActive={isButtonActive}
               defaultAction={handleAddToCart}
               activeAction={handleDeleteFromCart}
-              defaultTitle="Add to card"
+              defaultTitle="Add to cart"
               activeTitle="Added"
             />
           </div>
@@ -110,7 +108,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
             defaultAction={handleAddToLikes}
             activeAction={handleDeleteFromLikes}
           />
-        </p>
+        </div>
       </div>
     </article>
   );

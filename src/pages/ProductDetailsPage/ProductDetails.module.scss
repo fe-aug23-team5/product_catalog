@@ -157,6 +157,7 @@
     justify-content: center;
     gap: 8px;
 
+
     margin-top: 23px;
 
     @include onTablet {
@@ -321,7 +322,12 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
+  margin-top: 32px;
+  font-size: 0.75rem;
   margin-top: 32px;
   font-size: 0.75rem;
 

@@ -1,5 +1,10 @@
 @import '../../shared/styles/mixin.scss';
 
+@font-face {
+  font-family: 'Mont-SemiBold';
+  src: url('../../../public/fonts/Mont-SemiBold.otf');
+}
+
 .favpage {
   &_container {
     @include cardAndFavPageGrid;
@@ -20,10 +25,6 @@
       padding-inline: auto;
     }
 
-    &_title {
-      @include element-full-width-grid;
-    }
-
     &_empty {
       @include element-full-width-grid;
     }
@@ -32,4 +33,43 @@
       @include element-full-width-grid;
     }
   }
+}
+
+.block {
+  @include element-full-width-grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  &_favorites {
+    @include element-full-width-grid;
+    max-width: 200px;
+    margin-bottom: 5px;
+  }
+}
+
+.title_first {
+  @include element-full-width-grid;
+  font-family: 'Mont-SemiBold';
+  font-weight: 700;
+  margin-bottom: 5px;
+  font-size: 1.56rem;
+}
+
+.title_secondary {
+  @include element-full-width-grid;
+  font-family: 'Mont-SemiBold';
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-size: 0.88rem;
+  color: #89939A;
+}
+
+
+.button {
+  @include element-full-width-grid;
+  min-width: 200px;
 }
