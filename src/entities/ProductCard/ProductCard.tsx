@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import classes from './ProductCard.module.scss';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
@@ -56,11 +57,13 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
   return (
     <article className={classes.card}>
       <div>
-        <img
-          className={classes.photo}
-          src={`${BASE_URL_IMG}${phone.image}`}
-          alt="Phone card"
-        />
+        <Link to={`phones/${phone.phoneId}`}>
+          <img
+            className={classes.photo}
+            src={`${BASE_URL_IMG}${phone.image}`}
+            alt="Phone card"
+          />
+        </Link>
 
         <h3 className={classes.header}>
           {phone.name}

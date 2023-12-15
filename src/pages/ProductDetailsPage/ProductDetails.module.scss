@@ -172,6 +172,10 @@
     border: 1px solid $secondary;
     width: 32px;
     height: 32px;
+
+    &_active {
+      border: 1px solid $primary;
+    }
   }
 
   &__button {
