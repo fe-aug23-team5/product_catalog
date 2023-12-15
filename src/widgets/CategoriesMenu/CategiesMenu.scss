@@ -19,8 +19,7 @@
       height: 75%;
       overflow: hidden;
       border-radius: 15px;
-
-      margin-bottom: 24px
+      margin-bottom: 20px
     }
 
     &_image {
@@ -32,17 +31,13 @@
     }
 
     &_title {
-      margin-bottom: 4px;
+      font-family: 'Mont-bold';
       font-size: 24px;
       line-height: 140%;
-      font-weight: 700;
-
-      font-family: 'Mont-bold';
     }
 
     &_desc {
       color: $secondary;
-
       font-family: 'Mont-regular';
       font-size: 14px;
       line-height: 21px;

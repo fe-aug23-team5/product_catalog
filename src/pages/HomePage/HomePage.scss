@@ -1,28 +1,28 @@
-@import '../../shared//styles/mixin.scss';
+@import '../../shared/styles/mixin.scss';
 @import '../../shared/styles/variables.scss';
 
-.content {
-  &_container {
-    @include pageGrid();
-    width: 100%;
-    max-width: 1184px;
-    margin-top: 24px;
-    margin-bottom: 64px;
-    padding-inline: 16px;
+.homepage {
+  @include pageGrid();
+  row-gap: 60px;
 
-    @include onTablet {
-      margin-top: 32px;
-      padding-inline: 24px;
-    }
+  margin-top: 24px;
+  margin-bottom: 64px;
+  width: 100%;
+  max-width: $fixed-desktop-grid;
+  padding-inline: $padding-mobile;
 
-    @include onDesktop {
-      margin-top: 56px;
-      margin-bottom: 80px;
-      padding-inline: auto;
-    }
+  @include onTablet {
+    margin-top: 32px;
+    padding-inline: $padding-tablet;
+  }
 
-    &_item {
-      grid-column: 1 / -1;
-    }
+  @include onDesktop {
+    margin-top: 56px;
+    margin-bottom: 80px;
+    padding-inline: auto;
+  }
+
+  &__item {
+    grid-column: 1 / -1;
   }
 }
