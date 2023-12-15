@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import './PhonesPage.scss';
+import { useSearchParams } from 'react-router-dom';
 import { Phone } from '../../shared/types/Phone';
-import { getAllPhones } from '../../shared/api/phones';
+import { getAllPhonesWithParams } from '../../shared/api/phones';
 import { ProductCard } from '../../entities/ProductCard';
 import { Dropdown } from '../../shared/ui/Dropdown';
 import { Loader } from '../../widgets/Loader';
+import { Pagination } from '../../features/Pagination';
 
 export const PhonesPage: React.FC = () => {
   const [allPhones, setAllPhones] = useState<Phone[]>([]);
+  const [totalCount, setTotalCount] = useState<number>(0);
+  const [searchParams, setSearchParams] = useState('');
+  const newSearchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
+
+  if (newSearchParams.toString().split(',')[0] !== searchParams) {
+    setSearchParams(newSearchParams.toString().split(',')[0]);
+  }
 
   const filteredOptions = [
     { label: 'Newest', value: 'newest' },
@@ -27,9 +36,10 @@ export const PhonesPage: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const phones = await getAllPhones();
+      const phones = await getAllPhonesWithParams(searchParams);
 
       setAllPhones(phones.data);
+      setTotalCount(phones.totalCount);
     } catch (error) {
       throw new Error('Unexpected Error');
     } finally {
@@ -39,7 +49,8 @@ export const PhonesPage: React.FC = () => {
 
   useEffect(() => {
     fetchPhones();
-  }, []);
+    // eslint-disable-next-line
+  }, [searchParams]);
 
   return (
     <div className="container">
@@ -58,18 +69,20 @@ export const PhonesPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="phones__container">
+      <div className="phones">
+        <div className="phones__container">
 
-        {isLoading && <Loader />}
+          {isLoading && <Loader />}
 
-        {!isLoading && allPhones.length && (
-          allPhones.map(phone => <ProductCard key={phone.id} phone={phone} />)
-        )}
+          {!isLoading && allPhones.length && (
+            allPhones.map((phone) => (
+              <ProductCard key={phone.id} phone={phone} />
+            ))
+          )}
+        </div>
 
-        {/* {!isLoading && !allPhones.length && (
-          <ErrorMessage />
-        )} */}
       </div>
+      {allPhones.length > 0 && <Pagination totalCount={totalCount} />}
     </div>
   );
 };
