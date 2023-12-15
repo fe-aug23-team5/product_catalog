@@ -12,7 +12,7 @@
   @include onTablet {
     aspect-ratio: 4.5/1.7;
     border-radius: 10px;
-    background-image: url(../../shared/static/BannerPhoto/TabletBanner.png);
+    background-image: url(../../shared/static/BannerPhoto/Banner.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -34,7 +34,7 @@
     &-prev,
     &-next {
       top: 49.5%;
-      height: 99%;
+      height: 85%;
       width: 32px;
       border: 1px solid #b4bdc4;
       border-radius: 48px;
@@ -82,9 +82,6 @@
     }
   }
 }
-
-
-
 
 .slick-dots {
   li {
