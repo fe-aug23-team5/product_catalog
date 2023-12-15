@@ -15,11 +15,8 @@ export const ProductDetailsPage: React.FC = () => {
   const [productDetail, setProductDetail] = useState<PhoneDetails | null>(null);
   const imgUrl = `${BASE_URL_IMG}${productDetail?.images[0]}`;
 
-  // eslint-disable-next-line no-console
-  console.log(productDetail);
-
   useEffect(() => {
-    getPhoneById('apple-iphone-7-32gb-black')
+    getPhoneById('apple-iphone-7-32gb-gold')
       .then((data) => setProductDetail(data));
   }, []);
 
