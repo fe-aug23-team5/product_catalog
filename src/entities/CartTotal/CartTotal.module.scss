@@ -1,0 +1,39 @@
+@import '../../shared/styles/variables.scss';
+@import '../../shared/styles/mixin.scss';
+
+.cart__total {
+  &_container {
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid $elements;
+    width: 100%;
+
+    @include onDesktop {
+      margin-left: 16px;
+      height: 206px;
+    }
+  }
+
+  &_box {
+    text-align: center;
+  }
+
+  &_price {
+    font-family: 'Mont-bold';
+    font-size: 32px;
+    line-height: 41px;
+  }
+
+  &_items_length {
+    font-family: 'Mont-Regular';
+    font-size: 14px;
+    line-height: 21px;
+    color: $secondary;
+  }
+
+  &_break_line {
+    height: 1px;
+    background-color: $elements;
+    margin: 16px 0;
+  }
+}

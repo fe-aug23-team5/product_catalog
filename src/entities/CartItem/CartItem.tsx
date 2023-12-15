@@ -7,7 +7,6 @@ import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 import styles from './CartItem.module.scss';
 
 export const CartItem: React.FC<CartItemProps> = ({
-  id,
   name,
   image,
   price,
@@ -19,44 +18,44 @@ export const CartItem: React.FC<CartItemProps> = ({
   calculatePrice,
 }) => {
   return (
-    <li key={id} className={styles.phone__card}>
-      <div className={styles.phone__card_container}>
+    <li className={styles.cart_item}>
+      <div className={styles.cart_item_container}>
         <button
-          className={styles.phone__card_delete_button}
+          className={styles.cart_item_delete_button}
           type="button"
           onClick={() => deleteCartItem(phoneId)}
         >
           <img src={closeIcon} alt="close icon" />
         </button>
         <img
-          className={styles.phone__card_image}
+          className={styles.cart_item_image}
           src={`${BASE_URL_IMG}${image}`}
           alt={name}
         />
-        <h3 className={styles.phone__card_title}>{name}</h3>
+        <h3 className={styles.cart_item_title}>{name}</h3>
       </div>
-      <div className={styles.phone__card_manuals_container}>
-        <div className={styles.phone__card_button_container}>
+      <div className={styles.cart_item_manuals_container}>
+        <div className={styles.cart_item_button_container}>
           <button
             type="button"
-            className={styles.phone__card_quantity_button}
+            className={styles.cart_item_quantity_button}
             onClick={() => handleDecrease(phoneId)}
           >
             <img src={minusIcon} alt="minus icon" />
           </button>
-          <div className={styles.phone__card_quantity_container}>
-            <p className={styles.phone__card_quantity}>{quantity}</p>
+          <div className={styles.cart_item_quantity_container}>
+            <p className={styles.cart_item_quantity}>{quantity}</p>
           </div>
           <button
             type="button"
-            className={styles.phone__card_quantity_button}
+            className={styles.cart_item_quantity_button}
             onClick={() => handleIncrease(phoneId)}
           >
             <img src={plusIcon} alt="plus icon" />
           </button>
         </div>
-        <div className={styles.phone__card_price_container}>
-          <p className={styles.phone__card_price}>
+        <div className={styles.cart_item_price_container}>
+          <p className={styles.cart_item_price}>
             {`$${calculatePrice(price, quantity)}`}
           </p>
         </div>

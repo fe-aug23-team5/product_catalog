@@ -1,14 +1,14 @@
 /* eslint-disable no-console */
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../shared/utils/GlobalProvider';
-import styles from './OrderCard.module.scss';
-import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 import { CartItem } from '../CartItem';
+import { CartTotal } from '../CartTotal';
 import emptyCartIcon from '../../img/icons/empty-cart.svg';
+import styles from './OrderCard.module.scss';
 
 export const OrderCard: React.FC = () => {
   const { cart, deleteCartItem, updateCartItemQuantity }
-   = useContext(GlobalContext);
+  = useContext(GlobalContext);
 
   const handleDecrease = (phoneId: string) => {
     const selectedPhone = cart.find((phone) => phone.phoneId === phoneId);
@@ -49,7 +49,7 @@ export const OrderCard: React.FC = () => {
     <>
       {cart.length > 0 ? (
         <>
-          <div className={styles.card_page_container_cart}>
+          <div className={styles.order__card_cart_item_container}>
             <ul>
               {cart.map((item) => (
                 <CartItem
@@ -64,32 +64,19 @@ export const OrderCard: React.FC = () => {
             </ul>
           </div>
 
-          <div className={styles.card_page_container_total}>
-            <div className={styles.cart__page_amount}>
-              <div className={styles.cart__page_price}>
-                <p className={styles.cart__page_total_price}>
-                  {`$${calculateTotalPrice()}`}
-                </p>
-
-                <p className={styles.cart__page_items_length}>
-                  {`Total for ${calculateTotalItems()} items`}
-                </p>
-              </div>
-
-              <div className={styles.cart__page_break_line} />
-
-              <PrimaryButton
-                defaultAction={handleDefaultAction}
-                defaultTitle="Checkout"
-              />
-            </div>
+          <div className={styles.order__card_cart_total_container}>
+            <CartTotal
+              calculateTotalPrice={calculateTotalPrice}
+              calculateTotalItems={calculateTotalItems}
+              handleDefaultAction={handleDefaultAction}
+            />
           </div>
         </>
       ) : (
-        <div className={styles.cart__page_empty_container}>
-          <p className={styles.cart__page_message}>Your cart is empty</p>
+        <div className={styles.order__card_empty_container}>
+          <p className={styles.order__card_message}>Your cart is empty</p>
           <img
-            className={styles.cart__page_empty_icon}
+            className={styles.order__card_empty_icon}
             src={emptyCartIcon}
             alt="empty cart"
           />

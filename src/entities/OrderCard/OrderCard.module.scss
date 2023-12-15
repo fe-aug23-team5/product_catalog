@@ -1,7 +1,7 @@
 @import '../../shared/styles/variables.scss';
 @import '../../shared/styles/mixin.scss';
 
-.card_page_container_cart {
+.order__card_cart_item_container {
   grid-column: span $columns-mobile;
 
   @include onTablet {
@@ -13,7 +13,7 @@
   }
 }
 
-.card_page_container_total {
+.order__card_cart_total_container {
   grid-column: span $columns-mobile;
 
   @include onTablet {
@@ -25,7 +25,7 @@
   }
 }
 
-.cart__page_empty_container {
+.order__card_empty_container {
   grid-column: span $columns-mobile;
   display: flex;
   flex-direction: column;
@@ -41,53 +41,7 @@
   }
 }
 
-.cart__page {
-
-  &_container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 32px;
-
-    @include onDesktop {
-      flex-direction: row;
-    }
-  }
-  
-  &_amount {
-    padding: 24px;
-    border-radius: 16px;
-    border: 1px solid $elements;
-    width: 100%;
-
-    @include onDesktop {
-      margin-left: 16px;
-      height: 206px;
-    }
-  }
-
-  &_price {
-    text-align: center;
-  }
-
-  &_total_price {
-    font-family: 'Mont-bold';
-    font-size: 32px;
-    line-height: 41px;
-  }
-
-  &_items_length {
-    font-family: 'Mont-SemiBold';
-    font-size: 14px;
-    line-height: 21px;
-    color: $secondary;
-  }
-
-  &_break_line {
-    height: 1px;
-    background-color: $elements;
-    margin: 16px 0;
-  }
-
+.order__card {
   &_message {
     font-family: 'Mont-bold';
     grid-column: span 4;
