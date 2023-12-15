@@ -1,0 +1,78 @@
+@font-face {
+  font-family: 'Mont-SemiBold';
+  src: url('../../../../public/fonts/Mont-SemiBold.otf');
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('../../../../public/fonts/Mont-Regular.otf');
+}
+
+@import '../../styles/variables.scss';
+
+.base-container {
+  padding: 20px;
+  width: 176px;
+}
+
+.base-select {
+  font-family: 'Mont-SemiBold';
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0em;
+  position: relative;
+  width: 176px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #B4BDC3;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  outline: none;
+  padding: 0 12px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  transition: border 0.3s, outline 0.3s;
+
+  &:hover {
+    border: 1px solid #89939A;
+  }
+
+  &.base-select-open {
+    outline: 1px solid #0F0F11;
+  }
+}
+
+.options {
+  background-color: #FFFFFF;
+  border: 1px solid #B4BDC3;
+  border-radius: 8px;
+  width: 176px;
+  margin-top: 4px;
+  box-shadow: 0px 2px 15px 0px #0000000D;
+}
+
+.list {
+  font-family: 'Mont';
+  font-weight: 600;
+  font-size: 14px;
+  color: #89939A;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  transition: color 0.3s, background-color 0.3s;
+
+  &:hover {
+    color: #0F0F11;
+    background-color: #FAFBFC;
+  }
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

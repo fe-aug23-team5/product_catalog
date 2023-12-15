@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
     "@mate-academy/ts-config": "^1.0.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -16,7 +17,9 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.20.1",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
     "sass": "^1.69.5",
+    "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -54,6 +57,7 @@
     "@mate-academy/stylelint-config": "^0.0.12",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
+    "@types/react-slick": "^0.23.12",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
     "eslint": "^7.32.0",

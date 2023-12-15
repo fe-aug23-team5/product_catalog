@@ -1,10 +1,10 @@
 import React from 'react';
-// import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import './App.scss';
 import { Header } from '../widgets/Header';
 import { Footer } from '../widgets/Footer';
 // eslint-disable-next-line max-len
-import { ProductDetailsPage } from '../pages/ProductDetailsPage/ProductDetailsPage';
+// import { ProductDetailsPage } from '../pages/ProductDetailsPage/ProductDetailsPage';
 
 export const App: React.FC = () => {
   return (
@@ -12,8 +12,8 @@ export const App: React.FC = () => {
       <Header />
 
       <main className="main">
-        {/* <Outlet /> */}
-        <ProductDetailsPage />
+        <Outlet />
+        {/* <ProductDetailsPage /> */}
       </main>
 
       <Footer />

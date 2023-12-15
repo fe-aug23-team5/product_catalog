@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import cn from 'classnames';
 import classes from './IconButton.module.scss';
 import favorite from '../../../img/icons/Favourites (Heart Like).svg';
 import favoriteAct from '../../../img/icons/Favorites (Heart LIke Active).svg';
 
-export const IconButton: React.FC = () => {
-  const [isActive, setIsActive] = useState(false);
+type Props = {
+  isActive: boolean;
+  defaultAction: () => void;
+  activeAction: () => void;
+};
 
-  const handleButtonClick = () => {
-    setIsActive(!isActive);
-  };
-
+export const IconButton: React.FC<Props> = ({
+  isActive,
+  defaultAction,
+  activeAction,
+}) => {
   return (
     <button
       type="submit"
@@ -18,7 +22,7 @@ export const IconButton: React.FC = () => {
         [classes['base-class--active']]: isActive,
         [classes['base-button-hover']]: !isActive,
       })}
-      onClick={handleButtonClick}
+      onClick={isActive ? activeAction : defaultAction}
     >
       <img src={isActive ? favoriteAct : favorite} alt="Favorite Icon" />
     </button>

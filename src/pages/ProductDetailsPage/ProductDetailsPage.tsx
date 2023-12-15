@@ -8,8 +8,8 @@ import homeIcon from '../../img/icons/Home_icon.svg';
 import rightArrow from '../../img/icons/right_arrow.svg';
 import leftArrow from '../../img/icons/Chevron (Arrow Right).svg';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
-import { PrimaryButton } from '../../shared/ui/PrimaryButton';
-import { IconButton } from '../../shared/ui/IconButton';
+// import { PrimaryButton } from '../../shared/ui/PrimaryButton';
+// import { IconButton } from '../../shared/ui/IconButton';
 
 export const ProductDetailsPage: React.FC = () => {
   const [productDetail, setProductDetail] = useState<PhoneDetails | null>(null);
@@ -133,8 +133,8 @@ export const ProductDetailsPage: React.FC = () => {
               </p>
 
               <div className={styles.price__buttons}>
-                <PrimaryButton />
-                <IconButton />
+                {/* <PrimaryButton />
+                <IconButton /> */}
               </div>
 
               <div className={styles.details}>

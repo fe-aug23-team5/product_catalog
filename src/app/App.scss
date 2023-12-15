@@ -3,8 +3,8 @@
 @import '../shared/styles/mixin.scss';
 @import '../shared/styles/variables.scss';
 
-:root {
-  font-family: 'Mont', sans-serif;
+body {
+  font-family: 'Mont-regular', sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -13,8 +13,10 @@
   min-height: calc(100vh - 321px);
   padding: 24px 16px 64px;
   background-color: $hover-and-bg;
+  display: flex;
+  justify-content: space-around;
 
-  @include flex-justify-center-align-center;
+  // @include flex-justify-center-align-center;
 
   @include onTablet {
     min-height: calc(100vh - 144px);
@@ -23,7 +25,5 @@
 
   @include onDesktop {
     min-height: calc(100vh - 160px);
-    padding-top: 56px;
-    padding-bottom: 80px;
   }
 }
