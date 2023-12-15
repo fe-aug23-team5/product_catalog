@@ -1,12 +1,42 @@
 @import '../../shared//styles/mixin.scss';
+@import '../../shared/styles/variables.scss';
+
+@font-face {
+  font-family: 'Mont-SemiBold';
+  src: url('../../../public/fonts/Mont-SemiBold.otf');
+}
 
 .container {
   display: flex;
   flex-direction: column;
 }
 
+.dropdown {
+  display: flex;
+  margin-bottom: 24px;
+
+  &__title {
+    font-family: 'Mont-SemiBold';
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: 0em;
+    color: $secondary;
+    margin-bottom: 4px;
+  }
+
+  &__sort {
+    margin-right: 16px;
+    width: 176px
+  }
+
+  &__items {
+    width: 128px;
+  }
+}
+
 .phones {
-  &_container {
+  &__container {
     @include pageGrid;
   }
 }
