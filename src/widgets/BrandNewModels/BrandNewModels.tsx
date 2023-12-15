@@ -37,7 +37,7 @@ export const BrandNewModels: React.FC = () => {
         ? <Loader />
         : (
           <ProductSlider>
-            {newPhones.map((phone) => {
+            {newPhones.map(phone => {
               return <ProductCard key={phone.phoneId} phone={phone} />;
             })}
           </ProductSlider>
