@@ -7,7 +7,6 @@
   max-width: 1184px;
   margin-top: 24px;
   margin-bottom: 64px;
-  padding-inline: 16px;
 
   @include onTablet {
     margin-top: 32px;
@@ -33,23 +32,47 @@
   }
 }
 
-// .block_top {
-//   @include element-full-width-grid;
-// }
-
 .block_gallery {
-  @include element-full-width-grid;
+  grid-column: span 4;
+  
+  @include onTablet {
+    grid-column: 1 / 8;
+
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+
+  }
 
   @include onDesktop {
     grid-column: 1 / 13;
+
   }
 }
 
 .block_info {
-  @include element-full-width-grid;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $secondary;
+
+  grid-column: span 4;
+
+  @include onTablet {
+    grid-column: 8 / -1;
+  }
 
   @include onDesktop {
-    grid-column: 14 / 25;
+    grid-column: 14 / -1;
+  }
+
+  &__information {
+    @include onTablet {
+      grid-column: 8 / -1;
+    }
+
+    @include onDesktop {
+      grid-column: 14 / -1;
+    }
   }
 }
 
@@ -106,23 +129,20 @@
   }
 }
 
-.product {
+.block_gallery {
   margin-top: 40px;
   font-size: 0.75rem;
   font-weight: 600;
   color: $secondary;
 
   &__image_wrapper {
-    width: 287px;
-    height: 287px;
+    width: 274px;
+    height: 274px;
     margin: 0 auto;
 
-    @include onTablet {
-      grid-column: 2 / 7;
-    }
-
     @include onDesktop {
-      grid-column: 3 / 12;
+      width: 287px;
+      height: 287px;
     }
   }
 
@@ -136,6 +156,7 @@
     display: flex;
     justify-content: center;
     gap: 8px;
+
 
     margin-top: 23px;
 
@@ -175,21 +196,15 @@
       width: 80px;
       height: 80px;
     }
+
+    &_active {
+      border: 1px solid $primary;
+    }
   }
 
   &__image {
     width: 90%;
     padding: 4px;
-  }
-
-  &__info {
-    @include onTablet {
-      grid-column: 8 / -1;
-    }
-
-    @include onDesktop {
-      grid-column: 14 / -1;
-    }
   }
 }
 
@@ -213,15 +228,21 @@
 
   &__list {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
   }
 
   &__item {
     @include flex-justify-center-align-center;
+    flex-shrink: 0;
     border-radius: 50%;
     border: 1px solid $secondary;
     width: 32px;
     height: 32px;
+
+    &_active {
+      border: 1px solid $primary;
+    }
   }
 
   &__button {
@@ -247,13 +268,23 @@
 
   &__item {
     border-radius: 4px;
+    border: 1px solid $secondary;
 
     padding: 7px;
-    background-color: $primary;
+    background-color: transparent;
+
+    &_active {
+      border: 1px solid $primary;
+      background-color: $primary;
+    }
   }
 
   &__button {
-    color: $white;
+    color: $primary;
+
+    &_active {
+      color: $white;
+    }
   }
 }
 
@@ -291,7 +322,12 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
+  margin-top: 32px;
+  font-size: 0.75rem;
   margin-top: 32px;
   font-size: 0.75rem;
 
@@ -388,4 +424,8 @@
     text-align: right;
     color: $primary;
   }
+}
+
+.slider {
+  grid-column: 1 / -1;
 }

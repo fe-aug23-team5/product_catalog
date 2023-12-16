@@ -50,8 +50,8 @@ export const Footer: React.FC = () => {
           </p>
 
           <button
-            type="button"
             className={styles.back_to_top__icon}
+            type="button"
             onClick={scrollToTop}
           >
             <img
