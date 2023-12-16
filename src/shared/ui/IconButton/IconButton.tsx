@@ -1,8 +1,8 @@
 import React from 'react';
 import cn from 'classnames';
 import classes from './IconButton.module.scss';
-import favorite from '../../../img/icons/Favourites (Heart Like).svg';
-import favoriteAct from '../../../img/icons/Favorites (Heart LIke Active).svg';
+import favorite from '../../static/icons/heart-outlined.svg';
+import favoriteAct from '../../static/icons/heart-blue.svg';
 
 type Props = {
   isActive?: boolean;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { CartItemProps } from '../../shared/types/CartItemProps';
-import closeIcon from '../../img/icons/close_icon.svg';
-import minusIcon from '../../img/icons/minus.svg';
-import plusIcon from '../../img/icons/plus.svg';
+import closeIcon from '../../shared/static/icons/close-icon.svg';
+import minusIcon from '../../shared/static/icons/minus.svg';
+import plusIcon from '../../shared/static/icons/plus.svg';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 import styles from './CartItem.module.scss';
 

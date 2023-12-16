@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import cn from 'classnames';
-import iconDown from '../../../img/icons/Chevron (Arrow Down).svg';
-import iconUp from '../../../img/icons/Chevron (Arrow Up).svg';
+import iconDown from '../../static/icons/down-arrow-grey.svg';
+import iconUp from '../../static/icons/up-arrow-grey.svg';
 import './Dropdown.scss';
 
 interface Props {

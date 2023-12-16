@@ -3,6 +3,12 @@
 @import '../shared/styles/mixin.scss';
 @import '../shared/styles/variables.scss';
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: 'Mont-regular', sans-serif;
   scroll-behavior: smooth;
