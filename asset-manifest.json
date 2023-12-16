@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/product_catalog/static/css/main.ef4f483f.css",
-    "main.js": "/product_catalog/static/js/main.d3a06b21.js",
+    "main.css": "/product_catalog/static/css/main.50dfbd60.css",
+    "main.js": "/product_catalog/static/js/main.a2c37c3a.js",
     "static/media/category-phones.png": "/product_catalog/static/media/category-phones.4ada54a392eb210fa728.png",
     "static/media/category-tablets.png": "/product_catalog/static/media/category-tablets.6bf08f3bc18d3a06e26e.png",
     "static/media/Logo.svg": "/product_catalog/static/media/Logo.c6f2f3eda1b32d5740ad62b825eab096.svg",
@@ -19,7 +19,7 @@
     "static/media/Shopping bag (Cart).svg": "/product_catalog/static/media/Shopping bag (Cart).df23e4fbb25ff3701b16978082a61721.svg",
     "static/media/Favourites (Heart Like).svg": "/product_catalog/static/media/Favourites (Heart Like).cc696932b63c19f487763e75a935dfcb.svg",
     "static/media/slick.woff": "/product_catalog/static/media/slick.295183786cd8a1389865.woff",
-    "static/media/Home_icon.svg": "/product_catalog/static/media/Home_icon.63e64c2945a6b7fb320f9ac5cbd08865.svg",
+    "static/media/icon-home.svg": "/product_catalog/static/media/icon-home.9a24a70540404ccecd05fd9f900ddeeb.svg",
     "static/media/Favorites (Heart LIke Active).svg": "/product_catalog/static/media/Favorites (Heart LIke Active).e67f1c93f359190a6beb379522552bc2.svg",
     "static/media/close_icon.svg": "/product_catalog/static/media/close_icon.0cd40e23aeba2c480cbfd38ab0f8a078.svg",
     "static/media/Menu.svg": "/product_catalog/static/media/Menu.73ddde2c093f9fb313b993eaba038f9a.svg",
@@ -27,17 +27,17 @@
     "static/media/Arrow Left.svg": "/product_catalog/static/media/Arrow Left.976137923918f2f7594d.svg",
     "static/media/Arrow Right.svg": "/product_catalog/static/media/Arrow Right.1681557de013e6041c24.svg",
     "static/media/Chevron (Arrow Right).svg": "/product_catalog/static/media/Chevron (Arrow Right).2d821b65ea1289f84c466dddfd5cfbeb.svg",
-    "static/media/right_arrow.svg": "/product_catalog/static/media/right_arrow.1681557de013e6041c2470380f71392b.svg",
+    "static/media/icon-right-arrow.svg": "/product_catalog/static/media/icon-right-arrow.e028d3889646e0b5e56cf54f47bb701a.svg",
     "static/media/Chevron (Arrow Down).svg": "/product_catalog/static/media/Chevron (Arrow Down).333d9bffcd336177371bd46aa0ca7b4f.svg",
     "static/media/Chevron (Arrow Up).svg": "/product_catalog/static/media/Chevron (Arrow Up).bd5a215180598ab2ef51d1175361cecd.svg",
     "static/media/up_arrow.svg": "/product_catalog/static/media/up_arrow.0fcb96c35770c29a1c3b74b359f6ffa5.svg",
     "index.html": "/product_catalog/index.html",
     "static/media/minus.svg": "/product_catalog/static/media/minus.e5b18b4612754a9fa92fb42bdb3ac95d.svg",
-    "main.ef4f483f.css.map": "/product_catalog/static/css/main.ef4f483f.css.map",
-    "main.d3a06b21.js.map": "/product_catalog/static/js/main.d3a06b21.js.map"
+    "main.50dfbd60.css.map": "/product_catalog/static/css/main.50dfbd60.css.map",
+    "main.a2c37c3a.js.map": "/product_catalog/static/js/main.a2c37c3a.js.map"
   },
   "entrypoints": [
-    "static/css/main.ef4f483f.css",
-    "static/js/main.d3a06b21.js"
+    "static/css/main.50dfbd60.css",
+    "static/js/main.a2c37c3a.js"
   ]
 }
