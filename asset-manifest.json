@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/product_catalog/static/css/main.e8794692.css",
-    "main.js": "/product_catalog/static/js/main.ffa37a65.js",
+    "main.css": "/product_catalog/static/css/main.ef4f483f.css",
+    "main.js": "/product_catalog/static/js/main.d3a06b21.js",
     "static/media/category-phones.png": "/product_catalog/static/media/category-phones.4ada54a392eb210fa728.png",
     "static/media/category-tablets.png": "/product_catalog/static/media/category-tablets.6bf08f3bc18d3a06e26e.png",
     "static/media/Logo.svg": "/product_catalog/static/media/Logo.c6f2f3eda1b32d5740ad62b825eab096.svg",
@@ -12,6 +12,7 @@
     "static/media/Banner.png": "/product_catalog/static/media/Banner.71e7e0917555f044d60b.png",
     "static/media/category-cases.png": "/product_catalog/static/media/category-cases.3d709b95c6777bd6adf7.png",
     "static/media/favorite.png": "/product_catalog/static/media/favorite.7cbd157b935e5ed5c23b.png",
+    "static/media/empty-cart.svg": "/product_catalog/static/media/empty-cart.61e8e2b24b8e728a981c08e48e02056f.svg",
     "static/media/slick.svg": "/product_catalog/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/product_catalog/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/product_catalog/static/media/slick.c94f7671dcc99dce43e2.ttf",
@@ -32,11 +33,11 @@
     "static/media/up_arrow.svg": "/product_catalog/static/media/up_arrow.0fcb96c35770c29a1c3b74b359f6ffa5.svg",
     "index.html": "/product_catalog/index.html",
     "static/media/minus.svg": "/product_catalog/static/media/minus.e5b18b4612754a9fa92fb42bdb3ac95d.svg",
-    "main.e8794692.css.map": "/product_catalog/static/css/main.e8794692.css.map",
-    "main.ffa37a65.js.map": "/product_catalog/static/js/main.ffa37a65.js.map"
+    "main.ef4f483f.css.map": "/product_catalog/static/css/main.ef4f483f.css.map",
+    "main.d3a06b21.js.map": "/product_catalog/static/js/main.d3a06b21.js.map"
   },
   "entrypoints": [
-    "static/css/main.e8794692.css",
-    "static/js/main.ffa37a65.js"
+    "static/css/main.ef4f483f.css",
+    "static/js/main.d3a06b21.js"
   ]
 }
