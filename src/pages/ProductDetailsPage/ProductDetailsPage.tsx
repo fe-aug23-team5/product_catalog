@@ -7,7 +7,7 @@ import styles from './ProductDetails.module.scss';
 import { getPhoneById, getSuggestedPhones } from '../../shared/api/phones';
 import { PhoneDetails } from '../../shared/types/PhoneDetails';
 import { Phone } from '../../shared/types/Phone';
-import leftArrow from '../../img/icons/Chevron (Arrow Right).svg';
+import leftArrow from '../../shared/static/icons/left-arrow-black.svg';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 import { IconButton } from '../../shared/ui/IconButton';
