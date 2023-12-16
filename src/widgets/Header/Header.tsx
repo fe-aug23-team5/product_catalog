@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './Header.module.scss';
-import { ReactComponent as Logo } from '../../img/icons/Logo.svg';
+import { ReactComponent as Logo } from '../../shared/static/logo.svg';
 import {
   ReactComponent as Favorites,
-} from '../../img/icons/Favourites (Heart Like).svg';
+} from '../../shared/static/icons/heart-outlined.svg';
 import {
   ReactComponent as Cart,
-} from '../../img/icons/Shopping bag (Cart).svg';
-import menuIcon from '../../img/icons/Menu.svg';
+} from '../../shared/static/icons/cart.svg';
+import menuIcon from '../../shared/static/icons/menu.svg';
 import { NavBar } from '../../features/NavBar';
-import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
+import { BurgerMenu } from '../BurgerMenu';
 
 export const Header: React.FC = () => {
   const [isShownMenu, setIsShownMenu] = useState(false);

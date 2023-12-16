@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { GlobalContext } from '../../shared/utils/GlobalProvider';
 import { CartItem } from '../CartItem';
 import { CartTotal } from '../CartTotal';
-import emptyCartIcon from '../../img/icons/empty-cart.svg';
+import emptyCartIcon from '../../shared/static/icons/empty-cart.svg';
 import styles from './OrderCard.module.scss';
 
 export const OrderCard: React.FC = () => {
