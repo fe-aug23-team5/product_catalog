@@ -40,8 +40,8 @@
 
     display: flex;
     flex-direction: row-reverse;
-    justify-content: start;
-
+    // eslint-disable-next-line
+    justify-content: flex-start;
   }
 
   @include onDesktop {
@@ -87,7 +87,6 @@
 .block_tech {
   @include element-full-width-grid;
 
-  
   @include onDesktop {
     grid-column: 14 / 25;
   }
