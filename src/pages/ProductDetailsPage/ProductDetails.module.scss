@@ -10,13 +10,11 @@
 
   @include onTablet {
     margin-top: 32px;
-    padding-inline: 24px;
   }
 
   @include onDesktop {
     margin-top: 56px;
     margin-bottom: 80px;
-    padding-inline: auto;
   }
 
   &__path {
@@ -46,7 +44,6 @@
 
   @include onDesktop {
     grid-column: 1 / 13;
-
   }
 }
 

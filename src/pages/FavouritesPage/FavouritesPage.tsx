@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import styles from './FavouritesPage.module.scss';
 import { GlobalContext } from '../../shared/utils/GlobalProvider';
 import { ProductCard } from '../../entities/ProductCard';
-import { PageTitle } from '../../shared/ui/PageTitle';
 import favorites from '../../shared/static/favorite.png';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
+import { Breadcrumbs } from '../../features/Breadcrumbs';
 
 export const FavouritesPage: React.FC = () => {
   const { favourites } = useContext(GlobalContext);
@@ -15,8 +15,14 @@ export const FavouritesPage: React.FC = () => {
 
   return (
     <div className={styles.favpage_container}>
-      <div className={styles.favpage_container_title}>
-        <PageTitle>Favourites</PageTitle>
+      <div className={styles.favpage_container__top}>
+        <div className={styles.favpage_container__path}>
+          <Breadcrumbs />
+        </div>
+
+        <h1 className={styles.favpage_container__title}>
+          Favourites
+        </h1>
       </div>
 
       {favourites.length

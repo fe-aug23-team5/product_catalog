@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import './NotFoundPage.scss';
 import { Navigate } from 'react-router-dom';
-import { PageTitle } from '../../shared/ui/PageTitle';
 
 export const NotFoundPage: React.FC = () => {
   const [countdown, setCountdown] = useState(5);
@@ -18,8 +18,9 @@ export const NotFoundPage: React.FC = () => {
   }
 
   return (
-    <div className="errorPage_container">
-      <PageTitle>Page not found</PageTitle>
+    <div className="errorPage__container">
+      <h1 className="errorPage__container__title">Page not found</h1>
+
       <p>
         {`You will be redirected to Home page in ${countdown} seconds`}
       </p>
