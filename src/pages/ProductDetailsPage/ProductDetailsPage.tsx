@@ -4,25 +4,20 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './ProductDetails.module.scss';
-import { getPhoneById, getSuggestedPhones } from '../../shared/api/phones';
+import { getPhoneById } from '../../shared/api/phones';
 import { PhoneDetails } from '../../shared/types/PhoneDetails';
-import { Phone } from '../../shared/types/Phone';
 import leftArrow from '../../shared/static/icons/left-arrow-black.svg';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 import { IconButton } from '../../shared/ui/IconButton';
 import { Breadcrumbs } from '../../features/Breadcrumbs';
 import { Loader } from '../../widgets/Loader';
-import { ProductSlider } from '../../features/ProductSlider';
-import { ProductCard } from '../../entities/ProductCard';
+import { YouMayAlsoLike } from '../../widgets/YouMayAlsoLike';
 
 export const ProductDetailsPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [productDetail, setProductDetail] = useState<PhoneDetails | null>(null);
-  const [
-    recommendedProducts, setRecommendedProducts,
-  ] = useState<Phone[] | null>(null);
   const [productImage, setProductImage] = useState('');
   const [isLoad, setIsLoad] = useState(true);
   const [capacity, setCapacity] = useState(productDetail?.capacity);
@@ -45,15 +40,6 @@ export const ProductDetailsPage: React.FC = () => {
       })
       .finally(() => setIsLoad(false));
   }, [capacity, productColor]);
-
-  useEffect(() => {
-    getSuggestedPhones()
-      .then(setRecommendedProducts)
-      .catch(error => {
-        throw error;
-      })
-      .finally(() => setIsLoad(false));
-  }, []);
 
   const changeProductColor = (color: string) => {
     if (color === productColor) {
@@ -85,6 +71,7 @@ export const ProductDetailsPage: React.FC = () => {
       <div className={styles.product_details}>
         <div className={styles.block_top}>
           <Breadcrumbs />
+
           <button
             className={styles.goback_button}
             type="button"
@@ -380,14 +367,7 @@ export const ProductDetailsPage: React.FC = () => {
         </div>
 
         <section className={styles.slider}>
-          <ProductSlider>
-            {
-              recommendedProducts !== null && recommendedProducts
-                .map((phone) => {
-                  return <ProductCard key={phone.phoneId} phone={phone} />;
-                })
-            }
-          </ProductSlider>
+          <YouMayAlsoLike />
         </section>
       </div>
     );

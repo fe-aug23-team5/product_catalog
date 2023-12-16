@@ -6,15 +6,36 @@
   src: url('../../../public/fonts/Mont-SemiBold.otf');
 }
 
-.container {
+.phonesPage {
   display: flex;
   flex-direction: column;
+
+  &__path {
+    margin-top: 24px;
+    margin-bottom: 24px;
+
+    @include onTablet {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__header {
+    @include style-primary-title;
+    margin-bottom: 8px;
+  }
+
+  &__count {
+    margin-bottom: 32px;
+
+    @include onTablet {
+      margin-bottom: 40px;
+    }
+  }
 }
 
 .dropdown {
   display: flex;
   margin-bottom: 24px;
-  margin-top: 24px;
 
   &__title {
     font-family: 'Mont-SemiBold';
@@ -40,15 +61,18 @@
   &__container {
     @include pageGrid;
     row-gap: 40px;
-    padding-inline: 16px;
+    margin-bottom: 24px;
 
     @include onTablet {
-      padding-inline: 24px;
-    }
-
-    @include onDesktop {
-      padding-inline: 32px;
+      margin-bottom: 40px;
     }
   }
-  
+
+  &__pagination {
+    margin-bottom: 64px;
+
+    @include onDesktop {
+      margin-bottom: 80px;
+    }
+  }
 }

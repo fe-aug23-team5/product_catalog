@@ -7,6 +7,7 @@ import { ProductCard } from '../../entities/ProductCard';
 import { Dropdown } from '../../shared/ui/Dropdown';
 import { Loader } from '../../widgets/Loader';
 import { Pagination } from '../../features/Pagination';
+import { Breadcrumbs } from '../../features/Breadcrumbs';
 
 export const PhonesPage: React.FC = () => {
   const [allPhones, setAllPhones] = useState<Phone[]>([]);
@@ -53,25 +54,34 @@ export const PhonesPage: React.FC = () => {
   }, [searchParams]);
 
   return (
-    <div className="container">
-      <div className="dropdown">
-        <div className="dropdown__sort">
-          <p className="dropdown__title">
-            Sort by
-          </p>
-          <Dropdown options={filteredOptions} />
+    <div className="phonesPage">
+      <div className="phonesPage__top">
+        <div className="phonesPage__path">
+          <Breadcrumbs />
         </div>
-        <div className="dropdown__items">
-          <p className="dropdown__title">
-            Items on page
-          </p>
-          <Dropdown options={itemsOnPage} />
+
+        <h1 className="phonesPage__header">Mobile Phones</h1>
+
+        <p className="phonesPage__count">{`${totalCount} models`}</p>
+
+        <div className="dropdown">
+          <div className="dropdown__sort">
+            <p className="dropdown__title">
+              Sort by
+            </p>
+            <Dropdown options={filteredOptions} />
+          </div>
+          <div className="dropdown__items">
+            <p className="dropdown__title">
+              Items on page
+            </p>
+            <Dropdown options={itemsOnPage} />
+          </div>
         </div>
       </div>
 
       <div className="phones">
         <div className="phones__container">
-
           {isLoading && <Loader />}
 
           {!isLoading && allPhones.length && (
@@ -80,9 +90,13 @@ export const PhonesPage: React.FC = () => {
             ))
           )}
         </div>
-
       </div>
-      {allPhones.length > 0 && <Pagination totalCount={totalCount} />}
+
+      {allPhones.length > 0 && (
+        <div className="phones__pagination">
+          <Pagination totalCount={totalCount} />
+        </div>
+      )}
     </div>
   );
 };
