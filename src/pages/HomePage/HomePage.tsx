@@ -1,16 +1,17 @@
 import React from 'react';
 import './HomePage.scss';
-import { CategoriesMenu } from '../../widgets/CategoriesMenu';
 import { PhotosSlider } from '../../features/PhotosSlider';
-import { PageTitle } from '../../shared/ui/PageTitle';
 import { BrandNewModels } from '../../widgets/BrandNewModels';
+import { CategoriesMenu } from '../../widgets/CategoriesMenu';
 import { HotPrices } from '../../widgets/HotPrices';
 
 export const HomePage: React.FC = () => {
   return (
     <div className="homepage">
       <div className="homepage__item">
-        <PageTitle>Welcome to Nice Gadgets Store</PageTitle>
+        <h1 className="homepage__title">
+          Welcome to Nice Gadgets Store
+        </h1>
 
         <PhotosSlider />
       </div>
