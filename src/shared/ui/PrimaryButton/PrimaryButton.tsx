@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import cn from 'classnames';
 import classes from './PrimaryButton.module.scss';
 
@@ -8,6 +8,7 @@ type Props = {
   activeAction?: () => void;
   defaultTitle: string;
   activeTitle?: string;
+  additionalStyles?: CSSProperties;
 };
 
 export const PrimaryButton: React.FC<Props> = ({
@@ -16,6 +17,7 @@ export const PrimaryButton: React.FC<Props> = ({
   activeAction,
   defaultTitle,
   activeTitle,
+  additionalStyles,
 }) => {
   return (
     <button
@@ -25,6 +27,7 @@ export const PrimaryButton: React.FC<Props> = ({
         [classes['base-button-hover']]: !isActive,
       })}
       onClick={isActive ? activeAction : defaultAction}
+      style={additionalStyles}
     >
       {isActive ? activeTitle : defaultTitle}
     </button>

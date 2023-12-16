@@ -8,6 +8,7 @@ export const GlobalContext = React.createContext<Context>({
   cart: [],
   addCartItem: () => { },
   deleteCartItem: () => { },
+  clearCart: () => { },
   updateCartItemQuantity: () => { },
   favourites: [],
   addFavouriteItem: () => { },
@@ -31,6 +32,10 @@ export const GlobalProvider: React.FC<ProviderProps> = ({ children }) => {
     const updatedCart = cart.filter(item => item.phoneId !== phoneId);
 
     setCart(updatedCart);
+  };
+
+  const clearCart = () => {
+    setCart([]);
   };
 
   const updateCartItemQuantity = (phoneId: string, newQuantity: number) => {
@@ -62,6 +67,7 @@ export const GlobalProvider: React.FC<ProviderProps> = ({ children }) => {
     cart,
     addCartItem,
     deleteCartItem,
+    clearCart,
     updateCartItemQuantity,
     favourites,
     addFavouriteItem,
