@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import styles from './CartItem.module.scss';
 import { CartItemProps } from '../../shared/types/CartItemProps';
 import closeIcon from '../../shared/static/icons/close-icon.svg';
 import minusIcon from '../../shared/static/icons/minus.svg';
 import plusIcon from '../../shared/static/icons/plus.svg';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
-import styles from './CartItem.module.scss';
 
 export const CartItem: React.FC<CartItemProps> = ({
   name,
@@ -27,11 +28,15 @@ export const CartItem: React.FC<CartItemProps> = ({
         >
           <img src={closeIcon} alt="close icon" />
         </button>
-        <img
-          className={styles.cart_item_image}
-          src={`${BASE_URL_IMG}${image}`}
-          alt={name}
-        />
+
+        <Link to={`/phones/${phoneId}`}>
+          <img
+            className={styles.cart_item_image}
+            src={`${BASE_URL_IMG}${image}`}
+            alt={name}
+          />
+        </Link>
+
         <h3 className={styles.cart_item_title}>{name}</h3>
       </div>
       <div className={styles.cart_item_manuals_container}>
