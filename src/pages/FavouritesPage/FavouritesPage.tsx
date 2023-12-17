@@ -4,8 +4,8 @@ import styles from './FavouritesPage.module.scss';
 import { GlobalContext } from '../../shared/utils/GlobalProvider';
 import { ProductCard } from '../../entities/ProductCard';
 import { Breadcrumbs } from '../../features/Breadcrumbs';
-import favorites from '../../shared/static/favorite.png';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
+import favorites from '../../shared/static/favorite.png';
 
 export const FavouritesPage: React.FC = () => {
   const { favourites } = useContext(GlobalContext);

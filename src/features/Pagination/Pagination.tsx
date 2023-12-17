@@ -2,6 +2,7 @@ import React, { memo, useState } from 'react';
 import cn from 'classnames';
 import './Pagination.scss';
 import { useSearchParams } from 'react-router-dom';
+import { scrollToTop } from '../../shared/helpers/scrollFunct';
 
 interface Props {
   totalCount: number;
@@ -36,14 +37,19 @@ export const Pagination: React.FC<Props> = memo(({ totalCount }) => {
     params.set('page', newPage);
     setSearchParams(params);
     setCurrentPage(Number(newPage));
+    scrollToTop();
   };
 
   const handleBackClick = () => {
     setPage(`${+currentPage - 1}`);
+
+    scrollToTop();
   };
 
   const handleForwardClick = () => {
     setPage(`${+currentPage + 1}`);
+
+    scrollToTop();
   };
 
   return (

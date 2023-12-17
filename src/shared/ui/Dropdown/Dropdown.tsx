@@ -8,10 +8,10 @@ import './Dropdown.scss';
 interface Props {
   options: {
     label: string;
-    value: string | number;
+    value: string | null;
   }[];
   value?: string | number;
-  onChange?: (value: string | number) => void;
+  onChange?: (value: string) => void;
 }
 
 export const Dropdown: React.FC<Props> = ({ options, value, onChange }) => {
@@ -23,7 +23,7 @@ export const Dropdown: React.FC<Props> = ({ options, value, onChange }) => {
     }
   }, [value]);
 
-  const handleChange = (selectedValue: string | number) => {
+  const handleChange = (selectedValue: string) => {
     setSelectedOption(selectedValue);
     if (onChange) {
       onChange(selectedValue);
