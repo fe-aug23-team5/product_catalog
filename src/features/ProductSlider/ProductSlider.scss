@@ -35,7 +35,7 @@ div.slick-slide > div {
     right: 60px;
     border: 1px solid $icons;
     border-radius: 50%;
-    background-image: url('../../img/icons/Arrow\ Left.svg');
+    background-image: url('../../shared/static/icons/left-arrow-black.svg');
     background-repeat: no-repeat;
     background-position: center;
   }
@@ -45,7 +45,7 @@ div.slick-slide > div {
     height: 33px;
     border: 1px solid $icons;
     border-radius: 50%;
-    background-image: url('../../img/icons/Arrow\ Right.svg');
+    background-image: url('../../shared/static/icons/right-arrow-black.svg');
     background-repeat: no-repeat;
     background-position: center;
   }

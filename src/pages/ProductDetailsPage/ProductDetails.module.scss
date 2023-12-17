@@ -10,13 +10,11 @@
 
   @include onTablet {
     margin-top: 32px;
-    padding-inline: 24px;
   }
 
   @include onDesktop {
     margin-top: 56px;
     margin-bottom: 80px;
-    padding-inline: auto;
   }
 
   &__path {
@@ -49,11 +47,10 @@
 
     display: flex;
     flex-direction: row-reverse;
-    gap: 23px;
   }
 
   @include onDesktop {
-    grid-column: 1 / 12;
+    grid-column: 1 / 13;
   }
 
   &__image_wrapper {
@@ -166,7 +163,6 @@
 .block_tech {
   @include element-full-width-grid;
 
-  
   @include onDesktop {
     grid-column: 14 / 25;
   }
@@ -188,17 +184,7 @@
 }
 
 .goback_button {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-
   margin-top: 24px;
-  width: fit-content;
-
-  font-size: 0.75rem;
-  font-weight: 700;
-
-  color: $secondary;
 }
 
 .section_image {

@@ -3,17 +3,15 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './ProductDetails.module.scss';
-import { getPhoneById, getSuggestedPhones } from '../../shared/api/phones';
+import { getPhoneById } from '../../shared/api/phones';
 import { PhoneDetails } from '../../shared/types/PhoneDetails';
-import { Phone } from '../../shared/types/Phone';
-import leftArrow from '../../img/icons/Chevron (Arrow Right).svg';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 import { IconButton } from '../../shared/ui/IconButton';
 import { Breadcrumbs } from '../../features/Breadcrumbs';
 import { Loader } from '../../widgets/Loader';
-import { ProductSlider } from '../../features/ProductSlider';
-import { ProductCard } from '../../entities/ProductCard';
+import { YouMayAlsoLike } from '../../widgets/YouMayAlsoLike';
+import { BackButton } from '../../shared/ui/BackButton';
 import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 
 enum TechSpecs {
@@ -26,14 +24,10 @@ enum TechSpecs {
   ZOOM = 'zoom',
   CELL = 'cell',
 }
-
 export const ProductDetailsPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [productDetail, setProductDetail] = useState<PhoneDetails | null>(null);
-  const [
-    recommendedProducts, setRecommendedProducts,
-  ] = useState<Phone[] | null>(null);
   const [productImage, setProductImage] = useState('');
   const [isLoad, setIsLoad] = useState(false);
   const [capacity, setCapacity] = useState(productDetail?.capacity);
@@ -53,15 +47,6 @@ export const ProductDetailsPage: React.FC = () => {
       })
       .finally(() => setIsLoad(false));
   }, [capacity, productColor, location.pathname]);
-
-  useEffect(() => {
-    getSuggestedPhones()
-      .then(setRecommendedProducts)
-      .catch(error => {
-        throw error;
-      })
-      .finally(() => setIsLoad(false));
-  }, []);
 
   const changeProductColor = (color: string) => {
     if (color === productColor) {
@@ -92,10 +77,6 @@ export const ProductDetailsPage: React.FC = () => {
     navigate(`/phones/${productId}-${location.pathname.split('-').at(-1)}`);
   };
 
-  const goBack = () => {
-    navigate('..');
-  };
-
   const convertTechDetails = (value: string) => {
     if (value === 'ram') {
       return 'RAM';
@@ -116,18 +97,10 @@ export const ProductDetailsPage: React.FC = () => {
           <div className={styles.bread_crumbs}>
             <Breadcrumbs productName={productDetail?.name} />
           </div>
-          <button
-            className={styles.goback_button}
-            type="button"
-            onClick={goBack}
-          >
-            <img
-              className={styles.icon}
-              src={leftArrow}
-              alt="Rigth arrow icon"
-            />
-            Back
-          </button>
+
+          <div className={styles.goback_button}>
+            <BackButton />
+          </div>
 
           <h1 className={styles.section_image__title}>
             {productDetail?.name}
@@ -317,18 +290,7 @@ export const ProductDetailsPage: React.FC = () => {
         </div>
 
         <section className={styles.recommended}>
-          <SecondaryTitle>
-            You may also like
-          </SecondaryTitle>
-
-          <ProductSlider>
-            {
-              recommendedProducts !== null && recommendedProducts
-                .map((phone) => {
-                  return <ProductCard key={phone.phoneId} phone={phone} />;
-                })
-            }
-          </ProductSlider>
+          <YouMayAlsoLike />
         </section>
       </div>
     );

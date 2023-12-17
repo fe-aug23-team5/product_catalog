@@ -3,26 +3,38 @@
 
 .homepage {
   @include pageGrid();
-  row-gap: 60px;
+  row-gap: 57px;
 
   margin-top: 24px;
   margin-bottom: 64px;
   width: 100%;
   max-width: $fixed-desktop-grid;
-  padding-inline: $padding-mobile;
 
   @include onTablet {
+    row-gap: 64px;
     margin-top: 32px;
-    padding-inline: $padding-tablet;
   }
 
   @include onDesktop {
+    row-gap: 80px;
     margin-top: 56px;
     margin-bottom: 80px;
-    padding-inline: auto;
   }
 
   &__item {
     grid-column: 1 / -1;
+  }
+
+  &__title {
+    @include style-primary-title;
+    margin-bottom: 24px;
+
+    @include onTablet {
+      margin-bottom: 32px;
+    }
+
+    @include onDesktop {
+      margin-bottom: 56px;
+    }
   }
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Breadcrumbs.module.scss';
-import HomeIcon from '../../shared/static/icons/icon-home.svg';
-import RightArrowIcon from '../../shared/static/icons/icon-right-arrow.svg';
+import HomeIcon from '../../shared/static/icons/home.svg';
+import RightArrowIcon from '../../shared/static/icons/right-arrow-grey.svg';
 
 type Props = {
   productName?: string;

@@ -1,22 +1,30 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './FavouritesPage.module.scss';
 import { GlobalContext } from '../../shared/utils/GlobalProvider';
 import { ProductCard } from '../../entities/ProductCard';
-import { PageTitle } from '../../shared/ui/PageTitle';
+import { Breadcrumbs } from '../../features/Breadcrumbs';
 import favorites from '../../shared/static/favorite.png';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 
 export const FavouritesPage: React.FC = () => {
   const { favourites } = useContext(GlobalContext);
+  const navigate = useNavigate();
 
   const navigateToHome = () => {
-    window.location.href = '/';
+    navigate('/');
   };
 
   return (
     <div className={styles.favpage_container}>
-      <div className={styles.favpage_container_title}>
-        <PageTitle>Favourites</PageTitle>
+      <div className={styles.favpage_container__top}>
+        <div className={styles.favpage_container__path}>
+          <Breadcrumbs />
+        </div>
+
+        <h1 className={styles.favpage_container__title}>
+          Favourites
+        </h1>
       </div>
 
       {favourites.length

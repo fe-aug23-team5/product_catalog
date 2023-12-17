@@ -2,10 +2,10 @@ import React from 'react';
 import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 import styles from './BurgerMenu.module.scss';
-import logo from '../../img/icons/Logo.svg';
-import closeIcon from '../../img/icons/close_icon.svg';
-import heartLikeIcon from '../../img/icons/Favourites (Heart Like).svg';
-import basketIcon from '../../img/icons/Shopping bag (Cart).svg';
+import logo from '../../shared/static/logo.svg';
+import closeIcon from '../../shared/static/icons/close-icon.svg';
+import heartLikeIcon from '../../shared/static/icons/heart-outlined.svg';
+import basketIcon from '../../shared/static/icons/cart.svg';
 import { NavBar } from '../../features/NavBar';
 
 type Props = {

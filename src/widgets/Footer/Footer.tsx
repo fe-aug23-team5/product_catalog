@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../img/icons/Logo.svg';
-import upArrow from '../../img/icons/up_arrow.svg';
+import logo from '../../shared/static/logo.svg';
+import upArrow from '../../shared/static/icons/up-arrow-black.svg';
 import styles from './Footer.module.scss';
 
 enum NavTitle {
