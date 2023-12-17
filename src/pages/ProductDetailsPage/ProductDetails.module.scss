@@ -40,19 +40,91 @@
 
 .block_gallery {
   grid-column: span 4;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $secondary;
   
   @include onTablet {
     grid-column: 1 / 8;
 
     display: flex;
     flex-direction: row-reverse;
-    justify-content: start;
-
+    gap: 23px;
   }
 
   @include onDesktop {
-    grid-column: 1 / 13;
+    grid-column: 1 / 12;
+  }
 
+  &__image_wrapper {
+    width: 274px;
+    height: 274px;
+    margin: 0 auto;
+
+    @include onDesktop {
+      width: 287px;
+      height: 287px;
+    }
+  }
+
+  &_main_image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  &__list {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+
+    margin-top: 23px;
+
+    @include onTablet {
+      flex-direction: column;
+      grid-column: 1;
+      grid-row: 1 / -1;
+      align-self: start;
+
+      margin: 0;
+    }
+
+    @include onDesktop {
+      grid-column: span 2;
+    }
+  }
+
+  &__item {
+    @include flex-justify-center-align-center;
+  }
+
+  &__button {
+    width: 51px;
+    height: 49px;
+    border: 1px solid $secondary;
+    border-radius: 4px;
+
+    background-color: $white;
+    overflow: hidden;
+
+    @include onTablet {
+      width: 34px;
+      height: 34px;
+    }
+
+    @include onDesktop {
+      width: 80px;
+      height: 80px;
+    }
+
+    &_active {
+      border: 1px solid $primary;
+    }
+  }
+
+  &__image {
+    width: 90%;
+    padding: 4px;
   }
 }
 
@@ -132,85 +204,6 @@
   &__title {
     margin-top: 16px;
     @include style-primary-title;
-  }
-}
-
-.block_gallery {
-  margin-top: 40px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: $secondary;
-
-  &__image_wrapper {
-    width: 274px;
-    height: 274px;
-    margin: 0 auto;
-
-    @include onDesktop {
-      width: 287px;
-      height: 287px;
-    }
-  }
-
-  &_main_image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  &__list {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-
-
-    margin-top: 23px;
-
-    @include onTablet {
-      flex-direction: column;
-      grid-column: 1;
-      grid-row: 1 / -1;
-      align-self: start;
-
-      margin: 0;
-    }
-
-    @include onDesktop {
-      grid-column: span 2;
-    }
-  }
-
-  &__item {
-    @include flex-justify-center-align-center;
-  }
-
-  &__button {
-    width: 51px;
-    height: 49px;
-    border: 1px solid $secondary;
-    border-radius: 4px;
-
-    background-color: $white;
-    overflow: hidden;
-
-    @include onTablet {
-      width: 34px;
-      height: 34px;
-    }
-
-    @include onDesktop {
-      width: 80px;
-      height: 80px;
-    }
-
-    &_active {
-      border: 1px solid $primary;
-    }
-  }
-
-  &__image {
-    width: 90%;
-    padding: 4px;
   }
 }
 
@@ -350,21 +343,6 @@
 
 .about {
   color: $primary;
-
-  &__title {
-    border-bottom: 1px solid $secondary;
-    padding-bottom: 16px;
-
-    font-size: 1.25rem;
-    line-height: 25px;
-    font-weight: 700;
-
-    @include onTablet {
-      font-size: 1.375rem;
-      font-weight: 800;
-      line-height: 31px;
-    }
-  }
 }
 
 .description {
@@ -390,21 +368,6 @@
 }
 
 .tech {
-  &__title {
-    border-bottom: 1px solid $secondary;
-    padding-bottom: 16px;
-
-    font-size: 1.25rem;
-    line-height: 25px;
-    font-weight: 700;
-
-    @include onTablet {
-      font-size: 1.375rem;
-      font-weight: 800;
-      line-height: 31px;
-    }
-  }
-
   &__details {
     display: flex;
     flex-direction: column;
@@ -432,6 +395,6 @@
   }
 }
 
-.slider {
+.recommended {
   grid-column: 1 / -1;
 }

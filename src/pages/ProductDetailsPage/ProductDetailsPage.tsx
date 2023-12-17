@@ -1,6 +1,5 @@
-/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './ProductDetails.module.scss';
@@ -15,6 +14,7 @@ import { Breadcrumbs } from '../../features/Breadcrumbs';
 import { Loader } from '../../widgets/Loader';
 import { ProductSlider } from '../../features/ProductSlider';
 import { ProductCard } from '../../entities/ProductCard';
+import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 
 enum TechSpecs {
   SCREEN = 'screen',
@@ -35,18 +35,14 @@ export const ProductDetailsPage: React.FC = () => {
     recommendedProducts, setRecommendedProducts,
   ] = useState<Phone[] | null>(null);
   const [productImage, setProductImage] = useState('');
-  const [isLoad, setIsLoad] = useState(true);
+  const [isLoad, setIsLoad] = useState(false);
   const [capacity, setCapacity] = useState(productDetail?.capacity);
   const [
     productColor, setProductColor,
   ] = useState(location.pathname.split('-').at(-1));
-  const productId = useRef(location.pathname
-    .split('/')[2].split('-').slice(0, -1).join('-'));
-
-  console.log(location.pathname);
 
   useEffect(() => {
-    // getPhoneById(`${productId.current}-${productColor}`)
+    setIsLoad(true);
     getPhoneById(`${location.pathname.split('/')[2]}`)
       .then((data) => {
         setProductDetail(data);
@@ -72,11 +68,12 @@ export const ProductDetailsPage: React.FC = () => {
       return;
     }
 
-    productId.current = location.pathname
+    const productId = location.pathname
       .split('/')[2].split('-').slice(0, -1).join('-');
+
     setIsLoad(true);
     setProductColor(color);
-    navigate(`/phones/${productId.current}-${color}`);
+    navigate(`/phones/${productId}-${color}`);
   };
 
   const changeCapacity = (value: string) => {
@@ -84,11 +81,15 @@ export const ProductDetailsPage: React.FC = () => {
       return;
     }
 
-    productId.current = productId.current
-      .split('-').map(item => (item.includes('gb') ? value : item)).join('-');
+    const productId = location.pathname
+      .split('/')[2].split('-').slice(0, -1).join('-')
+      .split('-')
+      .map(item => (item.includes('gb') ? value : item))
+      .join('-');
+
     setIsLoad(true);
     setCapacity(value);
-    navigate(`/phones/${productId.current}-${productColor}`);
+    navigate(`/phones/${productId}-${location.pathname.split('-').at(-1)}`);
   };
 
   const goBack = () => {
@@ -187,7 +188,6 @@ export const ProductDetailsPage: React.FC = () => {
                     })}
                   >
                     <button
-                      // to={`/phones/${productId.current}-${productColor}`}
                       onClick={() => changeProductColor(color)}
                       style={{ backgroundColor: `${color}` }}
                       className={styles.color__button}
@@ -272,9 +272,9 @@ export const ProductDetailsPage: React.FC = () => {
 
         <div className={styles.block_about}>
           <section className={styles.about}>
-            <h2 className={styles.about__title}>
+            <SecondaryTitle>
               About
-            </h2>
+            </SecondaryTitle>
 
             {productDetail?.description.map(info => {
               const { text, title } = info;
@@ -296,9 +296,9 @@ export const ProductDetailsPage: React.FC = () => {
 
         <div className={styles.block_tech}>
           <section className={styles.tech}>
-            <h2 className={styles.tech__title}>
+            <SecondaryTitle>
               Tech specs
-            </h2>
+            </SecondaryTitle>
 
             <article className={styles.tech__details}>
               {Object.values(TechSpecs).map(item => (
@@ -316,7 +316,11 @@ export const ProductDetailsPage: React.FC = () => {
           </section>
         </div>
 
-        <section className={styles.slider}>
+        <section className={styles.recommended}>
+          <SecondaryTitle>
+            You may also like
+          </SecondaryTitle>
+
           <ProductSlider>
             {
               recommendedProducts !== null && recommendedProducts
