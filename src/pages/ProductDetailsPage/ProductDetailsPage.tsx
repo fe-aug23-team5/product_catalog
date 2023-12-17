@@ -1,7 +1,6 @@
-/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React, { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './ProductDetails.module.scss';
 import { getPhoneById } from '../../shared/api/phones';
@@ -13,23 +12,32 @@ import { Breadcrumbs } from '../../features/Breadcrumbs';
 import { Loader } from '../../widgets/Loader';
 import { YouMayAlsoLike } from '../../widgets/YouMayAlsoLike';
 import { BackButton } from '../../shared/ui/BackButton';
+import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 
+enum TechSpecs {
+  SCREEN = 'screen',
+  RESOLUTION = 'resolution',
+  PROCESSOR = 'processor',
+  RAM = 'ram',
+  CAPACITY = 'capacity',
+  CAMERA = 'camera',
+  ZOOM = 'zoom',
+  CELL = 'cell',
+}
 export const ProductDetailsPage: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [productDetail, setProductDetail] = useState<PhoneDetails | null>(null);
   const [productImage, setProductImage] = useState('');
-  const [isLoad, setIsLoad] = useState(true);
+  const [isLoad, setIsLoad] = useState(false);
   const [capacity, setCapacity] = useState(productDetail?.capacity);
-
-  const productId = useRef(location.pathname
-    .split('/')[2].split('-').slice(0, -1).join('-'));
-
   const [
     productColor, setProductColor,
   ] = useState(location.pathname.split('-').at(-1));
 
   useEffect(() => {
-    getPhoneById(`${productId.current}-${productColor}`)
+    setIsLoad(true);
+    getPhoneById(`${location.pathname.split('/')[2]}`)
       .then((data) => {
         setProductDetail(data);
         setProductImage(`${BASE_URL_IMG}${data.images[0]}`);
@@ -38,15 +46,19 @@ export const ProductDetailsPage: React.FC = () => {
         throw error;
       })
       .finally(() => setIsLoad(false));
-  }, [capacity, productColor]);
+  }, [capacity, productColor, location.pathname]);
 
   const changeProductColor = (color: string) => {
     if (color === productColor) {
       return;
     }
 
+    const productId = location.pathname
+      .split('/')[2].split('-').slice(0, -1).join('-');
+
     setIsLoad(true);
     setProductColor(color);
+    navigate(`/phones/${productId}-${color}`);
   };
 
   const changeCapacity = (value: string) => {
@@ -54,10 +66,27 @@ export const ProductDetailsPage: React.FC = () => {
       return;
     }
 
-    productId.current = productId.current
-      .split('-').map(item => (item.includes('gb') ? value : item)).join('-');
+    const productId = location.pathname
+      .split('/')[2].split('-').slice(0, -1).join('-')
+      .split('-')
+      .map(item => (item.includes('gb') ? value : item))
+      .join('-');
+
     setIsLoad(true);
     setCapacity(value);
+    navigate(`/phones/${productId}-${location.pathname.split('-').at(-1)}`);
+  };
+
+  const convertTechDetails = (value: string) => {
+    if (value === 'ram') {
+      return 'RAM';
+    }
+
+    if (value === 'capacity') {
+      return 'Built in memory';
+    }
+
+    return value.replace(value[0], value[0].toUpperCase());
   };
 
   return isLoad
@@ -65,7 +94,9 @@ export const ProductDetailsPage: React.FC = () => {
     : (
       <div className={styles.product_details}>
         <div className={styles.block_top}>
-          <Breadcrumbs />
+          <div className={styles.bread_crumbs}>
+            <Breadcrumbs productName={productDetail?.name} />
+          </div>
 
           <div className={styles.goback_button}>
             <BackButton />
@@ -194,45 +225,19 @@ export const ProductDetailsPage: React.FC = () => {
               </div>
 
               <div className={styles.details}>
-                <p className={styles.details__text}>
-                  <span className={styles.details__key}>
-                    Screen
-                  </span>
+                {Object.values(TechSpecs).slice(0, 4).map(item => {
+                  return (
+                    <p key={item} className={styles.details__text}>
+                      <span className={styles.details__key}>
+                        {convertTechDetails(item)}
+                      </span>
 
-                  <span className={styles.details__value}>
-                    {productDetail?.screen}
-                  </span>
-                </p>
-
-                <p className={styles.details__text}>
-                  <span className={styles.details__key}>
-                    Resolution
-                  </span>
-
-                  <span className={styles.details__value}>
-                    {productDetail?.resolution}
-                  </span>
-                </p>
-
-                <p className={styles.details__text}>
-                  <span className={styles.details__key}>
-                    Processor
-                  </span>
-
-                  <span className={styles.details__value}>
-                    {productDetail?.processor}
-                  </span>
-                </p>
-
-                <p className={styles.details__text}>
-                  <span className={styles.details__key}>
-                    RAM
-                  </span>
-
-                  <span className={styles.details__value}>
-                    {productDetail?.ram}
-                  </span>
-                </p>
+                      <span className={styles.details__value}>
+                        {productDetail !== null && productDetail[item]}
+                      </span>
+                    </p>
+                  );
+                })}
               </div>
             </div>
           </article>
@@ -240,9 +245,9 @@ export const ProductDetailsPage: React.FC = () => {
 
         <div className={styles.block_about}>
           <section className={styles.about}>
-            <h2 className={styles.about__title}>
+            <SecondaryTitle>
               About
-            </h2>
+            </SecondaryTitle>
 
             {productDetail?.description.map(info => {
               const { text, title } = info;
@@ -264,95 +269,27 @@ export const ProductDetailsPage: React.FC = () => {
 
         <div className={styles.block_tech}>
           <section className={styles.tech}>
-            <h2 className={styles.tech__title}>
+            <SecondaryTitle>
               Tech specs
-            </h2>
+            </SecondaryTitle>
 
             <article className={styles.tech__details}>
-              <p className={styles.tech__wrapper}>
-                <span className={styles.tech__key}>
-                  Screen
-                </span>
+              {Object.values(TechSpecs).map(item => (
+                <p key={item} className={styles.tech__wrapper}>
+                  <span className={styles.tech__key}>
+                    {convertTechDetails(item)}
+                  </span>
 
-                <span className={styles.tech__value}>
-                  {productDetail?.screen}
-                </span>
-              </p>
-
-              <p className={styles.tech__wrapper}>
-                <span className={styles.tech__key}>
-                  Resolution
-                </span>
-
-                <span className={styles.tech__value}>
-                  {productDetail?.resolution}
-                </span>
-              </p>
-
-              <p className={styles.tech__wrapper}>
-                <span className={styles.tech__key}>
-                  Processor
-                </span>
-
-                <span className={styles.tech__value}>
-                  {productDetail?.processor}
-                </span>
-              </p>
-
-              <p className={styles.tech__wrapper}>
-                <span className={styles.tech__key}>
-                  RAM
-                </span>
-
-                <span className={styles.tech__value}>
-                  {productDetail?.ram}
-                </span>
-              </p>
-
-              <p className={styles.tech__wrapper}>
-                <span className={styles.tech__key}>
-                  Built in memory
-                </span>
-
-                <span className={styles.tech__value}>
-                  {productDetail?.capacity}
-                </span>
-              </p>
-
-              <p className={styles.tech__wrapper}>
-                <span className={styles.tech__key}>
-                  Camera
-                </span>
-
-                <span className={styles.tech__value}>
-                  {productDetail?.camera}
-                </span>
-              </p>
-
-              <p className={styles.tech__wrapper}>
-                <span className={styles.tech__key}>
-                  Zoom
-                </span>
-
-                <span className={styles.tech__value}>
-                  {productDetail?.zoom}
-                </span>
-              </p>
-
-              <p className={styles.tech__wrapper}>
-                <span className={styles.tech__key}>
-                  Cell
-                </span>
-
-                <span className={styles.tech__value}>
-                  {productDetail?.cell.join(', ')}
-                </span>
-              </p>
+                  <span className={styles.tech__value}>
+                    {productDetail !== null && productDetail[item]}
+                  </span>
+                </p>
+              ))}
             </article>
           </section>
         </div>
 
-        <section className={styles.slider}>
+        <section className={styles.recommended}>
           <YouMayAlsoLike />
         </section>
       </div>
