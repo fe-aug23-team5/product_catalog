@@ -1,13 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './BackButton.module.scss';
 import leftArrow from '../../static/icons/left-arrow-black.svg';
 
 export const BackButton: React.FC = () => {
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
-    <Link
-      to=".."
+    <button
+      type="button"
       className={styles.backButton__container}
+      onClick={goBack}
     >
       <img
         className={styles.backButton__container__icon}
@@ -15,6 +22,6 @@ export const BackButton: React.FC = () => {
         alt="Left arrow icon"
       />
       Back
-    </Link>
+    </button>
   );
 };
