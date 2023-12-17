@@ -14,7 +14,6 @@ type Props = {
 export const ProductCard: React.FC<Props> = ({ phone }) => {
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [isIconActive, setIsIconActive] = useState(false);
-
   const {
     cart,
     addCartItem,
