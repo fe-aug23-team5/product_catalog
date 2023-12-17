@@ -26,6 +26,12 @@
   }
 }
 
+.bread_crumbs {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .block {
   &_top {
     @include element-full-width-grid;

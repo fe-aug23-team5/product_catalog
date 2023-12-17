@@ -14,7 +14,6 @@ type Props = {
 export const ProductCard: React.FC<Props> = ({ phone }) => {
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [isIconActive, setIsIconActive] = useState(false);
-
   const {
     cart,
     addCartItem,
@@ -56,17 +55,17 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
   return (
     <article className={classes.card}>
-      <div>
-        <Link to={`phones/${phone.phoneId}`}>
+      <Link to={`/phones/${phone.phoneId}`} replace>
+        <div>
           <img
             className={classes.photo}
             src={`${BASE_URL_IMG}${phone.image}`}
             alt="Phone card"
           />
-        </Link>
+        </div>
 
         <h3 className={classes.header}>{phone.name}</h3>
-      </div>
+      </Link>
 
       <div>
         <p className={classes.price}>

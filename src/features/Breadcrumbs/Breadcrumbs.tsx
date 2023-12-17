@@ -4,7 +4,11 @@ import styles from './Breadcrumbs.module.scss';
 import HomeIcon from '../../shared/static/icons/icon-home.svg';
 import RightArrowIcon from '../../shared/static/icons/icon-right-arrow.svg';
 
-export const Breadcrumbs = () => {
+type Props = {
+  productName?: string;
+};
+
+export const Breadcrumbs: React.FC<Props> = ({ productName = '' }) => {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
 
@@ -25,12 +29,14 @@ export const Breadcrumbs = () => {
             {!isLast ? (
               <>
                 <img src={RightArrowIcon} alt="Right Arrow" />
-                <Link to={routeTo}>{pathname}</Link>
+                <Link to={routeTo}>
+                  {pathname.replace(pathname[0], pathname[0].toUpperCase())}
+                </Link>
               </>
             ) : (
               <div className={styles.breadcrumbs_last}>
                 <img src={RightArrowIcon} alt="Right Arrow" />
-                {pathname}
+                {productName || pathname}
               </div>
             )}
           </span>

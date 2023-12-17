@@ -16,6 +16,17 @@ import { Loader } from '../../widgets/Loader';
 import { ProductSlider } from '../../features/ProductSlider';
 import { ProductCard } from '../../entities/ProductCard';
 
+enum TechSpecs {
+  SCREEN = 'screen',
+  RESOLUTION = 'resolution',
+  PROCESSOR = 'processor',
+  RAM = 'ram',
+  CAPACITY = 'capacity',
+  CAMERA = 'camera',
+  ZOOM = 'zoom',
+  CELL = 'cell',
+}
+
 export const ProductDetailsPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -26,16 +37,17 @@ export const ProductDetailsPage: React.FC = () => {
   const [productImage, setProductImage] = useState('');
   const [isLoad, setIsLoad] = useState(true);
   const [capacity, setCapacity] = useState(productDetail?.capacity);
-
-  const productId = useRef(location.pathname
-    .split('/')[2].split('-').slice(0, -1).join('-'));
-
   const [
     productColor, setProductColor,
   ] = useState(location.pathname.split('-').at(-1));
+  const productId = useRef(location.pathname
+    .split('/')[2].split('-').slice(0, -1).join('-'));
+
+  console.log(location.pathname);
 
   useEffect(() => {
-    getPhoneById(`${productId.current}-${productColor}`)
+    // getPhoneById(`${productId.current}-${productColor}`)
+    getPhoneById(`${location.pathname.split('/')[2]}`)
       .then((data) => {
         setProductDetail(data);
         setProductImage(`${BASE_URL_IMG}${data.images[0]}`);
@@ -44,7 +56,7 @@ export const ProductDetailsPage: React.FC = () => {
         throw error;
       })
       .finally(() => setIsLoad(false));
-  }, [capacity, productColor]);
+  }, [capacity, productColor, location.pathname]);
 
   useEffect(() => {
     getSuggestedPhones()
@@ -60,8 +72,11 @@ export const ProductDetailsPage: React.FC = () => {
       return;
     }
 
+    productId.current = location.pathname
+      .split('/')[2].split('-').slice(0, -1).join('-');
     setIsLoad(true);
     setProductColor(color);
+    navigate(`/phones/${productId.current}-${color}`);
   };
 
   const changeCapacity = (value: string) => {
@@ -73,10 +88,23 @@ export const ProductDetailsPage: React.FC = () => {
       .split('-').map(item => (item.includes('gb') ? value : item)).join('-');
     setIsLoad(true);
     setCapacity(value);
+    navigate(`/phones/${productId.current}-${productColor}`);
   };
 
   const goBack = () => {
     navigate('..');
+  };
+
+  const convertTechDetails = (value: string) => {
+    if (value === 'ram') {
+      return 'RAM';
+    }
+
+    if (value === 'capacity') {
+      return 'Built in memory';
+    }
+
+    return value.replace(value[0], value[0].toUpperCase());
   };
 
   return isLoad
@@ -84,7 +112,9 @@ export const ProductDetailsPage: React.FC = () => {
     : (
       <div className={styles.product_details}>
         <div className={styles.block_top}>
-          <Breadcrumbs />
+          <div className={styles.bread_crumbs}>
+            <Breadcrumbs productName={productDetail?.name} />
+          </div>
           <button
             className={styles.goback_button}
             type="button"
@@ -157,6 +187,7 @@ export const ProductDetailsPage: React.FC = () => {
                     })}
                   >
                     <button
+                      // to={`/phones/${productId.current}-${productColor}`}
                       onClick={() => changeProductColor(color)}
                       style={{ backgroundColor: `${color}` }}
                       className={styles.color__button}
@@ -221,45 +252,19 @@ export const ProductDetailsPage: React.FC = () => {
               </div>
 
               <div className={styles.details}>
-                <p className={styles.details__text}>
-                  <span className={styles.details__key}>
-                    Screen
-                  </span>
+                {Object.values(TechSpecs).slice(0, 4).map(item => {
+                  return (
+                    <p key={item} className={styles.details__text}>
+                      <span className={styles.details__key}>
+                        {convertTechDetails(item)}
+                      </span>
 
-                  <span className={styles.details__value}>
-                    {productDetail?.screen}
-                  </span>
-                </p>
-
-                <p className={styles.details__text}>
-                  <span className={styles.details__key}>
-                    Resolution
-                  </span>
-
-                  <span className={styles.details__value}>
-                    {productDetail?.resolution}
-                  </span>
-                </p>
-
-                <p className={styles.details__text}>
-                  <span className={styles.details__key}>
-                    Processor
-                  </span>
-
-                  <span className={styles.details__value}>
-                    {productDetail?.processor}
-                  </span>
-                </p>
-
-                <p className={styles.details__text}>
-                  <span className={styles.details__key}>
-                    RAM
-                  </span>
-
-                  <span className={styles.details__value}>
-                    {productDetail?.ram}
-                  </span>
-                </p>
+                      <span className={styles.details__value}>
+                        {productDetail !== null && productDetail[item]}
+                      </span>
+                    </p>
+                  );
+                })}
               </div>
             </div>
           </article>
@@ -296,85 +301,17 @@ export const ProductDetailsPage: React.FC = () => {
             </h2>
 
             <article className={styles.tech__details}>
-              <p className={styles.tech__wrapper}>
-                <span className={styles.tech__key}>
-                  Screen
-                </span>
+              {Object.values(TechSpecs).map(item => (
+                <p key={item} className={styles.tech__wrapper}>
+                  <span className={styles.tech__key}>
+                    {convertTechDetails(item)}
+                  </span>
 
-                <span className={styles.tech__value}>
-                  {productDetail?.screen}
-                </span>
-              </p>
-
-              <p className={styles.tech__wrapper}>
-                <span className={styles.tech__key}>
-                  Resolution
-                </span>
-
-                <span className={styles.tech__value}>
-                  {productDetail?.resolution}
-                </span>
-              </p>
-
-              <p className={styles.tech__wrapper}>
-                <span className={styles.tech__key}>
-                  Processor
-                </span>
-
-                <span className={styles.tech__value}>
-                  {productDetail?.processor}
-                </span>
-              </p>
-
-              <p className={styles.tech__wrapper}>
-                <span className={styles.tech__key}>
-                  RAM
-                </span>
-
-                <span className={styles.tech__value}>
-                  {productDetail?.ram}
-                </span>
-              </p>
-
-              <p className={styles.tech__wrapper}>
-                <span className={styles.tech__key}>
-                  Built in memory
-                </span>
-
-                <span className={styles.tech__value}>
-                  {productDetail?.capacity}
-                </span>
-              </p>
-
-              <p className={styles.tech__wrapper}>
-                <span className={styles.tech__key}>
-                  Camera
-                </span>
-
-                <span className={styles.tech__value}>
-                  {productDetail?.camera}
-                </span>
-              </p>
-
-              <p className={styles.tech__wrapper}>
-                <span className={styles.tech__key}>
-                  Zoom
-                </span>
-
-                <span className={styles.tech__value}>
-                  {productDetail?.zoom}
-                </span>
-              </p>
-
-              <p className={styles.tech__wrapper}>
-                <span className={styles.tech__key}>
-                  Cell
-                </span>
-
-                <span className={styles.tech__value}>
-                  {productDetail?.cell.join(', ')}
-                </span>
-              </p>
+                  <span className={styles.tech__value}>
+                    {productDetail !== null && productDetail[item]}
+                  </span>
+                </p>
+              ))}
             </article>
           </section>
         </div>
