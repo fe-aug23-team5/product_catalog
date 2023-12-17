@@ -1,22 +1,21 @@
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useEffect, useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './ProductDetails.module.scss';
 import { getPhoneById } from '../../shared/api/phones';
 import { PhoneDetails } from '../../shared/types/PhoneDetails';
-import leftArrow from '../../shared/static/icons/left-arrow-black.svg';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 import { IconButton } from '../../shared/ui/IconButton';
 import { Breadcrumbs } from '../../features/Breadcrumbs';
 import { Loader } from '../../widgets/Loader';
 import { YouMayAlsoLike } from '../../widgets/YouMayAlsoLike';
+import { BackButton } from '../../shared/ui/BackButton';
 
 export const ProductDetailsPage: React.FC = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const [productDetail, setProductDetail] = useState<PhoneDetails | null>(null);
   const [productImage, setProductImage] = useState('');
   const [isLoad, setIsLoad] = useState(true);
@@ -61,10 +60,6 @@ export const ProductDetailsPage: React.FC = () => {
     setCapacity(value);
   };
 
-  const goBack = () => {
-    navigate('..');
-  };
-
   return isLoad
     ? (<Loader />)
     : (
@@ -72,18 +67,9 @@ export const ProductDetailsPage: React.FC = () => {
         <div className={styles.block_top}>
           <Breadcrumbs />
 
-          <button
-            className={styles.goback_button}
-            type="button"
-            onClick={goBack}
-          >
-            <img
-              className={styles.icon}
-              src={leftArrow}
-              alt="Rigth arrow icon"
-            />
-            Back
-          </button>
+          <div className={styles.goback_button}>
+            <BackButton />
+          </div>
 
           <h1 className={styles.section_image__title}>
             {productDetail?.name}
