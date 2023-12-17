@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import classes from './ProductCard.module.scss';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
@@ -24,14 +25,14 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
   } = useContext(GlobalContext);
 
   useEffect(() => {
-    const isPhoneInCart = cart.some(item => item.phoneId === phone.phoneId);
+    const isPhoneInCart = cart.some((item) => item.phoneId === phone.phoneId);
 
     setIsButtonActive(isPhoneInCart);
     // eslint-disable-next-line
   }, [cart.length]);
 
   useEffect(() => {
-    const isInLiked = favourites.some(item => item.phoneId === phone.phoneId);
+    const isInLiked = favourites.some((item) => item.phoneId === phone.phoneId);
 
     setIsIconActive(isInLiked);
     // eslint-disable-next-line
@@ -56,15 +57,15 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
   return (
     <article className={classes.card}>
       <div>
-        <img
-          className={classes.photo}
-          src={`${BASE_URL_IMG}${phone.image}`}
-          alt="Phone card"
-        />
+        <Link to={`/phones/${phone.phoneId}`}>
+          <img
+            className={classes.photo}
+            src={`${BASE_URL_IMG}${phone.image}`}
+            alt="Phone card"
+          />
+        </Link>
 
-        <h3 className={classes.header}>
-          {phone.name}
-        </h3>
+        <h3 className={classes.header}>{phone.name}</h3>
       </div>
 
       <div>
@@ -92,13 +93,13 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
           </p>
         </div>
 
-        <p className={classes.block}>
+        <div className={classes.block}>
           <div className={classes.button}>
             <PrimaryButton
               isActive={isButtonActive}
               defaultAction={handleAddToCart}
               activeAction={handleDeleteFromCart}
-              defaultTitle="Add to card"
+              defaultTitle="Add to cart"
               activeTitle="Added"
             />
           </div>
@@ -107,7 +108,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
             defaultAction={handleAddToLikes}
             activeAction={handleDeleteFromLikes}
           />
-        </p>
+        </div>
       </div>
     </article>
   );

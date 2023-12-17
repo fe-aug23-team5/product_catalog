@@ -1,0 +1,100 @@
+@import '../../shared/styles/variables.scss';
+@import '../../shared/styles/mixin.scss';
+
+.cart_item {
+  background-color: #fff;
+  margin-bottom: 16px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid $elements;
+  gap: 16px;
+
+  @include onTablet {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  &_container {
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 24px;
+
+    @include onTablet {
+      align-self: auto;
+    }
+  }
+
+  &_image {
+    width: 52px;
+    height: 66px;
+    padding: 7px;
+  }
+
+  &_title {
+    font-family: 'Mont-Regular';
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  &_delete_button {
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  &_quantity {
+    margin: 0 16px;
+  }
+
+  &_quantity_container {
+    width: 50px;
+    text-align: center;
+  }
+
+  &_manuals_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    @include onTablet {
+      width: auto;
+      gap: 24px;
+    }
+  }
+
+  &_button_container {
+    display: flex;
+    align-items: center;
+  }
+
+  &_quantity_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 48px;
+    border: 1px solid  $icons;
+    background-color: $white;
+  
+    cursor: pointer;
+    transition: border 0.3s;
+  }
+
+  &_price {
+    font-family: 'Mont-bold';
+    font-size: 24px;
+    text-align: end;
+  }
+  
+  &_price_container {
+    width: 100px;
+  }
+}

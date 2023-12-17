@@ -1,42 +1,55 @@
 @import '../../shared/styles/mixin.scss';
 @import '../../shared/styles/variables.scss';
-// .content {
-//   &_container {
-//    display: flex;
-//   }
-// }
 
-
-.content {
-  &_container {
+.cart_page {
+  &__container {
     @include pageGrid();
     width: 100%;
     max-width: 1184px;
-    margin-top: 24px;
-    margin-bottom: 64px;
+    // margin-top: 24px;
+    margin-bottom: 56px;
     padding-inline: 16px;
+    row-gap: $cart-gap;
 
     @include onTablet {
-      margin-top: 32px;
+      // margin-top: 40px;
+      margin-bottom: 64px;
       padding-inline: 24px;
+      row-gap: $cart-gap;
     }
 
     @include onDesktop {
-      margin-top: 56px;
       margin-bottom: 80px;
       padding-inline: auto;
     }
   }
-}
 
-.cart_page_title {
-  grid-column: span $columns-mobile;
+  &__back {
+    margin-top: 24px;
+    margin-bottom: 24px;
 
-  @include onTablet {
-    grid-column: span $columns-tablet;
+    @include onTablet {
+      margin-bottom: 16px;
+    }
   }
 
-  @include onDesktop {
-    grid-column: span $columns-desktop;
+  &__title {
+    font-family: 'Mont-Bold';
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 41px;
+    letter-spacing: -0.32px;
+    grid-column: span $columns-mobile;
+    
+    @include onTablet {
+      font-size: 48px;
+      line-height: 56px;
+      letter-spacing: -0.48px;
+      grid-column: span $columns-tablet;
+    }
+    
+    @include onDesktop {
+      grid-column: span $columns-desktop;
+    }
   }
 }

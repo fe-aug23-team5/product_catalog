@@ -3,6 +3,12 @@
 @import '../shared/styles/mixin.scss';
 @import '../shared/styles/variables.scss';
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: 'Mont-regular', sans-serif;
   scroll-behavior: smooth;
@@ -11,14 +17,15 @@ body {
 .main {
   width: 100%;
   min-height: calc(100vh - 321px);
+  padding-inline: 16px;
   background-color: $hover-and-bg;
-  display: flex;
-  justify-content: space-around;
-
-  // @include flex-justify-center-align-center;
+  @include flex-justify-center-align-center;
+  // display: flex;
+  // justify-content: center;
 
   @include onTablet {
     min-height: calc(100vh - 144px);
+    padding-inline: 32px;
   }
 
   @include onDesktop {

@@ -1,0 +1,12 @@
+@import '../../shared/styles/mixin.scss';
+
+.errorPage__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__title {
+    @include style-primary-title;
+    margin-bottom: 20px;
+  }
+}

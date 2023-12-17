@@ -7,15 +7,19 @@
 
 .slick-slide {
   padding: 20px 10px;
+  height: auto;
 }
 
 .slick-track {
   display: flex;
+  height: auto;
 }
 
-.slick-track .slick-slide {
-  display: flex;
-  height: auto;
+// styles to expand all items inside slick-container
+// to the size of slick-slide div
+div.slick-slide > div {
+  height: 100%;
+  width: 100%;
 }
 
 .arrow {
@@ -31,7 +35,7 @@
     right: 60px;
     border: 1px solid $icons;
     border-radius: 50%;
-    background-image: url('../../img/icons/Arrow\ Left.svg');
+    background-image: url('../../shared/static/icons/left-arrow-black.svg');
     background-repeat: no-repeat;
     background-position: center;
   }
@@ -41,7 +45,7 @@
     height: 33px;
     border: 1px solid $icons;
     border-radius: 50%;
-    background-image: url('../../img/icons/Arrow\ Right.svg');
+    background-image: url('../../shared/static/icons/right-arrow-black.svg');
     background-repeat: no-repeat;
     background-position: center;
   }

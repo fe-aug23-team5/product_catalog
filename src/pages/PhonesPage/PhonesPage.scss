@@ -1,12 +1,78 @@
 @import '../../shared//styles/mixin.scss';
+@import '../../shared/styles/variables.scss';
 
-.container {
+@font-face {
+  font-family: 'Mont-SemiBold';
+  src: url('../../../public/fonts/Mont-SemiBold.otf');
+}
+
+.phonesPage {
   display: flex;
   flex-direction: column;
+
+  &__path {
+    margin-top: 24px;
+    margin-bottom: 24px;
+
+    @include onTablet {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__header {
+    @include style-primary-title;
+    margin-bottom: 8px;
+  }
+
+  &__count {
+    margin-bottom: 32px;
+
+    @include onTablet {
+      margin-bottom: 40px;
+    }
+  }
+}
+
+.dropdown {
+  display: flex;
+  margin-bottom: 24px;
+
+  &__title {
+    font-family: 'Mont-SemiBold';
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: 0em;
+    color: $secondary;
+    margin-bottom: 4px;
+  }
+
+  &__sort {
+    margin-right: 16px;
+    width: 176px
+  }
+
+  &__items {
+    width: 128px;
+  }
 }
 
 .phones {
-  &_container {
+  &__container {
     @include pageGrid;
+    row-gap: 40px;
+    margin-bottom: 24px;
+
+    @include onTablet {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__pagination {
+    margin-bottom: 64px;
+
+    @include onDesktop {
+      margin-bottom: 80px;
+    }
   }
 }

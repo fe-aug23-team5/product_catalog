@@ -1,0 +1,80 @@
+@import '../../shared/styles/variables.scss';
+@import '../../shared/styles/mixin.scss';
+@import '../../shared/styles/fonts.scss';
+
+.pagination {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+
+  &__arrow-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 32px;
+    width: 32px;
+    border: 1px solid $icons;
+    border-radius: 50%;
+
+    transition: border 0.2s ease-in-out;
+
+    &:hover {
+      border: 1px solid $primary;
+    }
+
+    &--disabled {
+      pointer-events: none;
+      opacity: 50%;
+    }
+  }
+
+  &__arrow-icon {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 12px;
+    height: 16px;
+
+    &--left {
+      background-image: url('../../shared/static/icons/left-arrow-black.svg');
+    }
+
+    &--right {
+      background-image: url('../../shared/static/icons/right-arrow-black.svg');
+    }
+  }
+
+  &__list {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+
+    font-family: 'Mont-Regular';
+
+    border: 1px solid $icons;
+
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      border: 1px solid $primary;
+    }
+
+    &--active {
+      background-color: $primary;
+      border: 1px solid $primary;
+      color: $icons;
+      pointer-events: none;
+    }
+  }
+}

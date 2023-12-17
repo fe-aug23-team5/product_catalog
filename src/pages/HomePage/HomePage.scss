@@ -1,28 +1,40 @@
-@import '../../shared//styles/mixin.scss';
+@import '../../shared/styles/mixin.scss';
 @import '../../shared/styles/variables.scss';
 
-.content {
-  &_container {
-    @include pageGrid();
-    width: 100%;
-    max-width: 1184px;
-    margin-top: 24px;
-    margin-bottom: 64px;
-    padding-inline: 16px;
+.homepage {
+  @include pageGrid();
+  row-gap: 57px;
+
+  margin-top: 24px;
+  margin-bottom: 64px;
+  width: 100%;
+  max-width: $fixed-desktop-grid;
+
+  @include onTablet {
+    row-gap: 64px;
+    margin-top: 32px;
+  }
+
+  @include onDesktop {
+    row-gap: 80px;
+    margin-top: 56px;
+    margin-bottom: 80px;
+  }
+
+  &__item {
+    grid-column: 1 / -1;
+  }
+
+  &__title {
+    @include style-primary-title;
+    margin-bottom: 24px;
 
     @include onTablet {
-      margin-top: 32px;
-      padding-inline: 24px;
+      margin-bottom: 32px;
     }
 
     @include onDesktop {
-      margin-top: 56px;
-      margin-bottom: 80px;
-      padding-inline: auto;
-    }
-
-    &_item {
-      grid-column: 1 / -1;
+      margin-bottom: 56px;
     }
   }
 }
