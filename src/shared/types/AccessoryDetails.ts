@@ -8,11 +8,16 @@ export interface AccessoryDetails {
   priceDiscount: number;
   colorsAvailable: string[];
   color: string;
-  images: string;
-  description: string;
+  images: string[];
+  description: AccessoryDescription[];
   screen: string;
   resolution: string;
   processor: string;
   ram: string;
   cell: string[];
+}
+
+interface AccessoryDescription {
+  title: string;
+  text: string[];
 }

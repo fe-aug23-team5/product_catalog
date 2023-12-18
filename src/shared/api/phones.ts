@@ -1,6 +1,7 @@
 import { getData } from '../helpers/fetchClient';
 import { ServerResponce } from '../types/ServerResponse';
 import { PhoneDetails } from '../types/PhoneDetails';
+import { Phone } from '../types/Phone';
 
 export const getAllPhones = () => getData<ServerResponce>('/phones');
 export const getAll = () => getData<Phone[]>('/phones');
