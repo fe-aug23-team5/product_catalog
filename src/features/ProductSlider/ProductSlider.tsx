@@ -40,7 +40,8 @@ function SampleNextArrow(props: ArrowProps) {
 export const ProductSlider: React.FC<SliderCustomProps> = ({ children }) => {
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
+    arrows: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
