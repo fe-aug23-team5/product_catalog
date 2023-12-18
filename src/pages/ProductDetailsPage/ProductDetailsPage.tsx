@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './ProductDetails.module.scss';
 import { getProductById } from '../../shared/api/getProductHelper';
-import { PhoneDetails } from '../../shared/types/PhoneDetails';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 import { IconButton } from '../../shared/ui/IconButton';
@@ -14,6 +13,7 @@ import { YouMayAlsoLike } from '../../widgets/YouMayAlsoLike';
 import { BackButton } from '../../shared/ui/BackButton';
 import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 import { HashProductColors } from '../../shared/types/ProductColors';
+import { ProductDetails } from '../../shared/types/Product';
 
 enum TechSpecs {
   SCREEN = 'screen',
@@ -30,7 +30,9 @@ export const ProductDetailsPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isActiveMainImg, setIsActiveMainImg] = useState(true);
-  const [productDetail, setProductDetail] = useState<PhoneDetails | null>(null);
+  const [
+    productDetail, setProductDetail,
+  ] = useState<ProductDetails | null>(null);
   const [productImage, setProductImage] = useState('');
   const [isLoad, setIsLoad] = useState(false);
   const [capacity, setCapacity] = useState(productDetail?.capacity);
@@ -53,8 +55,6 @@ export const ProductDetailsPage: React.FC = () => {
         throw error;
       })
       .finally(() => setIsLoad(false));
-
-    // getPhoneById(`${location.pathname.split('/')[2]}`)
   }, [capacity, productColor, productType, location.pathname]);
 
   const changeProductColor = (color: string) => {
@@ -67,7 +67,14 @@ export const ProductDetailsPage: React.FC = () => {
 
     setIsLoad(true);
     setProductColor(color);
-    navigate(`/phones/${productId}-${color}`);
+
+    if (productType === 'iphone') {
+      navigate(`/phones/${productId}-${color}`);
+    } else if (productType === 'ipad') {
+      navigate(`/tablets/${productId}-${color}`);
+    } else if (productType === 'watch') {
+      navigate(`/accessories/${productId}-${color}`);
+    }
   };
 
   const changeCapacity = (value: string) => {
