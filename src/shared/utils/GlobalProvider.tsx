@@ -26,15 +26,14 @@ export const GlobalProvider: React.FC<ProviderProps> = ({ children }) => {
   console.log('cart', cart);
   console.log('favourites', favourites);
 
-  const addCartItem = (phoneId: string) => {
-    const updatedCart = [...cart, { phoneId, quantity: 1 }];
+  const addCartItem = (itemId: string) => {
+    const updatedCart = [...cart, { itemId, quantity: 1 }];
 
     setCart(updatedCart);
   };
 
-  const deleteCartItem = (phoneId: string) => {
-    const updatedCart = cart.filter(item => item.itemId !== phoneId);
-    // const updatedCart = cart.filter((item) => item.phoneId !== phoneId);
+  const deleteCartItem = (itemId: string) => {
+    const updatedCart = cart.filter(item => item.itemId !== itemId);
 
     setCart(updatedCart);
   };
@@ -43,9 +42,9 @@ export const GlobalProvider: React.FC<ProviderProps> = ({ children }) => {
     setCart([]);
   };
 
-  const updateCartItemQuantity = (phoneId: string, newQuantity: number) => {
+  const updateCartItemQuantity = (itemId: string, newQuantity: number) => {
     const updatedCart = cart.map(item => {
-      if (item.itemId === phoneId) {
+      if (item.itemId === itemId) {
         return { ...item, quantity: newQuantity };
       }
 
@@ -55,15 +54,15 @@ export const GlobalProvider: React.FC<ProviderProps> = ({ children }) => {
     setCart(updatedCart);
   };
 
-  const addFavouriteItem = (phoneId: string) => {
-    const updatedFavourites = [...favourites, { phoneId, quantity: 1 }];
+  const addFavouriteItem = (itemId: string) => {
+    const updatedFavourites = [...favourites, { itemId, quantity: 1 }];
 
     setFavourites(updatedFavourites);
   };
 
-  const deleteFavouriteItem = (phoneId: string) => {
+  const deleteFavouriteItem = (itemId: string) => {
     const updatedFavourites
-      = favourites.filter(item => item.itemId !== phoneId);
+      = favourites.filter(item => item.itemId !== itemId);
 
     setFavourites(updatedFavourites);
   };

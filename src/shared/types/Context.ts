@@ -1,14 +1,12 @@
-// import { Phone } from './Phone';
-
 import { PhoneWithQuantity } from './PhoneWithQuantity';
 
 export type Context = {
   cart: PhoneWithQuantity[];
-  addCartItem: (phoneId: string) => void;
-  deleteCartItem: (phoneId: string) => void;
+  addCartItem: (itemId: string) => void;
+  deleteCartItem: (itemId: string) => void;
   clearCart: () => void;
-  updateCartItemQuantity?: (phoneId: string, newQuantity: number) => void;
+  updateCartItemQuantity?: (itemId: string, newQuantity: number) => void;
   favourites: PhoneWithQuantity[];
-  addFavouriteItem: (phoneId: string) => void;
-  deleteFavouriteItem: (phoneId: string) => void;
+  addFavouriteItem: (itemId: string) => void;
+  deleteFavouriteItem: (itemId: string) => void;
 };

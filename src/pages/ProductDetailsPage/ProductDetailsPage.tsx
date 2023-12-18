@@ -31,6 +31,7 @@ export const ProductDetailsPage: React.FC = () => {
   const navigate = useNavigate();
   const [isActiveMainImg, setIsActiveMainImg] = useState(true);
   const [productDetail, setProductDetail] = useState<PhoneDetails | null>(null);
+  // console.log('productDetail', productDetail)
   const [productImage, setProductImage] = useState('');
   const [isLoad, setIsLoad] = useState(false);
   const [capacity, setCapacity] = useState(productDetail?.capacity);

@@ -20,9 +20,6 @@ export const PhonesPage: React.FC = () => {
   const [allPhones, setAllPhones] = useState<Phone[]>([]);
   const [totalCount, setTotalCount] = useState<number>(0);
 
-  // eslint-disable-next-line no-console
-  console.log('allPhones', allPhones);
-
   // const newSearchParams = useSearchParams();
   // if (newSearchParams.toString().split(',')[0] !== searchParams) {
   //   setSearchParams(newSearchParams.toString().split(',')[0]);

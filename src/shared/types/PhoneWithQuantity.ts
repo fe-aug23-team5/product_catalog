@@ -1,4 +1,4 @@
 export interface PhoneWithQuantity {
-  phoneId: string;
+  itemId: string;
   quantity: number;
 }

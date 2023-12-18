@@ -17,10 +17,10 @@ export const ProductCard: React.FC<Props> = ({ product, link }) => {
   const [isIconActive, setIsIconActive] = useState(false);
   const {
     cart,
-    // addCartItem,
+    addCartItem,
     deleteCartItem,
     favourites,
-    // addFavouriteItem,
+    addFavouriteItem,
     deleteFavouriteItem,
   } = useContext(GlobalContext);
 
@@ -38,17 +38,17 @@ export const ProductCard: React.FC<Props> = ({ product, link }) => {
     // eslint-disable-next-line
   }, [favourites.length]);
 
-  // const handleAddToCart = () => {
-  //   addCartItem(product.itemId);
-  // };
+  const handleAddToCart = () => {
+    addCartItem(product.itemId);
+  };
 
   const handleDeleteFromCart = () => {
     deleteCartItem(product.itemId);
   };
 
-  // const handleAddToLikes = () => {
-  //   addFavouriteItem(product.itemId);
-  // };
+  const handleAddToLikes = () => {
+    addFavouriteItem(product.itemId);
+  };
 
   const handleDeleteFromLikes = () => {
     deleteFavouriteItem(product.itemId);
@@ -97,7 +97,7 @@ export const ProductCard: React.FC<Props> = ({ product, link }) => {
           <div className={classes.button}>
             <PrimaryButton
               isActive={isButtonActive}
-              defaultAction={() => { }}
+              defaultAction={handleAddToCart}
               activeAction={handleDeleteFromCart}
               defaultTitle="Add to cart"
               activeTitle="Added"
@@ -105,7 +105,7 @@ export const ProductCard: React.FC<Props> = ({ product, link }) => {
           </div>
           <IconButton
             isActive={isIconActive}
-            defaultAction={() => { }}
+            defaultAction={handleAddToLikes}
             activeAction={handleDeleteFromLikes}
           />
         </div>
