@@ -50,7 +50,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
   };
 
   const handleDeleteFromLikes = () => {
-    deleteFavouriteItem(phone.phoneId);
+    deleteFavouriteItem(phone.itemId);
   };
 
   return (
