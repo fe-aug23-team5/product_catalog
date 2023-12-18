@@ -3,10 +3,11 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './PhotosSlider.scss';
+import { Link } from 'react-router-dom';
 
 export const PhotosSlider: React.FC = () => {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 1500,
     slidesToShow: 1,
@@ -32,13 +33,19 @@ export const PhotosSlider: React.FC = () => {
     <div className="photo-slider__container">
       <Slider {...settings} className="photo-slider__slider">
         <div>
-          <div className="photo__item" />
+          <Link to="/phones">
+            <div className="photo__item" />
+          </Link>
         </div>
         <div>
-          <div className="photo__item" />
+          <Link to="/phones">
+            <div className="photo__item" />
+          </Link>
         </div>
         <div>
-          <div className="photo__item" />
+          <Link to="/phones">
+            <div className="photo__item" />
+          </Link>
         </div>
       </Slider>
     </div>

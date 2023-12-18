@@ -28,12 +28,16 @@ div.slick-slide > div {
   right: 10px;
   z-index: 1;
   cursor: pointer;
+  border: 1px solid $icons;
+
+  &:hover {
+    border: 1px solid $primary;
+  }
 
   &-left {
     width: 33px;
     height: 33px;
     right: 60px;
-    border: 1px solid $icons;
     border-radius: 50%;
     background-image: url('../../shared/static/icons/left-arrow-black.svg');
     background-repeat: no-repeat;
@@ -43,7 +47,6 @@ div.slick-slide > div {
   &-right {
     width: 33px;
     height: 33px;
-    border: 1px solid $icons;
     border-radius: 50%;
     background-image: url('../../shared/static/icons/right-arrow-black.svg');
     background-repeat: no-repeat;
@@ -52,6 +55,6 @@ div.slick-slide > div {
 }
 
 .disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   pointer-events: none;
 }
