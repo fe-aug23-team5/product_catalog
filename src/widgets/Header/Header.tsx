@@ -1,24 +1,20 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import cn from 'classnames';
 import styles from './Header.module.scss';
 import { ReactComponent as Logo } from '../../shared/static/logo.svg';
-import {
-  ReactComponent as Favorites,
-} from '../../shared/static/icons/heart-outlined.svg';
-import {
-  ReactComponent as Cart,
-} from '../../shared/static/icons/cart.svg';
+import { ReactComponent as Favorites }
+  from '../../shared/static/icons/heart-outlined.svg';
+import { ReactComponent as Cart } from '../../shared/static/icons/cart.svg';
 import menuIcon from '../../shared/static/icons/menu.svg';
 import { NavBar } from '../../features/NavBar';
 import { BurgerMenu } from '../BurgerMenu';
+import { GlobalContext } from '../../shared/utils/GlobalProvider';
+import { IconWithCounter } from '../../features/IconWithCounter';
 
 export const Header: React.FC = () => {
   const [isShownMenu, setIsShownMenu] = useState(false);
 
-  const isActiveIcon = ({ isActive }: { isActive: boolean }) => {
-    return cn(styles.icon__item, { [styles.icon__item_active]: isActive });
-  };
+  const { cart, favourites } = useContext(GlobalContext);
 
   const openMenu = (value: boolean) => {
     const body = document.querySelector('body') as HTMLElement;
@@ -45,13 +41,16 @@ export const Header: React.FC = () => {
       </div>
 
       <div className={styles.header__rightSide}>
-        <NavLink to="/favourites" className={isActiveIcon}>
-          <Favorites />
-        </NavLink>
-
-        <NavLink to="/cart" className={isActiveIcon}>
-          <Cart />
-        </NavLink>
+        <IconWithCounter
+          to="/favourites"
+          icon={Favorites}
+          count={favourites.length}
+        />
+        <IconWithCounter
+          to="/cart"
+          icon={Cart}
+          count={cart.length}
+        />
       </div>
 
       <button
@@ -61,16 +60,10 @@ export const Header: React.FC = () => {
         }}
         type="button"
       >
-        <img
-          src={menuIcon}
-          alt="Menu icon"
-        />
+        <img src={menuIcon} alt="Menu icon" />
       </button>
 
-      <BurgerMenu
-        isShownMenu={isShownMenu}
-        openMenu={openMenu}
-      />
+      <BurgerMenu isShownMenu={isShownMenu} openMenu={openMenu} />
     </header>
   );
 };
