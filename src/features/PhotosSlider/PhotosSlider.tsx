@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 export const PhotosSlider: React.FC = () => {
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 1500,
     slidesToShow: 1,
