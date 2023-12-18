@@ -29,7 +29,7 @@ export const GlobalProvider: React.FC<ProviderProps> = ({ children }) => {
   };
 
   const deleteCartItem = (phoneId: string) => {
-    const updatedCart = cart.filter(item => item.phoneId !== phoneId);
+    const updatedCart = cart.filter(item => item.itemId !== phoneId);
 
     setCart(updatedCart);
   };
@@ -40,7 +40,7 @@ export const GlobalProvider: React.FC<ProviderProps> = ({ children }) => {
 
   const updateCartItemQuantity = (phoneId: string, newQuantity: number) => {
     const updatedCart = cart.map(item => {
-      if (item.phoneId === phoneId) {
+      if (item.itemId === phoneId) {
         return { ...item, quantity: newQuantity };
       }
 
@@ -58,7 +58,7 @@ export const GlobalProvider: React.FC<ProviderProps> = ({ children }) => {
 
   const deleteFavouriteItem = (phoneId: string) => {
     const updatedFavourites
-      = favourites.filter(item => item.phoneId !== phoneId);
+      = favourites.filter(item => item.itemId !== phoneId);
 
     setFavourites(updatedFavourites);
   };
