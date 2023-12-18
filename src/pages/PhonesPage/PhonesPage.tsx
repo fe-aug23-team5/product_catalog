@@ -3,13 +3,12 @@ import './PhonesPage.scss';
 import { useSearchParams } from 'react-router-dom';
 import { Phone } from '../../shared/types/Phone';
 import { getAllPhonesWithParams } from '../../shared/api/phones';
-import { ProductCard } from '../../entities/ProductCard';
 import { Dropdown } from '../../shared/ui/Dropdown';
-import { Loader } from '../../widgets/Loader';
 import { Pagination } from '../../features/Pagination';
 import { Breadcrumbs } from '../../features/Breadcrumbs';
 import { sortOptions, itemsOnPage } from '../../shared/helpers/searchParams';
 import { getSearchWith } from '../../shared/helpers/searchHelper';
+import { Catalog } from '../../widgets/Catalog';
 
 export const PhonesPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -101,13 +100,10 @@ export const PhonesPage: React.FC = () => {
 
       <div className="phones">
         <div className="phones__container">
-          {isLoading && <Loader />}
-
-          {!isLoading && allPhones.length && (
-            allPhones.map((phone) => (
-              <ProductCard key={phone.id} phone={phone} />
-            ))
-          )}
+          <Catalog
+            isLoading={isLoading}
+            allProducts={allPhones}
+          />
         </div>
       </div>
 

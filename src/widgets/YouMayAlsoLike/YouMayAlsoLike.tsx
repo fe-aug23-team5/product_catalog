@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 import { ProductSlider } from '../../features/ProductSlider';
 import { Loader } from '../Loader';
-import { getSuggestedPhones } from '../../shared/api/phones';
-import { Phone } from '../../shared/types/Phone';
 import { ProductCard } from '../../entities/ProductCard';
+import { Product } from '../../shared/types/Product';
+import { getSuggestedProducts } from '../../shared/api/getProductHelper';
 
 export const YouMayAlsoLike: React.FC = () => {
-  const [suggestions, setSuggestions] = useState<Phone[]>([]);
+  const [suggestions, setSuggestions] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchNewPhones = async () => {
+  const fetchNewProducts = async () => {
     try {
-      const phones = await getSuggestedPhones();
+      const products = await getSuggestedProducts();
 
-      setSuggestions(phones);
+      setSuggestions(products);
     } catch (error) {
       throw new Error('Unexpected Error');
     }
@@ -23,7 +23,7 @@ export const YouMayAlsoLike: React.FC = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    fetchNewPhones()
+    fetchNewProducts()
       .finally(() => setIsLoading(false));
   }, []);
 
@@ -37,8 +37,14 @@ export const YouMayAlsoLike: React.FC = () => {
         ? <Loader />
         : (
           <ProductSlider>
-            {suggestions.map(phone => {
-              return <ProductCard key={phone.phoneId} phone={phone} />;
+            {suggestions.map(product => {
+              return (
+                <ProductCard
+                  key={product.itemId}
+                  product={product}
+                  link={product.category}
+                />
+              );
             })}
           </ProductSlider>
         )}
