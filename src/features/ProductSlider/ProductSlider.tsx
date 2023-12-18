@@ -1,14 +1,11 @@
 import React, { ReactNode } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Slider from 'react-slick';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import 'slick-carousel/slick/slick.css';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import 'slick-carousel/slick/slick-theme.css';
 import './ProductSlider.scss';
 import classNames from 'classnames';
 
-interface SliderCustomProps {
+interface Props {
   children: ReactNode;
 }
 
@@ -37,7 +34,7 @@ function SampleNextArrow(props: ArrowProps) {
   );
 }
 
-export const ProductSlider: React.FC<SliderCustomProps> = ({ children }) => {
+export const ProductSlider: React.FC<Props> = ({ children }) => {
   const settings = {
     dots: false,
     infinite: false,
@@ -46,14 +43,14 @@ export const ProductSlider: React.FC<SliderCustomProps> = ({ children }) => {
     slidesToShow: 4,
     slidesToScroll: 1,
     initialSlide: 0,
-    nextArrow: (
-      <SampleNextArrow
+    prevArrow: (
+      <SamplePrevArrow
         isDisabled={false}
         onClick={() => {}}
       />
     ),
-    prevArrow: (
-      <SamplePrevArrow
+    nextArrow: (
+      <SampleNextArrow
         isDisabled={false}
         onClick={() => {}}
       />
