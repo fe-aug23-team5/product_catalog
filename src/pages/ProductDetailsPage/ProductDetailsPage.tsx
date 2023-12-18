@@ -13,6 +13,7 @@ import { Loader } from '../../widgets/Loader';
 import { YouMayAlsoLike } from '../../widgets/YouMayAlsoLike';
 import { BackButton } from '../../shared/ui/BackButton';
 import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
+import { HashProductColors } from '../../shared/types/ProductColors';
 
 enum TechSpecs {
   SCREEN = 'screen',
@@ -24,9 +25,11 @@ enum TechSpecs {
   ZOOM = 'zoom',
   CELL = 'cell',
 }
+
 export const ProductDetailsPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [isActiveMainImg, setIsActiveMainImg] = useState(true);
   const [productDetail, setProductDetail] = useState<PhoneDetails | null>(null);
   const [productImage, setProductImage] = useState('');
   const [isLoad, setIsLoad] = useState(false);
@@ -95,6 +98,14 @@ export const ProductDetailsPage: React.FC = () => {
     return value.replace(value[0], value[0].toUpperCase());
   };
 
+  const changeProductImage = (image: string) => {
+    setIsActiveMainImg(false);
+    setTimeout(() => {
+      setProductImage(`${BASE_URL_IMG}${image}`);
+      setIsActiveMainImg(true);
+    }, 300);
+  };
+
   return isLoad
     ? (<Loader />)
     : (
@@ -116,7 +127,9 @@ export const ProductDetailsPage: React.FC = () => {
         <div className={styles.block_gallery}>
           <div className={styles.block_gallery__image_wrapper}>
             <img
-              className={styles.block_gallery_main_image}
+              className={cn(styles.block_gallery_main_image, {
+                [styles.block_gallery_main_image_active]: isActiveMainImg,
+              })}
               src={productImage}
               alt="Product"
             />
@@ -132,7 +145,7 @@ export const ProductDetailsPage: React.FC = () => {
                     ]: productImage === `${BASE_URL_IMG}${image}`,
                   })}
                   type="button"
-                  onClick={() => setProductImage(`${BASE_URL_IMG}${image}`)}
+                  onClick={() => changeProductImage(image)}
                 >
                   <img
                     className={styles.block_gallery__image}
@@ -154,7 +167,8 @@ export const ProductDetailsPage: React.FC = () => {
                 </span>
 
                 <span className={styles.color__description}>
-                  ID: 8095084
+                  {`ID ${productDetail?.id.toUpperCase()}`}
+
                 </span>
               </div>
 
@@ -168,7 +182,7 @@ export const ProductDetailsPage: React.FC = () => {
                   >
                     <button
                       onClick={() => changeProductColor(color)}
-                      style={{ backgroundColor: `${color}` }}
+                      style={{ backgroundColor: HashProductColors[color] }}
                       className={styles.color__button}
                       type="button"
                     />
