@@ -2,75 +2,76 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import classes from './ProductCard.module.scss';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
+import { GlobalContext } from '../../shared/utils/GlobalProvider';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 import { IconButton } from '../../shared/ui/IconButton';
-import { Phone } from '../../shared/types/Phone';
-import { GlobalContext } from '../../shared/utils/GlobalProvider';
+import { Product } from '../../shared/types/Product';
 
 type Props = {
-  phone: Phone;
+  product: Product;
+  link: string;
 };
 
-export const ProductCard: React.FC<Props> = ({ phone }) => {
+export const ProductCard: React.FC<Props> = ({ product, link }) => {
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [isIconActive, setIsIconActive] = useState(false);
   const {
     cart,
-    addCartItem,
+    // addCartItem,
     deleteCartItem,
     favourites,
-    addFavouriteItem,
+    // addFavouriteItem,
     deleteFavouriteItem,
   } = useContext(GlobalContext);
 
   useEffect(() => {
-    const isPhoneInCart = cart.some((item) => item.phoneId === phone.phoneId);
+    const isPhoneInCart = cart.some((item) => item.itemId === product.itemId);
 
     setIsButtonActive(isPhoneInCart);
     // eslint-disable-next-line
   }, [cart.length]);
 
   useEffect(() => {
-    const isInLiked = favourites.some((item) => item.phoneId === phone.phoneId);
+    const isInLiked = favourites.some((item) => item.itemId === product.itemId);
 
     setIsIconActive(isInLiked);
     // eslint-disable-next-line
   }, [favourites.length]);
 
-  const handleAddToCart = () => {
-    addCartItem(phone);
-  };
+  // const handleAddToCart = () => {
+  //   addCartItem(product.itemId);
+  // };
 
   const handleDeleteFromCart = () => {
-    deleteCartItem(phone.phoneId);
+    deleteCartItem(product.itemId);
   };
 
-  const handleAddToLikes = () => {
-    addFavouriteItem(phone);
-  };
+  // const handleAddToLikes = () => {
+  //   addFavouriteItem(product.itemId);
+  // };
 
   const handleDeleteFromLikes = () => {
-    deleteFavouriteItem(phone.phoneId);
+    deleteFavouriteItem(product.itemId);
   };
 
   return (
     <article className={classes.card}>
       <div>
-        <Link to={`/phones/${phone.phoneId}`}>
+        <Link to={`/${link}/${product.itemId}`}>
           <img
             className={classes.photo}
-            src={`${BASE_URL_IMG}${phone.image}`}
-            alt="Phone card"
+            src={`${BASE_URL_IMG}${product.image}`}
+            alt="Product preview"
           />
         </Link>
 
-        <h3 className={classes.header}>{phone.name}</h3>
+        <h3 className={classes.header}>{product.name}</h3>
       </div>
 
       <div>
         <p className={classes.price}>
-          <span className={classes.actual}>{`$${phone.price}`}</span>
-          <span className={classes.preliminary}>{`$${phone.fullPrice}`}</span>
+          <span className={classes.actual}>{`$${product.price}`}</span>
+          <span className={classes.preliminary}>{`$${product.fullPrice}`}</span>
         </p>
 
         <div className={classes.line} />
@@ -78,17 +79,17 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
         <div className={classes.information}>
           <p className={classes.block}>
             <span className={classes.text}>Screen</span>
-            <span className={classes.value}>{phone.screen}</span>
+            <span className={classes.value}>{product.screen}</span>
           </p>
 
           <p className={classes.block}>
             <span className={classes.text}>Capacity</span>
-            <span className={classes.value}>{phone.capacity}</span>
+            <span className={classes.value}>{product.capacity}</span>
           </p>
 
           <p className={classes.block}>
             <span className={classes.text}>RAM</span>
-            <span className={classes.value}>{phone.ram}</span>
+            <span className={classes.value}>{product.ram}</span>
           </p>
         </div>
 
@@ -96,7 +97,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
           <div className={classes.button}>
             <PrimaryButton
               isActive={isButtonActive}
-              defaultAction={handleAddToCart}
+              defaultAction={() => { }}
               activeAction={handleDeleteFromCart}
               defaultTitle="Add to cart"
               activeTitle="Added"
@@ -104,7 +105,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
           </div>
           <IconButton
             isActive={isIconActive}
-            defaultAction={handleAddToLikes}
+            defaultAction={() => { }}
             activeAction={handleDeleteFromLikes}
           />
         </div>

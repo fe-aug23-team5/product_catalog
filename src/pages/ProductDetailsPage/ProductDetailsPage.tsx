@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './ProductDetails.module.scss';
-import { getPhoneById } from '../../shared/api/phones';
+import { getProductById } from '../../shared/api/getProductHelper';
 import { PhoneDetails } from '../../shared/types/PhoneDetails';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
@@ -37,10 +37,14 @@ export const ProductDetailsPage: React.FC = () => {
   const [
     productColor, setProductColor,
   ] = useState(location.pathname.split('-').at(-1));
+  const [
+    productType,
+  ] = useState(location.pathname.split('-').at(1) || 'iphone');
 
   useEffect(() => {
     setIsLoad(true);
-    getPhoneById(`${location.pathname.split('/')[2]}`)
+
+    getProductById(productType, `${location.pathname.split('/')[2]}`)
       .then((data) => {
         setProductDetail(data);
         setProductImage(`${BASE_URL_IMG}${data.images[0]}`);
@@ -49,7 +53,9 @@ export const ProductDetailsPage: React.FC = () => {
         throw error;
       })
       .finally(() => setIsLoad(false));
-  }, [capacity, productColor, location.pathname]);
+
+    // getPhoneById(`${location.pathname.split('/')[2]}`)
+  }, [capacity, productColor, productType, location.pathname]);
 
   const changeProductColor = (color: string) => {
     if (color === productColor) {
@@ -162,6 +168,7 @@ export const ProductDetailsPage: React.FC = () => {
 
                 <span className={styles.color__description}>
                   {`ID ${productDetail?.id.toUpperCase()}`}
+
                 </span>
               </div>
 

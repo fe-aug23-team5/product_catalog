@@ -30,7 +30,13 @@ export const FavouritesPage: React.FC = () => {
       {favourites.length
         ? (
           favourites.map(item => {
-            return (<ProductCard key={item.phoneId} phone={item} />);
+            return (
+              <ProductCard
+                key={item.itemId}
+                product={item}
+                link={item.category}
+              />
+            );
           })
         )
         : (

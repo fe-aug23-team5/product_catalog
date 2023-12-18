@@ -1,14 +1,14 @@
-export interface Phone {
+export interface Tablet {
   id: number;
   category: string;
   itemId: string;
   name: string;
+  capacity: string;
   fullPrice: number;
   price: number;
-  screen: string;
-  capacity: string;
   color: string;
+  image: string;
+  screen: string;
   ram: string;
   year: number;
-  image: string;
 }
