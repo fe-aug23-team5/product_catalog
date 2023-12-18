@@ -59,8 +59,8 @@
     margin: 0 auto;
 
     @include onDesktop {
-      width: 287px;
-      height: 287px;
+      width: 442px;
+      height: 442px;
     }
   }
 
@@ -68,6 +68,12 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.3s linear;
+
+    &_active {
+      opacity: 1;
+    }
   }
 
   &__list {
@@ -93,7 +99,6 @@
 
   &__item {
     @include flex-justify-center-align-center;
-    @include hover(transform, scale(1.1));
   }
 
   &__button {
@@ -104,6 +109,8 @@
 
     background-color: $white;
     overflow: hidden;
+    transition: all 0.3s linear;
+    transform: scale(1);
 
     @include onTablet {
       width: 34px;
@@ -117,6 +124,7 @@
 
     &_active {
       border: 1px solid $primary;
+      transform: scale(1.1);
     }
   }
 
