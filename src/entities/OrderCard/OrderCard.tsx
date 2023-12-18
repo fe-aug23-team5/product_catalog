@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable no-console */
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../shared/utils/GlobalProvider';
 import { CartItem } from '../CartItem';
@@ -15,8 +13,6 @@ type Props = {
 export const OrderCard: React.FC<Props> = ({ phones }) => {
   const { cart, updateCartItemQuantity, deleteCartItem }
     = useContext(GlobalContext);
-
-  console.log('Order-phones', phones);
 
   const handleDecrease = (phoneId: string) => {
     const selectedPhone = cart.find((item) => item.itemId === phoneId);
