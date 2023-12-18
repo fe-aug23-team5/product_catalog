@@ -1,25 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 import styles from './BurgerMenu.module.scss';
 import logo from '../../shared/static/logo.svg';
 import closeIcon from '../../shared/static/icons/close-icon.svg';
-import heartLikeIcon from '../../shared/static/icons/heart-outlined.svg';
-import basketIcon from '../../shared/static/icons/cart.svg';
+import { ReactComponent as Favorites }
+  from '../../shared/static/icons/heart-outlined.svg';
+import { ReactComponent as Cart } from '../../shared/static/icons/cart.svg';
 import { NavBar } from '../../features/NavBar';
+import { GlobalContext } from '../../shared/utils/GlobalProvider';
+import { IconWithCounter } from '../../features/IconWithCounter';
 
 type Props = {
   isShownMenu: boolean;
   openMenu: (value: boolean) => void;
 };
 
-export const BurgerMenu: React.FC<Props> = ({
-  isShownMenu,
-  openMenu,
-}) => {
-  const isActiveIcon = ({ isActive }: { isActive: boolean }) => {
-    return cn(styles.bottom__link, { [styles.bottom__link_active]: isActive });
-  };
+export const BurgerMenu: React.FC<Props> = ({ isShownMenu, openMenu }) => {
+  const { cart, favourites } = useContext(GlobalContext);
 
   return (
     <aside
@@ -30,11 +28,7 @@ export const BurgerMenu: React.FC<Props> = ({
     >
       <div className={styles.aside__top}>
         <NavLink className={styles.logo} to="/">
-          <img
-            className={styles.icon}
-            src={logo}
-            alt="Nice Gadgets logo"
-          />
+          <img className={styles.icon} src={logo} alt="Nice Gadgets logo" />
         </NavLink>
 
         <button
@@ -42,11 +36,7 @@ export const BurgerMenu: React.FC<Props> = ({
           className={styles.close_menu_button}
           type="button"
         >
-          <img
-            className={styles.icon}
-            src={closeIcon}
-            alt="Close icon"
-          />
+          <img className={styles.icon} src={closeIcon} alt="Close icon" />
         </button>
       </div>
 
@@ -54,21 +44,18 @@ export const BurgerMenu: React.FC<Props> = ({
         <NavBar openMenu={openMenu} />
 
         <div className={styles.aside__bottom}>
-          <NavLink className={isActiveIcon} to="/favourites">
-            <img
-              className={styles.icon}
-              src={heartLikeIcon}
-              alt="Heart like icon"
-            />
-          </NavLink>
-
-          <NavLink className={isActiveIcon} to="/cart">
-            <img
-              className={styles.icon}
-              src={basketIcon}
-              alt="Basket icon"
-            />
-          </NavLink>
+          <IconWithCounter
+            to="/favourites"
+            icon={Favorites}
+            count={favourites.length}
+            onClick={() => openMenu(false)}
+          />
+          <IconWithCounter
+            to="/cart"
+            icon={Cart}
+            count={cart.length}
+            onClick={() => openMenu(false)}
+          />
         </div>
       </div>
     </aside>

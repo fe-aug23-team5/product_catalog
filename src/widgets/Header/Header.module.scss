@@ -74,27 +74,3 @@
   height: 100vh;
   overflow-y: hidden;
 }
-
-.icon__item {
-  position: relative;
-  @include flex-justify-center-align-center;
-
-  height: 48px;
-  width: 48px;
-  box-shadow: -1px 0px 0px 0px $elements;
-  overflow: hidden;
-
-  &::after {
-    @include pseudo-element-after;
-  }
-
-  &.icon__item_active::after {
-    height: 3px;
-    transform: translateX(0);
-  }
-
-  @include onDesktop {
-    height: 64px;
-    width: 64px;
-  }
-}
