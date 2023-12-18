@@ -9,14 +9,14 @@ import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 
 export const CartItem: React.FC<CartItemProps> = ({
   name,
-  image,
-  price,
-  phoneId,
+  images,
+  id,
+  priceDiscount,
   quantity,
   handleDecrease,
   handleIncrease,
-  deleteCartItem,
   calculatePrice,
+  deleteCartItem,
 }) => {
   return (
     <li className={styles.cart_item}>
@@ -24,15 +24,15 @@ export const CartItem: React.FC<CartItemProps> = ({
         <button
           className={styles.cart_item_delete_button}
           type="button"
-          onClick={() => deleteCartItem(phoneId)}
+          onClick={() => deleteCartItem(id)}
         >
           <img src={closeIcon} alt="close icon" />
         </button>
 
-        <Link to={`/phones/${phoneId}`}>
+        <Link to={`/phones/${id}`}>
           <img
             className={styles.cart_item_image}
-            src={`${BASE_URL_IMG}${image}`}
+            src={`${BASE_URL_IMG}${images[0]}`}
             alt={name}
           />
         </Link>
@@ -44,7 +44,7 @@ export const CartItem: React.FC<CartItemProps> = ({
           <button
             type="button"
             className={styles.cart_item_quantity_button}
-            onClick={() => handleDecrease(phoneId)}
+            onClick={() => handleDecrease(id)}
           >
             <img src={minusIcon} alt="minus icon" />
           </button>
@@ -54,14 +54,14 @@ export const CartItem: React.FC<CartItemProps> = ({
           <button
             type="button"
             className={styles.cart_item_quantity_button}
-            onClick={() => handleIncrease(phoneId)}
+            onClick={() => handleIncrease(id)}
           >
             <img src={plusIcon} alt="plus icon" />
           </button>
         </div>
         <div className={styles.cart_item_price_container}>
           <p className={styles.cart_item_price}>
-            {`$${calculatePrice(price, quantity)}`}
+            {`$${calculatePrice(priceDiscount, quantity)}`}
           </p>
         </div>
       </div>

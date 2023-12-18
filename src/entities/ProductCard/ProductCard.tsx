@@ -38,19 +38,19 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
   }, [favourites.length]);
 
   const handleAddToCart = () => {
-    addCartItem(phone);
+    addCartItem(phone.itemId);
   };
 
   const handleDeleteFromCart = () => {
-    deleteCartItem(phone.phoneId);
+    deleteCartItem(phone.itemId);
   };
 
   const handleAddToLikes = () => {
-    addFavouriteItem(phone);
+    addFavouriteItem(phone.itemId);
   };
 
   const handleDeleteFromLikes = () => {
-    deleteFavouriteItem(phone.phoneId);
+    deleteFavouriteItem(phone.itemId);
   };
 
   return (

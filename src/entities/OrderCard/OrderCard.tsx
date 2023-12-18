@@ -1,26 +1,37 @@
+/* eslint-disable max-len */
+/* eslint-disable no-console */
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../shared/utils/GlobalProvider';
 import { CartItem } from '../CartItem';
 import { CartTotal } from '../CartTotal';
 import emptyCartIcon from '../../shared/static/icons/empty-cart.svg';
 import styles from './OrderCard.module.scss';
+import { PhoneDetails } from '../../shared/types/PhoneDetails';
 
-export const OrderCard: React.FC = () => {
-  const { cart, deleteCartItem, updateCartItemQuantity }
-  = useContext(GlobalContext);
+type Props = {
+  phones: PhoneDetails[];
+};
+
+export const OrderCard: React.FC<Props> = ({ phones }) => {
+  const { cart, updateCartItemQuantity, deleteCartItem }
+    = useContext(GlobalContext);
+
+  console.log('Order-phones', phones);
 
   const handleDecrease = (phoneId: string) => {
-    const selectedPhone = cart.find((phone) => phone.phoneId === phoneId);
+    const selectedPhone = cart.find((item) => item.phoneId === phoneId);
 
-    if (selectedPhone && selectedPhone.quantity > 1) {
-      updateCartItemQuantity(selectedPhone.phoneId, selectedPhone.quantity - 1);
+    if (selectedPhone && updateCartItemQuantity) {
+      const newQuantity = Math.max(1, selectedPhone.quantity - 1);
+
+      updateCartItemQuantity(selectedPhone.phoneId, newQuantity);
     }
   };
 
   const handleIncrease = (phoneId: string) => {
-    const selectedPhone = cart.find((phone) => phone.phoneId === phoneId);
+    const selectedPhone = cart.find((item) => item.phoneId === phoneId);
 
-    if (selectedPhone) {
+    if (selectedPhone && updateCartItemQuantity) {
       updateCartItemQuantity(selectedPhone.phoneId, selectedPhone.quantity + 1);
     }
   };
@@ -30,10 +41,17 @@ export const OrderCard: React.FC = () => {
   };
 
   const calculateTotalPrice = (): number => {
-    return cart.reduce(
-      (total, phone) => total + calculatePrice(phone.price, phone.quantity),
-      0,
-    );
+    return cart.reduce((total, phone) => {
+      const phoneDetails = phones.find((detail) => detail.id === phone.phoneId);
+
+      if (phoneDetails) {
+        return (
+          total + calculatePrice(phoneDetails.priceDiscount, phone.quantity)
+        );
+      }
+
+      return total;
+    }, 0);
   };
 
   const calculateTotalItems = (): number => {
@@ -42,20 +60,27 @@ export const OrderCard: React.FC = () => {
 
   return (
     <>
-      {cart.length > 0 ? (
+      {phones.length > 0 ? (
         <>
           <div className={styles.order__card_cart_item_container}>
             <ul>
-              {cart.map((item) => (
-                <CartItem
-                  key={item.id}
-                  {...item}
-                  handleDecrease={handleDecrease}
-                  handleIncrease={handleIncrease}
-                  deleteCartItem={deleteCartItem}
-                  calculatePrice={calculatePrice}
-                />
-              ))}
+              {phones.map((phone) => {
+                const cartItem = cart.find(
+                  (item) => item.phoneId === phone.id,
+                ) || { quantity: 0 };
+
+                return (
+                  <CartItem
+                    key={phone.id}
+                    {...phone}
+                    quantity={cartItem.quantity}
+                    handleDecrease={() => handleDecrease(phone.id)}
+                    handleIncrease={() => handleIncrease(phone.id)}
+                    calculatePrice={calculatePrice}
+                    deleteCartItem={() => deleteCartItem(phone.id)}
+                  />
+                );
+              })}
             </ul>
           </div>
 
