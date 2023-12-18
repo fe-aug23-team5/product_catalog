@@ -45,6 +45,11 @@
     gap: 24px;
   }
 
+  &__rightSideContainer {
+    display: flex;
+    flex-direction: row;
+  }
+
   &__rightSide {
     display: none;
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './ProductDetails.module.scss';
-import { getPhoneById } from '../../shared/api/phones';
+import { getProductById } from '../../shared/api/getProductHelper';
 import { PhoneDetails } from '../../shared/types/PhoneDetails';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
@@ -13,6 +13,7 @@ import { Loader } from '../../widgets/Loader';
 import { YouMayAlsoLike } from '../../widgets/YouMayAlsoLike';
 import { BackButton } from '../../shared/ui/BackButton';
 import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
+import { HashProductColors } from '../../shared/types/ProductColors';
 
 enum TechSpecs {
   SCREEN = 'screen',
@@ -24,9 +25,11 @@ enum TechSpecs {
   ZOOM = 'zoom',
   CELL = 'cell',
 }
+
 export const ProductDetailsPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [isActiveMainImg, setIsActiveMainImg] = useState(true);
   const [productDetail, setProductDetail] = useState<PhoneDetails | null>(null);
   const [productImage, setProductImage] = useState('');
   const [isLoad, setIsLoad] = useState(false);
@@ -34,10 +37,14 @@ export const ProductDetailsPage: React.FC = () => {
   const [
     productColor, setProductColor,
   ] = useState(location.pathname.split('-').at(-1));
+  const [
+    productType,
+  ] = useState(location.pathname.split('-').at(1) || 'iphone');
 
   useEffect(() => {
     setIsLoad(true);
-    getPhoneById(`${location.pathname.split('/')[2]}`)
+
+    getProductById(productType, `${location.pathname.split('/')[2]}`)
       .then((data) => {
         setProductDetail(data);
         setProductImage(`${BASE_URL_IMG}${data.images[0]}`);
@@ -46,7 +53,9 @@ export const ProductDetailsPage: React.FC = () => {
         throw error;
       })
       .finally(() => setIsLoad(false));
-  }, [capacity, productColor, location.pathname]);
+
+    // getPhoneById(`${location.pathname.split('/')[2]}`)
+  }, [capacity, productColor, productType, location.pathname]);
 
   const changeProductColor = (color: string) => {
     if (color === productColor) {
@@ -89,6 +98,14 @@ export const ProductDetailsPage: React.FC = () => {
     return value.replace(value[0], value[0].toUpperCase());
   };
 
+  const changeProductImage = (image: string) => {
+    setIsActiveMainImg(false);
+    setTimeout(() => {
+      setProductImage(`${BASE_URL_IMG}${image}`);
+      setIsActiveMainImg(true);
+    }, 300);
+  };
+
   return isLoad
     ? (<Loader />)
     : (
@@ -110,7 +127,9 @@ export const ProductDetailsPage: React.FC = () => {
         <div className={styles.block_gallery}>
           <div className={styles.block_gallery__image_wrapper}>
             <img
-              className={styles.block_gallery_main_image}
+              className={cn(styles.block_gallery_main_image, {
+                [styles.block_gallery_main_image_active]: isActiveMainImg,
+              })}
               src={productImage}
               alt="Product"
             />
@@ -126,7 +145,7 @@ export const ProductDetailsPage: React.FC = () => {
                     ]: productImage === `${BASE_URL_IMG}${image}`,
                   })}
                   type="button"
-                  onClick={() => setProductImage(`${BASE_URL_IMG}${image}`)}
+                  onClick={() => changeProductImage(image)}
                 >
                   <img
                     className={styles.block_gallery__image}
@@ -148,7 +167,8 @@ export const ProductDetailsPage: React.FC = () => {
                 </span>
 
                 <span className={styles.color__description}>
-                  ID:123
+                  {`ID ${productDetail?.id.toUpperCase()}`}
+
                 </span>
               </div>
 
@@ -162,7 +182,7 @@ export const ProductDetailsPage: React.FC = () => {
                   >
                     <button
                       onClick={() => changeProductColor(color)}
-                      style={{ backgroundColor: `${color}` }}
+                      style={{ backgroundColor: HashProductColors[color] }}
                       className={styles.color__button}
                       type="button"
                     />

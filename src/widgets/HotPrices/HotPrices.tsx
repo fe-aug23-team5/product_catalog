@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 import { ProductSlider } from '../../features/ProductSlider';
 import { Loader } from '../Loader';
-import { getDiscountPhones } from '../../shared/api/phones';
-import { Phone } from '../../shared/types/Phone';
 import { ProductCard } from '../../entities/ProductCard';
+import { Product } from '../../shared/types/Product';
+import { getDiscountProducts } from '../../shared/api/getProductHelper';
 
 export const HotPrices: React.FC = () => {
-  const [discountPhones, setDiscountPhones] = useState<Phone[]>([]);
+  const [discountProducts, setDiscountProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchNewPhones = async () => {
+  const fetchDiscountProducts = async () => {
     try {
-      const phones = await getDiscountPhones();
+      const products = await getDiscountProducts();
 
-      setDiscountPhones(phones);
+      setDiscountProducts(products);
     } catch (error) {
       throw new Error('Unexpected Error');
     }
@@ -23,7 +23,7 @@ export const HotPrices: React.FC = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    fetchNewPhones()
+    fetchDiscountProducts()
       .finally(() => setIsLoading(false));
   }, []);
 
@@ -33,15 +33,27 @@ export const HotPrices: React.FC = () => {
         Hot Prices
       </SecondaryTitle>
 
-      {isLoading
-        ? <Loader />
-        : (
+      {isLoading && <Loader />}
+
+      {!isLoading && discountProducts.length && (
+        (
           <ProductSlider>
-            {discountPhones.map((phone) => {
-              return <ProductCard key={phone.phoneId} phone={phone} />;
+            {discountProducts.map(product => {
+              return (
+                <ProductCard
+                  key={product.itemId}
+                  product={product}
+                  link={product.category}
+                />
+              );
             })}
           </ProductSlider>
-        )}
+        )
+      )}
+
+      {!isLoading && !discountProducts.length && (
+        <h2>Nothing to display</h2>
+      )}
     </>
   );
 };
