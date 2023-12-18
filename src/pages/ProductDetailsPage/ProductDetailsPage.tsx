@@ -154,7 +154,7 @@ export const ProductDetailsPage: React.FC = () => {
                 </span>
 
                 <span className={styles.color__description}>
-                  ID:123
+                  ID: 8095084
                 </span>
               </div>
 

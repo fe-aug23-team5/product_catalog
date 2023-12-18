@@ -1,3 +1,5 @@
+import { getData } from '../helpers/fetchClient';
+import { Product } from '../types/Product';
 import { getAccById } from './accessories';
 import { getPhoneById } from './phones';
 import { getTabletById } from './tablets';
@@ -14,3 +16,7 @@ export const getProductById = (productType: string, productId: string) => {
       return getPhoneById(productId);
   }
 };
+
+export const getNewestProducts = () => getData<Product[]>('/new');
+export const getDiscountProducts = () => getData<Product[]>('/discount');
+export const getSuggestedProducts = () => getData<Product[]>('/recommended');

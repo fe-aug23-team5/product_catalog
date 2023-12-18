@@ -103,7 +103,6 @@ export const PhonesPage: React.FC = () => {
           <Catalog
             isLoading={isLoading}
             allProducts={allPhones}
-            linkTo="phones"
           />
         </div>
       </div>

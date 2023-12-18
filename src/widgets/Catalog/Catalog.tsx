@@ -7,13 +7,11 @@ import { Tablet } from '../../shared/types/Tablet';
 type Props = {
   isLoading: boolean,
   allProducts: Phone[] | Tablet[],
-  linkTo: string,
 };
 
 export const Catalog: React.FC<Props> = ({
   isLoading,
   allProducts,
-  linkTo,
 }) => {
   return (
     <>
@@ -25,7 +23,7 @@ export const Catalog: React.FC<Props> = ({
             <ProductCard
               key={product.id}
               product={product}
-              link={linkTo}
+              link={product.category}
             />
           ))
         )

@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 import { ProductSlider } from '../../features/ProductSlider';
 import { Loader } from '../Loader';
-import { getNewestPhones } from '../../shared/api/phones';
-import { Phone } from '../../shared/types/Phone';
 import { ProductCard } from '../../entities/ProductCard';
+import { Product } from '../../shared/types/Product';
+import { getNewestProducts } from '../../shared/api/getProductHelper';
 
 export const BrandNewModels: React.FC = () => {
-  const [newPhones, setNewPhones] = useState<Phone[]>([]);
+  const [newProducts, setNewProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchNewPhones = async () => {
+  const fetchNewProducts = async () => {
     try {
-      const phones = await getNewestPhones();
+      const products = await getNewestProducts();
 
-      setNewPhones(phones);
+      setNewProducts(products);
     } catch (error) {
       throw new Error('Unexpected Error');
     }
@@ -23,7 +23,7 @@ export const BrandNewModels: React.FC = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    fetchNewPhones()
+    fetchNewProducts()
       .finally(() => setIsLoading(false));
   }, []);
 
@@ -33,15 +33,27 @@ export const BrandNewModels: React.FC = () => {
         Brand new models
       </SecondaryTitle>
 
-      {isLoading
-        ? <Loader />
-        : (
+      {isLoading && <Loader />}
+
+      {!isLoading && newProducts.length && (
+        (
           <ProductSlider>
-            {newPhones.map(phone => {
-              return <ProductCard key={phone.phoneId} phone={phone} />;
+            {newProducts.map(product => {
+              return (
+                <ProductCard
+                  key={product.itemId}
+                  product={product}
+                  link={product.category}
+                />
+              );
             })}
           </ProductSlider>
-        )}
+        )
+      )}
+
+      {!isLoading && !newProducts.length && (
+        <h2>Nothing to display</h2>
+      )}
     </>
   );
 };

@@ -5,11 +5,10 @@ import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 import { GlobalContext } from '../../shared/utils/GlobalProvider';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 import { IconButton } from '../../shared/ui/IconButton';
-import { Phone } from '../../shared/types/Phone';
-import { Tablet } from '../../shared/types/Tablet';
+import { Product } from '../../shared/types/Product';
 
 type Props = {
-  product: Phone | Tablet;
+  product: Product;
   link: string;
 };
 
@@ -98,7 +97,7 @@ export const ProductCard: React.FC<Props> = ({ product, link }) => {
           <div className={classes.button}>
             <PrimaryButton
               isActive={isButtonActive}
-              defaultAction={() => {}}
+              defaultAction={() => { }}
               activeAction={handleDeleteFromCart}
               defaultTitle="Add to cart"
               activeTitle="Added"
@@ -106,7 +105,7 @@ export const ProductCard: React.FC<Props> = ({ product, link }) => {
           </div>
           <IconButton
             isActive={isIconActive}
-            defaultAction={() => {}}
+            defaultAction={() => { }}
             activeAction={handleDeleteFromLikes}
           />
         </div>
