@@ -54,6 +54,8 @@ export const ProductCard: React.FC<Props> = ({ product, link }) => {
     deleteFavouriteItem(product.itemId);
   };
 
+  // console.log(`/${link}/${product.itemId}`);
+
   return (
     <article className={classes.card}>
       <div>
