@@ -46,7 +46,9 @@ export const CartTotal: React.FC<CartTotalProps> = ({
         <ModalWindow onClose={closeModal}>
           <div className={styles.modal__wrapper}>
             <h2 className={styles.modal__text}>
-              Checkout is not implemented yet. Do you want to clear the Cart?
+              Checkout is not implemented yet.
+              <br />
+              Do you want to clear the Cart?
             </h2>
             <div className={styles.button__container}>
               <PrimaryButton
