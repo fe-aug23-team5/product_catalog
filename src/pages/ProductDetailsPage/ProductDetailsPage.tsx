@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -28,12 +29,13 @@ export const ProductDetailsPage: React.FC = () => {
   const [productColor, setProductColor] = useState(
     location.pathname.split('-').at(-1),
   );
-  const [productType] = useState(
+  const [productType, setProductType] = useState(
     location.pathname.split('-').at(1) || 'iphone',
   );
 
   useEffect(() => {
     setIsLoad(true);
+    setProductType(location.pathname.split('-').at(1) || 'iphone');
 
     getProductDetailsById(productType, `${location.pathname.split('/')[2]}`)
       .then((data) => {
@@ -41,7 +43,7 @@ export const ProductDetailsPage: React.FC = () => {
         setProductImage(`${BASE_URL_IMG}${data.images[0]}`);
       })
       .catch((error) => {
-        throw error;
+        console.log(error);
       })
       .finally(() => setIsLoad(false));
   }, [capacity, productColor, productType, location.pathname]);
@@ -86,6 +88,7 @@ export const ProductDetailsPage: React.FC = () => {
 
     setIsLoad(true);
     setCapacity(value);
+
     if (productType === 'iphone') {
       navigate(`/phones/${productId}-${location.pathname.split('-').at(-1)}`);
     } else if (productType === 'ipad') {
@@ -93,7 +96,6 @@ export const ProductDetailsPage: React.FC = () => {
     } else if (productType === 'watch') {
       navigate(`/accessories/${productId}-${location.pathname.split('-').at(-1)}`);
     }
-    // navigate(`/phones/${productId}-${location.pathname.split('-').at(-1)}`);
   };
 
   return isLoad ? (
