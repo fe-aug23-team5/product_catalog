@@ -6,8 +6,9 @@ import { ProductCard } from '../../entities/ProductCard';
 import { Breadcrumbs } from '../../features/Breadcrumbs';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 import favoriteIcon from '../../shared/static/favorite.png';
-import { ProductDetails } from '../../shared/types/Product';
+import { Product } from '../../shared/types/Product';
 import { getProductById } from '../../shared/api/getProductHelper';
+import { Loader } from '../../widgets/Loader';
 
 export const FavouritesPage: React.FC = () => {
   const { favourites } = useContext(GlobalContext);
@@ -17,10 +18,8 @@ export const FavouritesPage: React.FC = () => {
     navigate('/');
   };
 
-  const [favorProducts, setFavorProducts] = useState<ProductDetails[]>([]);
-  const [setIsLoading] = useState<boolean>(true);
-
-  // console.log('favorProducts', favorProducts);
+  const [favorProducts, setFavorProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchFavorProducts = async () => {
@@ -28,8 +27,8 @@ export const FavouritesPage: React.FC = () => {
         const detailedProducts = await Promise.all(
           favourites.map(async (item) => {
             const productType = item.itemId.split('-').at(1) || 'iphone';
-            // eslint-disable-next-line max-len
-            const productDetails = await getProductById(productType, item.itemId);
+            const productDetails
+              = await getProductById(productType, item.itemId);
 
             return productDetails;
           }),
@@ -63,20 +62,19 @@ export const FavouritesPage: React.FC = () => {
         </h1>
       </div>
 
-      {favourites.length
-        ? (
-          favorProducts.map(item => {
-            return (
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          {favourites.length ? (
+            favorProducts.map(item => (
               <ProductCard
                 key={item.itemId}
                 product={item}
                 link={item.category}
               />
-            );
-          })
-        )
-        : (
-          <>
+            ))
+          ) : (
             <div className={styles.block}>
               <div className={styles.icon}>
                 <img
@@ -96,13 +94,14 @@ export const FavouritesPage: React.FC = () => {
 
               <div className={styles.button}>
                 <PrimaryButton
-                  defaultTitle="Go to Home"
+                  defaultTitle="Go to Home page"
                   defaultAction={navigateToHome}
                 />
               </div>
             </div>
-          </>
-        )}
+          )}
+        </>
+      )}
     </div>
   );
 };
