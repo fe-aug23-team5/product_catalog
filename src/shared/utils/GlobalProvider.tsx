@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { Context } from '../types/Context';
 import { ProviderProps } from '../types/ProviderProps';
@@ -21,6 +22,9 @@ export const GlobalProvider: React.FC<ProviderProps> = ({ children }) => {
     'favourites',
     [],
   );
+
+  console.log('cart', cart);
+  console.log('favourites', favourites);
 
   const addCartItem = (itemId: string) => {
     const updatedCart = [...cart, { itemId, quantity: 1 }];
@@ -51,7 +55,7 @@ export const GlobalProvider: React.FC<ProviderProps> = ({ children }) => {
   };
 
   const addFavouriteItem = (itemId: string) => {
-    const updatedFavourites = [...favourites, { itemId, quantity: 1 }];
+    const updatedFavourites = [...favourites, { itemId }];
 
     setFavourites(updatedFavourites);
   };

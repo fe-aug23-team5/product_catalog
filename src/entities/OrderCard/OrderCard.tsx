@@ -19,7 +19,7 @@ export const OrderCard: React.FC<Props> = ({ phones }) => {
     const selectedPhone = cart.find((item) => item.itemId === phoneId);
 
     if (selectedPhone && updateCartItemQuantity) {
-      const newQuantity = Math.max(1, selectedPhone.quantity - 1);
+      const newQuantity = Math.max(1, (selectedPhone.quantity ?? 0) - 1);
 
       updateCartItemQuantity(selectedPhone.itemId, newQuantity);
     }
@@ -29,7 +29,10 @@ export const OrderCard: React.FC<Props> = ({ phones }) => {
     const selectedPhone = cart.find((item) => item.itemId === phoneId);
 
     if (selectedPhone && updateCartItemQuantity) {
-      updateCartItemQuantity(selectedPhone.itemId, selectedPhone.quantity + 1);
+      updateCartItemQuantity(
+        selectedPhone.itemId,
+        (selectedPhone.quantity ?? 0) + 1,
+      );
     }
   };
 
@@ -43,7 +46,9 @@ export const OrderCard: React.FC<Props> = ({ phones }) => {
 
       if (phoneDetails) {
         return (
-          total + calculatePrice(phoneDetails.priceDiscount, phone.quantity)
+          total + calculatePrice(
+            phoneDetails.priceDiscount, phone.quantity ?? 0,
+          )
         );
       }
 
@@ -52,7 +57,7 @@ export const OrderCard: React.FC<Props> = ({ phones }) => {
   };
 
   const calculateTotalItems = (): number => {
-    return cart.reduce((total, phone) => total + phone.quantity, 0);
+    return cart.reduce((total, phone) => total + (phone.quantity ?? 0), 0);
   };
 
   return (
@@ -70,7 +75,7 @@ export const OrderCard: React.FC<Props> = ({ phones }) => {
                   <CartItem
                     key={phone.id}
                     {...phone}
-                    quantity={cartItem.quantity}
+                    quantity={cartItem.quantity ?? 1}
                     handleDecrease={() => handleDecrease(phone.id)}
                     handleIncrease={() => handleIncrease(phone.id)}
                     calculatePrice={calculatePrice}
