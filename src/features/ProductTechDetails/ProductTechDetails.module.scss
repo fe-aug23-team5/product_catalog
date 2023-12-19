@@ -1,0 +1,29 @@
+@import '../../shared/styles/variables.scss';
+
+.tech {
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    margin-top: 30px;
+    font-size: 0.875rem;
+    line-height: 21px;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__key {
+    font-weight: 500;
+    color: $secondary;
+  }
+
+  &__value {
+    font-weight: 600;
+    text-align: right;
+    color: $primary;
+  }
+}

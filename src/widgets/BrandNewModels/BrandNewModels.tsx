@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import { getNewestProducts } from '../../shared/api/getProductHelper';
 import { ProductSlider } from '../../features/ProductSlider';
@@ -11,6 +12,8 @@ export const BrandNewModels: React.FC = () => {
   const [newProducts, setNewProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+
+  console.log(newProducts);
 
   const fetchNewProducts = async () => {
     try {

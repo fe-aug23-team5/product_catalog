@@ -1,0 +1,37 @@
+@import '../../shared/styles/variables.scss';
+
+.capacity {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  border-bottom: 1px solid $secondary;
+  margin-top: 24px;
+  padding-bottom: 24px;
+
+  &__list {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__item {
+    border-radius: 4px;
+    border: 1px solid $secondary;
+
+    padding: 7px;
+    background-color: transparent;
+
+    &_active {
+      border: 1px solid $primary;
+      background-color: $primary;
+    }
+  }
+
+  &__button {
+    color: $primary;
+
+    &_active {
+      color: $white;
+    }
+  }
+}

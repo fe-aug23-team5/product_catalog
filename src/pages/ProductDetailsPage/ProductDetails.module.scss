@@ -30,103 +30,103 @@
   }
 }
 
-.block_gallery {
-  grid-column: span 4;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: $secondary;
+// .block_gallery {
+//   grid-column: span 4;
+//   font-size: 0.75rem;
+//   font-weight: 600;
+//   color: $secondary;
   
-  @include onTablet {
-    grid-column: 1 / 8;
+//   @include onTablet {
+//     grid-column: 1 / 8;
 
-    display: flex;
-    flex-direction: row-reverse;
-  }
+//     display: flex;
+//     flex-direction: row-reverse;
+//   }
 
-  @include onDesktop {
-    grid-column: 1 / 13;
-  }
+//   @include onDesktop {
+//     grid-column: 1 / 13;
+//   }
 
-  &__image_wrapper {
-    width: 274px;
-    height: 274px;
-    margin: 0 auto;
+//   &__image_wrapper {
+//     width: 274px;
+//     height: 274px;
+//     margin: 0 auto;
 
-    @include onDesktop {
-      width: 442px;
-      height: 442px;
-    }
-  }
+//     @include onDesktop {
+//       width: 442px;
+//       height: 442px;
+//     }
+//   }
 
-  &_main_image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    opacity: 0;
-    transition: opacity 0.3s linear;
+//   &_main_image {
+//     width: 100%;
+//     height: 100%;
+//     object-fit: contain;
+//     opacity: 0;
+//     transition: opacity 0.3s linear;
 
-    &_active {
-      opacity: 1;
-    }
-  }
+//     &_active {
+//       opacity: 1;
+//     }
+//   }
 
-  &__list {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
+//   &__list {
+//     display: flex;
+//     justify-content: center;
+//     gap: 8px;
 
-    margin-top: 23px;
+//     margin-top: 23px;
 
-    @include onTablet {
-      flex-direction: column;
-      grid-column: 1;
-      grid-row: 1 / -1;
-      align-self: start;
+//     @include onTablet {
+//       flex-direction: column;
+//       grid-column: 1;
+//       grid-row: 1 / -1;
+//       align-self: start;
 
-      margin: 0;
-    }
+//       margin: 0;
+//     }
 
-    @include onDesktop {
-      grid-column: span 2;
-    }
-  }
+//     @include onDesktop {
+//       grid-column: span 2;
+//     }
+//   }
 
-  &__item {
-    @include flex-justify-center-align-center;
-  }
+//   &__item {
+//     @include flex-justify-center-align-center;
+//   }
 
-  &__button {
-    width: 51px;
-    height: 49px;
-    border: 1px solid $secondary;
-    border-radius: 4px;
+//   &__button {
+//     width: 51px;
+//     height: 49px;
+//     border: 1px solid $secondary;
+//     border-radius: 4px;
 
-    background-color: $white;
-    overflow: hidden;
-    transition: all 0.3s linear;
-    transform: scale(1);
+//     background-color: $white;
+//     overflow: hidden;
+//     transition: all 0.3s linear;
+//     transform: scale(1);
 
-    @include onTablet {
-      width: 34px;
-      height: 34px;
-    }
+//     @include onTablet {
+//       width: 34px;
+//       height: 34px;
+//     }
 
-    @include onDesktop {
-      width: 80px;
-      height: 80px;
-    }
+//     @include onDesktop {
+//       width: 80px;
+//       height: 80px;
+//     }
 
-    &_active {
-      border: 1px solid $primary;
-      transform: scale(1.1);
-    }
-  }
+//     &_active {
+//       border: 1px solid $primary;
+//       transform: scale(1.1);
+//     }
+//   }
 
-  &__image {
-    width: 90%;
-    padding: 4px;
-  }
-}
+//   &__image {
+//     width: 90%;
+//     padding: 4px;
+//   }
+// }
 
 .block_info {
   font-size: 0.75rem;
@@ -196,195 +196,195 @@
   }
 }
 
-.color {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+// .color {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 8px;
 
-  border-bottom: 1px solid $secondary;
-  margin-top: 40px;
-  padding-bottom: 24px;
+//   border-bottom: 1px solid $secondary;
+//   margin-top: 40px;
+//   padding-bottom: 24px;
 
-  @include onTablet {
-    margin: 0;
-  }
+//   @include onTablet {
+//     margin: 0;
+//   }
 
-  &__text {
-    display: flex;
-    justify-content: space-between;
-  }
+//   &__text {
+//     display: flex;
+//     justify-content: space-between;
+//   }
 
-  &__list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
+//   &__list {
+//     display: flex;
+//     flex-wrap: wrap;
+//     gap: 8px;
+//   }
 
-  &__item {
-    @include flex-justify-center-align-center;
-    flex-shrink: 0;
-    border-radius: 50%;
-    border: 1px solid $secondary;
-    width: 32px;
-    height: 32px;
+//   &__item {
+//     @include flex-justify-center-align-center;
+//     flex-shrink: 0;
+//     border-radius: 50%;
+//     border: 1px solid $secondary;
+//     width: 32px;
+//     height: 32px;
 
-    @include hover(box-shadow, 0px 3px 13px 0px $shadow);
+//     @include hover(box-shadow, 0px 3px 13px 0px $shadow);
 
-    &_active {
-      border: 1px solid $primary;
-    }
-  }
+//     &_active {
+//       border: 1px solid $primary;
+//     }
+//   }
 
-  &__button {
-    border-radius: 50%;
-    width: 90%;
-    height: 90%;
-  }
-}
+//   &__button {
+//     border-radius: 50%;
+//     width: 90%;
+//     height: 90%;
+//   }
+// }
 
-.capacity {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+// .capacity {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 8px;
 
-  border-bottom: 1px solid $secondary;
-  margin-top: 24px;
-  padding-bottom: 24px;
+//   border-bottom: 1px solid $secondary;
+//   margin-top: 24px;
+//   padding-bottom: 24px;
 
-  &__list {
-    display: flex;
-    gap: 8px;
-  }
+//   &__list {
+//     display: flex;
+//     gap: 8px;
+//   }
 
-  &__item {
-    border-radius: 4px;
-    border: 1px solid $secondary;
+//   &__item {
+//     border-radius: 4px;
+//     border: 1px solid $secondary;
 
-    padding: 7px;
-    background-color: transparent;
+//     padding: 7px;
+//     background-color: transparent;
 
-    &_active {
-      border: 1px solid $primary;
-      background-color: $primary;
-    }
-  }
+//     &_active {
+//       border: 1px solid $primary;
+//       background-color: $primary;
+//     }
+//   }
 
-  &__button {
-    color: $primary;
+//   &__button {
+//     color: $primary;
 
-    &_active {
-      color: $white;
-    }
-  }
-}
+//     &_active {
+//       color: $white;
+//     }
+//   }
+// }
 
-.price {
-  margin-top: 32px;
+// .price {
+//   margin-top: 32px;
 
-  &__amount {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+//   &__amount {
+//     display: flex;
+//     align-items: center;
+//     gap: 8px;
+//   }
 
-  &__discount {
-    font-size: 2rem;
-    font-weight: 800;
-    line-height: 41px;
-    letter-spacing: -0.32px;
-    color: $primary;
-  }
+//   &__discount {
+//     font-size: 2rem;
+//     font-weight: 800;
+//     line-height: 41px;
+//     letter-spacing: -0.32px;
+//     color: $primary;
+//   }
 
-  &__regular {
-    font-size: 1.375rem;
-    font-weight: 500;
-    text-decoration: line-through;
-  }
+//   &__regular {
+//     font-size: 1.375rem;
+//     font-weight: 500;
+//     text-decoration: line-through;
+//   }
 
-  &__buttons {
-    display: flex;
-    gap: 8px;
-    margin-top: 16px;
-  }
-}
+//   &__buttons {
+//     display: flex;
+//     gap: 8px;
+//     margin-top: 16px;
+//   }
+// }
 
-.details {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+// .details {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 8px;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 8px;
 
-  margin-top: 32px;
-  font-size: 0.75rem;
-  margin-top: 32px;
-  font-size: 0.75rem;
+//   margin-top: 32px;
+//   font-size: 0.75rem;
+//   margin-top: 32px;
+//   font-size: 0.75rem;
 
-  &__text {
-    display: flex;
-    justify-content: space-between;
-  }
+//   &__text {
+//     display: flex;
+//     justify-content: space-between;
+//   }
 
-  &__value {
-    font-weight: 700;
-    color: $primary;
-  }
-}
+//   &__value {
+//     font-weight: 700;
+//     color: $primary;
+//   }
+// }
 
-.about {
-  color: $primary;
-}
+// .about {
+//   color: $primary;
+// }
 
-.description {
-  margin-top: 32px;
+// .description {
+//   margin-top: 32px;
 
-  &__title {
-    font-size: 1rem;
-    font-weight: 700;
+//   &__title {
+//     font-size: 1rem;
+//     font-weight: 700;
 
-    @include onTablet {
-      font-size: 1.25rem;
-    }
-  }
+//     @include onTablet {
+//       font-size: 1.25rem;
+//     }
+//   }
 
-  &__text {
-    margin-top: 16px;
-    font-size: 0.875rem;
-    line-height: 21px;
-    font-weight: 600;
-    text-align: justify;
-    color: $secondary;
-  }
-}
+//   &__text {
+//     margin-top: 16px;
+//     font-size: 0.875rem;
+//     line-height: 21px;
+//     font-weight: 600;
+//     text-align: justify;
+//     color: $secondary;
+//   }
+// }
 
-.tech {
-  &__details {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+// .tech {
+//   &__details {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 8px;
 
-    margin-top: 30px;
-    font-size: 0.875rem;
-    line-height: 21px;
-  }
+//     margin-top: 30px;
+//     font-size: 0.875rem;
+//     line-height: 21px;
+//   }
 
-  &__wrapper {
-    display: flex;
-    justify-content: space-between;
-  }
+//   &__wrapper {
+//     display: flex;
+//     justify-content: space-between;
+//   }
 
-  &__key {
-    font-weight: 500;
-    color: $secondary;
-  }
+//   &__key {
+//     font-weight: 500;
+//     color: $secondary;
+//   }
 
-  &__value {
-    font-weight: 600;
-    text-align: right;
-    color: $primary;
-  }
-}
+//   &__value {
+//     font-weight: 600;
+//     text-align: right;
+//     color: $primary;
+//   }
+// }
 
 .recommended {
   grid-column: 1 / -1;

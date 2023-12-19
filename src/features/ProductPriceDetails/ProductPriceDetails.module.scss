@@ -1,0 +1,55 @@
+@import '../../shared/styles/variables.scss';
+
+.price {
+  margin-top: 32px;
+
+  &__amount {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__discount {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 41px;
+    letter-spacing: -0.32px;
+    color: $primary;
+  }
+
+  &__regular {
+    font-size: 1.375rem;
+    font-weight: 500;
+    text-decoration: line-through;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+  }
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  margin-top: 32px;
+  font-size: 0.75rem;
+  margin-top: 32px;
+  font-size: 0.75rem;
+
+  &__text {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__value {
+    font-weight: 700;
+    color: $primary;
+  }
+}
