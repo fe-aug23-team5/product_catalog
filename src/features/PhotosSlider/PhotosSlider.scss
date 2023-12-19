@@ -4,18 +4,52 @@
 .photo__item {
   aspect-ratio: 0.7/0.7;
   border-radius: 10px;
-  background-image: url(../../shared/static/BannerPhoto/PhoneBanner.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 
   @include onTablet {
     aspect-ratio: 4.5/1.7;
     border-radius: 10px;
-    background-image: url(../../shared/static/BannerPhoto/Banner.png);
+  }
+
+  &-phones {
+    background-image: url(../../shared/static/BannerPhoto/PhoneBanner.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+
+    @include onTablet {
+      background-image: url(../../shared/static/BannerPhoto/banner-phones.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+  }
+
+  &-tablets {
+    background-image: url(../../shared/static/BannerPhoto/PhoneBanner.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    @include onTablet {
+      background-image: url(../../shared/static/BannerPhoto/banner-tablets.jpg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+  }
+
+  &-accesories {
+    background-image: url(../../shared/static/BannerPhoto/PhoneBanner.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    @include onTablet {
+      background-image: url(../../shared/static/BannerPhoto/banner-accessories.jpg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
   }
 }
 

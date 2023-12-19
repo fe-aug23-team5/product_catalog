@@ -34,17 +34,17 @@ export const PhotosSlider: React.FC = () => {
       <Slider {...settings} className="photo-slider__slider">
         <div>
           <Link to="/phones">
-            <div className="photo__item" />
+            <div className="photo__item photo__item-phones" />
           </Link>
         </div>
         <div>
-          <Link to="/phones">
-            <div className="photo__item" />
+          <Link to="/tablets">
+            <div className="photo__item photo__item-tablets" />
           </Link>
         </div>
         <div>
-          <Link to="/phones">
-            <div className="photo__item" />
+          <Link to="/accessories">
+            <div className="photo__item photo__item-accesories" />
           </Link>
         </div>
       </Slider>
