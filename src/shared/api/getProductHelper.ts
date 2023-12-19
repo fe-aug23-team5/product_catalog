@@ -1,8 +1,8 @@
 import { getData } from '../helpers/fetchClient';
 import { Product } from '../types/Product';
-import { getAccById } from './accessories';
-import { getPhoneById } from './phones';
-import { getTabletById } from './tablets';
+import { getAccById, getAccDetailsById } from './accessories';
+import { getPhoneById, getPhoneDetailsById } from './phones';
+import { getTabletById, getTabletDetailsById } from './tablets';
 
 export const getProductById = (productType: string, productId: string) => {
   switch (productType) {
@@ -14,6 +14,21 @@ export const getProductById = (productType: string, productId: string) => {
       return getAccById(productId);
     default:
       return getPhoneById(productId);
+  }
+};
+
+export const getProductDetailsById = (
+  productType: string,
+  productId: string,
+) => {
+  switch (productType) {
+    case 'ipad':
+      return getTabletDetailsById(productId);
+    case 'watch':
+      return getAccDetailsById(productId);
+    case 'iphone':
+    default:
+      return getPhoneDetailsById(productId);
   }
 };
 
