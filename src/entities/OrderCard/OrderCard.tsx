@@ -4,10 +4,11 @@ import { CartItem } from '../CartItem';
 import { CartTotal } from '../CartTotal';
 import emptyCartIcon from '../../shared/static/icons/empty-cart.svg';
 import styles from './OrderCard.module.scss';
-import { PhoneDetails } from '../../shared/types/PhoneDetails';
+// import { PhoneDetails } from '../../shared/types/PhoneDetails';
+import { ProductDetails } from '../../shared/types/Product';
 
 type Props = {
-  phones: PhoneDetails[];
+  phones: ProductDetails[];
 };
 
 export const OrderCard: React.FC<Props> = ({ phones }) => {

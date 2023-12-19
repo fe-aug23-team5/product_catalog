@@ -6,15 +6,23 @@ import tabletsImg from '../../shared/static/category-tablets.png';
 import accImg from '../../shared/static/category-cases.png';
 import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 import { getAllPhones } from '../../shared/api/phones';
+import { getAllTablets } from '../../shared/api/tablets';
+import { getAllAcc } from '../../shared/api/accessories';
 
 export const CategoriesMenu: React.FC = () => {
   const [phonesCount, setPhonesCount] = useState(0);
+  const [tabletsCount, setTabletsCount] = useState(0);
+  const [accCount, setAccCount] = useState(0);
 
   const fetchPhonesCount = async () => {
     try {
       const phones = await getAllPhones();
+      const tablets = await getAllTablets();
+      const accessories = await getAllAcc();
 
       setPhonesCount(phones.totalCount);
+      setTabletsCount(tablets.totalCount);
+      setAccCount(accessories.totalCount);
     } catch (error) {
       throw new Error('Unexpected Error');
     }
@@ -59,7 +67,7 @@ export const CategoriesMenu: React.FC = () => {
           <h3 className="category_title">Tablets</h3>
 
           <p className="category_desc">
-            24 Models
+            {`${tabletsCount} Models`}
           </p>
         </article>
 
@@ -75,7 +83,7 @@ export const CategoriesMenu: React.FC = () => {
           <h3 className="category_title">Accessories</h3>
 
           <h4 className="category_desc">
-            100 Models
+            {`${accCount} Models`}
           </h4>
         </article>
       </div>
