@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-/* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -11,12 +10,12 @@ import { Loader } from '../../widgets/Loader';
 import { YouMayAlsoLike } from '../../widgets/YouMayAlsoLike';
 import { BackButton } from '../../shared/ui/BackButton';
 import { ProductDetails } from '../../shared/types/Product';
-import { GalleryProductDetails } from '../../features/GalleryProductDetails/GalleryProductDetails';
-import { ProductColorsDetails } from '../../features/ProductColorsDetails/ProductColorsDetails';
-import { ProductCapacityDetails } from '../../features/ProductCapacityDetails/ProductCapacityDetails';
-import { ProductPriceDetails } from '../../features/ProductPriceDetails/ProductPriceDetails';
-import { ProductTechDetails } from '../../features/ProductTechDetails/ProductTechDetails';
-import { ProductAboutDetails } from '../../features/ProductAboutDetails/ProductAboutDetails';
+import { GalleryProductDetails } from '../../features/GalleryProductDetails';
+import { ProductColorsDetails } from '../../features/ProductColorsDetails';
+import { ProductCapacityDetails } from '../../features/ProductCapacityDetails';
+import { ProductPriceDetails } from '../../features/ProductPriceDetails';
+import { ProductTechDetails } from '../../features/ProductTechDetails';
+import { ProductAboutDetails } from '../../features/ProductAboutDetails';
 
 export const ProductDetailsPage: React.FC = () => {
   const location = useLocation();
