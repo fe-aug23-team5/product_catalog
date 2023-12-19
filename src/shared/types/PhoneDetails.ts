@@ -4,8 +4,8 @@ export interface PhoneDetails {
   name: string;
   capacityAvailable: string[];
   capacity: string;
-  priceRegular: string;
-  priceDiscount: string;
+  priceRegular: number;
+  priceDiscount: number;
   colorsAvailable: string[];
   color: string;
   images: string[];
