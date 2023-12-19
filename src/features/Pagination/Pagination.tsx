@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useRef } from 'react';
 import cn from 'classnames';
 import './Pagination.scss';
 import { useSearchParams } from 'react-router-dom';
@@ -14,13 +14,26 @@ export const Pagination: React.FC<Props> = memo(({ totalCount }) => {
     Number(searchParams.get('page')) || 1,
   );
   const perPage = searchParams.get('perPage') || 16;
-
   const pagesNumber = Math.ceil(totalCount / +perPage);
 
-  const pages = [];
+  const pages = useRef<number[]>([]);
+  const allPages = [];
 
   for (let i = 1; i <= pagesNumber; i += 1) {
-    pages.push(i);
+    allPages.push(i);
+  }
+
+  if (pagesNumber > 8) {
+    if (currentPage === 1) {
+      pages.current = allPages.slice(0, 7);
+    } else if (
+      currentPage === pages.current[pages.current.length - 1]
+      || currentPage === pages.current[0]
+    ) {
+      pages.current = allPages.slice(currentPage - 4, currentPage + 4);
+    }
+  } else {
+    pages.current = allPages;
   }
 
   const setPage = (newPage: string) => {
@@ -52,6 +65,10 @@ export const Pagination: React.FC<Props> = memo(({ totalCount }) => {
     scrollToTop();
   };
 
+  if (currentPage > pagesNumber) {
+    setPage('1');
+  }
+
   return (
     <div className="pagination page__pagination">
       <button
@@ -62,12 +79,10 @@ export const Pagination: React.FC<Props> = memo(({ totalCount }) => {
         })}
         onClick={handleBackClick}
       >
-        <div
-          className="pagination__arrow-icon pagination__arrow-icon--left"
-        />
+        <div className="pagination__arrow-icon pagination__arrow-icon--left" />
       </button>
       <ul className="pagination__list">
-        {pages.map((pageNumber) => (
+        {pages.current.map((pageNumber) => (
           <li key={pageNumber}>
             <button
               aria-label={`page ${pageNumber}`}
@@ -92,9 +107,7 @@ export const Pagination: React.FC<Props> = memo(({ totalCount }) => {
         })}
         onClick={handleForwardClick}
       >
-        <div
-          className="pagination__arrow-icon pagination__arrow-icon--right"
-        />
+        <div className="pagination__arrow-icon pagination__arrow-icon--right" />
       </button>
     </div>
   );
