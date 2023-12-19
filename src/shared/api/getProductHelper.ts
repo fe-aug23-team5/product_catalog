@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { getData } from '../helpers/fetchClient';
 import { Product } from '../types/Product';
 import { getAccById, getAccDetailsById } from './accessories';
@@ -17,16 +18,14 @@ export const getProductById = (productType: string, productId: string) => {
   }
 };
 
-export const getProductDetailsById = (
-  productType: string,
-  productId: string,
-) => {
+export const getProductDetailsById = (productType: string, productId: string) => {
   switch (productType) {
+    case 'iphone':
+      return getPhoneDetailsById(productId);
     case 'ipad':
       return getTabletDetailsById(productId);
     case 'watch':
       return getAccDetailsById(productId);
-    case 'iphone':
     default:
       return getPhoneDetailsById(productId);
   }

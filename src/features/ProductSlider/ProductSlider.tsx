@@ -37,7 +37,7 @@ function SampleNextArrow(props: ArrowProps) {
 export const ProductSlider: React.FC<Props> = ({ children }) => {
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     arrows: true,
     speed: 500,
     slidesToShow: 4,
@@ -57,28 +57,14 @@ export const ProductSlider: React.FC<Props> = ({ children }) => {
     ),
     responsive: [
       {
-        breakpoint: 1170,
-        settings: {
-          slidesToShow: 3.5,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 1060,
+        breakpoint: 1100,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 840,
-        settings: {
-          slidesToShow: 2.5,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 710,
+        breakpoint: 850,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -87,17 +73,31 @@ export const ProductSlider: React.FC<Props> = ({ children }) => {
       {
         breakpoint: 560,
         settings: {
-          slidesToShow: 1.5,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 435,
-        settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
+    //   {
+    //     breakpoint: 710,
+    //     settings: {
+    //       slidesToShow: 2,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 560,
+    //     settings: {
+    //       slidesToShow: 1.5,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 435,
+    //     settings: {
+    //       slidesToShow: 1,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
     ],
   };
 

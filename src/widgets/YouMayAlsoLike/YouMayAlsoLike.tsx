@@ -5,25 +5,31 @@ import { Loader } from '../Loader';
 import { ProductCard } from '../../entities/ProductCard';
 import { Product } from '../../shared/types/Product';
 import { getSuggestedProducts } from '../../shared/api/getProductHelper';
+import { Notification } from '../../shared/ui/Notification';
 
 export const YouMayAlsoLike: React.FC = () => {
   const [suggestions, setSuggestions] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-  const fetchNewProducts = async () => {
+  const fetchSuggested = async () => {
     try {
       const products = await getSuggestedProducts();
 
       setSuggestions(products);
-    } catch (error) {
-      throw new Error('Unexpected Error');
+
+      if (products.length === 0) {
+        setError(true);
+      }
+    } catch (err) {
+      setError(true);
     }
   };
 
   useEffect(() => {
     setIsLoading(true);
 
-    fetchNewProducts()
+    fetchSuggested()
       .finally(() => setIsLoading(false));
   }, []);
 
@@ -33,21 +39,29 @@ export const YouMayAlsoLike: React.FC = () => {
         You may also like
       </SecondaryTitle>
 
-      {isLoading
-        ? <Loader />
-        : (
-          <ProductSlider>
-            {suggestions.map(product => {
-              return (
-                <ProductCard
-                  key={product.itemId}
-                  product={product}
-                  link={product.category}
-                />
-              );
-            })}
-          </ProductSlider>
-        )}
+      {isLoading && <Loader />}
+
+      {error && (
+        <Notification message="Sorry, data is unavailable at the moment" />
+      )}
+
+      {!isLoading && suggestions.length > 0 && (
+        <ProductSlider>
+          {suggestions.map(product => {
+            return (
+              <ProductCard
+                key={product.itemId}
+                product={product}
+                link={product.category}
+              />
+            );
+          })}
+        </ProductSlider>
+      )}
+
+      {!isLoading && suggestions.length === 0 && !error && (
+        <h2>Nothing to display</h2>
+      )}
     </>
   );
 };

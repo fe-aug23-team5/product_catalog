@@ -9,9 +9,9 @@ import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 
 export const CartItem: React.FC<CartItemProps> = ({
   name,
-  images,
-  id,
-  priceDiscount,
+  image,
+  itemId,
+  price,
   quantity,
   handleDecrease,
   handleIncrease,
@@ -24,44 +24,48 @@ export const CartItem: React.FC<CartItemProps> = ({
         <button
           className={styles.cart_item_delete_button}
           type="button"
-          onClick={() => deleteCartItem(id)}
+          onClick={() => deleteCartItem(itemId)}
         >
           <img src={closeIcon} alt="close icon" />
         </button>
 
-        <Link to={`/phones/${id}`}>
+        <Link to={`/phones/${itemId}`}>
           <img
             className={styles.cart_item_image}
-            src={`${BASE_URL_IMG}${images[0]}`}
+            src={`${BASE_URL_IMG}${image}`}
             alt={name}
           />
         </Link>
 
         <h3 className={styles.cart_item_title}>{name}</h3>
       </div>
+
       <div className={styles.cart_item_manuals_container}>
         <div className={styles.cart_item_button_container}>
           <button
             type="button"
             className={styles.cart_item_quantity_button}
-            onClick={() => handleDecrease(id)}
+            onClick={() => handleDecrease(itemId)}
           >
             <img src={minusIcon} alt="minus icon" />
           </button>
+
           <div className={styles.cart_item_quantity_container}>
             <p className={styles.cart_item_quantity}>{quantity}</p>
           </div>
+
           <button
             type="button"
             className={styles.cart_item_quantity_button}
-            onClick={() => handleIncrease(id)}
+            onClick={() => handleIncrease(itemId)}
           >
             <img src={plusIcon} alt="plus icon" />
           </button>
         </div>
+
         <div className={styles.cart_item_price_container}>
           <p className={styles.cart_item_price}>
-            {`$${calculatePrice(priceDiscount, quantity)}`}
+            {`$${calculatePrice(price, quantity)}`}
           </p>
         </div>
       </div>

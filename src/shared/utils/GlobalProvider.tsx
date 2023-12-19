@@ -51,7 +51,7 @@ export const GlobalProvider: React.FC<ProviderProps> = ({ children }) => {
   };
 
   const addFavouriteItem = (itemId: string) => {
-    const updatedFavourites = [...favourites, { itemId, quantity: 1 }];
+    const updatedFavourites = [...favourites, { itemId }];
 
     setFavourites(updatedFavourites);
   };
