@@ -28,15 +28,13 @@ export const ProductCard: React.FC<Props> = ({ product, link }) => {
     const isPhoneInCart = cart.some((item) => item.itemId === product.itemId);
 
     setIsButtonActive(isPhoneInCart);
-    // eslint-disable-next-line
-  }, [cart.length]);
+  }, [cart, cart.length, product.itemId]);
 
   useEffect(() => {
     const isInLiked = favourites.some((item) => item.itemId === product.itemId);
 
     setIsIconActive(isInLiked);
-    // eslint-disable-next-line
-  }, [favourites.length]);
+  }, [favourites, favourites.length, product.itemId]);
 
   const handleAddToCart = () => {
     addCartItem(product.itemId);

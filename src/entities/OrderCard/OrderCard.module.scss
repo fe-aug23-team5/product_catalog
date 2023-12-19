@@ -43,12 +43,17 @@
 
 .order__card {
   &_message {
-    font-family: 'Mont-bold';
+    font-family: 'Mont-SemiBold';
+    font-size: 1.56rem;
     grid-column: span 4;
   }
 
   &_empty_icon {
     width: 150px;
   }
-}
 
+  &_button {
+    @include element-full-width-grid;
+    min-width: 200px;
+  }
+}

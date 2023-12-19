@@ -1,25 +1,32 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../shared/utils/GlobalProvider';
+import styles from './OrderCard.module.scss';
 import { CartItem } from '../CartItem';
 import { CartTotal } from '../CartTotal';
+import { Product } from '../../shared/types/Product';
 import emptyCartIcon from '../../shared/static/icons/empty-cart.svg';
-import styles from './OrderCard.module.scss';
-// import { PhoneDetails } from '../../shared/types/PhoneDetails';
-import { ProductDetails } from '../../shared/types/Product';
+import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 
 type Props = {
-  phones: ProductDetails[];
+  phones: Product[];
 };
 
 export const OrderCard: React.FC<Props> = ({ phones }) => {
   const { cart, updateCartItemQuantity, deleteCartItem }
     = useContext(GlobalContext);
 
+  const navigate = useNavigate();
+
+  const navigateToHome = () => {
+    navigate('/');
+  };
+
   const handleDecrease = (phoneId: string) => {
     const selectedPhone = cart.find((item) => item.itemId === phoneId);
 
     if (selectedPhone && updateCartItemQuantity) {
-      const newQuantity = Math.max(1, selectedPhone.quantity - 1);
+      const newQuantity = Math.max(1, (selectedPhone.quantity ?? 0) - 1);
 
       updateCartItemQuantity(selectedPhone.itemId, newQuantity);
     }
@@ -29,7 +36,10 @@ export const OrderCard: React.FC<Props> = ({ phones }) => {
     const selectedPhone = cart.find((item) => item.itemId === phoneId);
 
     if (selectedPhone && updateCartItemQuantity) {
-      updateCartItemQuantity(selectedPhone.itemId, selectedPhone.quantity + 1);
+      updateCartItemQuantity(
+        selectedPhone.itemId,
+        (selectedPhone.quantity ?? 0) + 1,
+      );
     }
   };
 
@@ -39,12 +49,12 @@ export const OrderCard: React.FC<Props> = ({ phones }) => {
 
   const calculateTotalPrice = (): number => {
     return cart.reduce((total, phone) => {
-      const phoneDetails = phones.find((detail) => detail.id === phone.itemId);
+      const phoneDetails = phones.find(
+        (detail) => detail.itemId === phone.itemId,
+      );
 
       if (phoneDetails) {
-        return (
-          total + calculatePrice(phoneDetails.priceDiscount, phone.quantity)
-        );
+        return total + calculatePrice(phoneDetails.price, phone.quantity ?? 0);
       }
 
       return total;
@@ -52,7 +62,7 @@ export const OrderCard: React.FC<Props> = ({ phones }) => {
   };
 
   const calculateTotalItems = (): number => {
-    return cart.reduce((total, phone) => total + phone.quantity, 0);
+    return cart.reduce((total, phone) => total + (phone.quantity ?? 0), 0);
   };
 
   return (
@@ -63,18 +73,18 @@ export const OrderCard: React.FC<Props> = ({ phones }) => {
             <ul>
               {phones.map((phone) => {
                 const cartItem = cart.find(
-                  (item) => item.itemId === phone.id,
+                  (item) => item.itemId === phone.itemId,
                 ) || { quantity: 0 };
 
                 return (
                   <CartItem
                     key={phone.id}
                     {...phone}
-                    quantity={cartItem.quantity}
-                    handleDecrease={() => handleDecrease(phone.id)}
-                    handleIncrease={() => handleIncrease(phone.id)}
+                    quantity={cartItem.quantity ?? 1}
+                    handleDecrease={handleDecrease}
+                    handleIncrease={handleIncrease}
                     calculatePrice={calculatePrice}
-                    deleteCartItem={() => deleteCartItem(phone.id)}
+                    deleteCartItem={deleteCartItem}
                   />
                 );
               })}
@@ -91,11 +101,19 @@ export const OrderCard: React.FC<Props> = ({ phones }) => {
       ) : (
         <div className={styles.order__card_empty_container}>
           <p className={styles.order__card_message}>Your cart is empty</p>
+
           <img
             className={styles.order__card_empty_icon}
             src={emptyCartIcon}
             alt="empty cart"
           />
+
+          <div className={styles.order__card_button}>
+            <PrimaryButton
+              defaultTitle="Go Shopping!"
+              defaultAction={navigateToHome}
+            />
+          </div>
         </div>
       )}
     </>
