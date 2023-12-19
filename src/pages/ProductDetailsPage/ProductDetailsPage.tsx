@@ -1,52 +1,52 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import cn from 'classnames';
+
 import styles from './ProductDetails.module.scss';
-import { getPhoneById } from '../../shared/api/phones';
-import { PhoneDetails } from '../../shared/types/PhoneDetails';
+import { getProductDetailsById } from '../../shared/api/getProductHelper';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
-import { PrimaryButton } from '../../shared/ui/PrimaryButton';
-import { IconButton } from '../../shared/ui/IconButton';
 import { Breadcrumbs } from '../../features/Breadcrumbs';
 import { Loader } from '../../widgets/Loader';
 import { YouMayAlsoLike } from '../../widgets/YouMayAlsoLike';
 import { BackButton } from '../../shared/ui/BackButton';
-import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
+import { ProductDetails } from '../../shared/types/Product';
+import { GalleryProductDetails } from '../../features/GalleryProductDetails';
+import { ProductColorsDetails } from '../../features/ProductColorsDetails';
+import { ProductCapacityDetails } from '../../features/ProductCapacityDetails';
+import { ProductPriceDetails } from '../../features/ProductPriceDetails';
+import { ProductTechDetails } from '../../features/ProductTechDetails';
+import { ProductAboutDetails } from '../../features/ProductAboutDetails';
 
-enum TechSpecs {
-  SCREEN = 'screen',
-  RESOLUTION = 'resolution',
-  PROCESSOR = 'processor',
-  RAM = 'ram',
-  CAPACITY = 'capacity',
-  CAMERA = 'camera',
-  ZOOM = 'zoom',
-  CELL = 'cell',
-}
 export const ProductDetailsPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [productDetail, setProductDetail] = useState<PhoneDetails | null>(null);
+  const [
+    productDetail, setProductDetail,
+  ] = useState<ProductDetails | null>(null);
   const [productImage, setProductImage] = useState('');
   const [isLoad, setIsLoad] = useState(false);
   const [capacity, setCapacity] = useState(productDetail?.capacity);
-  const [
-    productColor, setProductColor,
-  ] = useState(location.pathname.split('-').at(-1));
+  const [productColor, setProductColor] = useState(
+    location.pathname.split('-').at(-1),
+  );
+  const [productType, setProductType] = useState(
+    location.pathname.split('-').at(1) || 'iphone',
+  );
 
   useEffect(() => {
     setIsLoad(true);
-    getPhoneById(`${location.pathname.split('/')[2]}`)
+    setProductType(location.pathname.split('-').at(1) || 'iphone');
+
+    getProductDetailsById(productType, `${location.pathname.split('/')[2]}`)
       .then((data) => {
         setProductDetail(data);
         setProductImage(`${BASE_URL_IMG}${data.images[0]}`);
       })
-      .catch(error => {
-        throw error;
+      .catch((error) => {
+        console.log(error);
       })
       .finally(() => setIsLoad(false));
-  }, [capacity, productColor, location.pathname]);
+  }, [capacity, productColor, productType, location.pathname]);
 
   const changeProductColor = (color: string) => {
     if (color === productColor) {
@@ -54,11 +54,21 @@ export const ProductDetailsPage: React.FC = () => {
     }
 
     const productId = location.pathname
-      .split('/')[2].split('-').slice(0, -1).join('-');
+      .split('/')[2]
+      .split('-')
+      .slice(0, -1)
+      .join('-');
 
     setIsLoad(true);
     setProductColor(color);
-    navigate(`/phones/${productId}-${color}`);
+
+    if (productType === 'iphone') {
+      navigate(`/phones/${productId}-${color}`);
+    } else if (productType === 'ipad') {
+      navigate(`/tablets/${productId}-${color}`);
+    } else if (productType === 'watch') {
+      navigate(`/accessories/${productId}-${color}`);
+    }
   };
 
   const changeCapacity = (value: string) => {
@@ -66,232 +76,81 @@ export const ProductDetailsPage: React.FC = () => {
       return;
     }
 
+    const regex = /^[1-9]\d*(gb|tb|mm)$/i;
     const productId = location.pathname
-      .split('/')[2].split('-').slice(0, -1).join('-')
+      .split('/')[2]
       .split('-')
-      .map(item => (item.includes('gb') ? value : item))
+      .slice(0, -1)
+      .join('-')
+      .split('-')
+      .map((item) => (regex.test(item) ? value : item))
       .join('-');
 
     setIsLoad(true);
     setCapacity(value);
-    navigate(`/phones/${productId}-${location.pathname.split('-').at(-1)}`);
+
+    if (productType === 'iphone') {
+      navigate(`/phones/${productId}-${location.pathname.split('-').at(-1)}`);
+    } else if (productType === 'ipad') {
+      navigate(`/tablets/${productId}-${location.pathname.split('-').at(-1)}`);
+    } else if (productType === 'watch') {
+      navigate(`/accessories/${productId}-${location.pathname.split('-').at(-1)}`);
+    }
   };
 
-  const convertTechDetails = (value: string) => {
-    if (value === 'ram') {
-      return 'RAM';
-    }
-
-    if (value === 'capacity') {
-      return 'Built in memory';
-    }
-
-    return value.replace(value[0], value[0].toUpperCase());
-  };
-
-  return isLoad
-    ? (<Loader />)
-    : (
-      <div className={styles.product_details}>
-        <div className={styles.block_top}>
-          <div className={styles.bread_crumbs}>
-            <Breadcrumbs productName={productDetail?.name} />
-          </div>
-
-          <div className={styles.goback_button}>
-            <BackButton />
-          </div>
-
-          <h1 className={styles.section_image__title}>
-            {productDetail?.name}
-          </h1>
+  return isLoad ? (
+    <Loader />
+  ) : (
+    <div className={styles.product_details}>
+      <div className={styles.block_top}>
+        <div className={styles.bread_crumbs}>
+          <Breadcrumbs productName={productDetail?.name} />
         </div>
 
-        <div className={styles.block_gallery}>
-          <div className={styles.block_gallery__image_wrapper}>
-            <img
-              className={styles.block_gallery_main_image}
-              src={productImage}
-              alt="Product"
-            />
-          </div>
-
-          <ul className={styles.block_gallery__list}>
-            {productDetail?.images.map(image => (
-              <li key={image} className={styles.block_gallery__item}>
-                <button
-                  className={cn(styles.block_gallery__button, {
-                    [
-                    styles.block_gallery__button_active
-                    ]: productImage === `${BASE_URL_IMG}${image}`,
-                  })}
-                  type="button"
-                  onClick={() => setProductImage(`${BASE_URL_IMG}${image}`)}
-                >
-                  <img
-                    className={styles.block_gallery__image}
-                    src={`${BASE_URL_IMG}${image}`}
-                    alt="Product"
-                  />
-                </button>
-              </li>
-            ))}
-          </ul>
+        <div className={styles.goback_button}>
+          <BackButton />
         </div>
 
-        <div className={styles.block_info}>
-          <article className={styles.block_info__information}>
-            <div className={styles.color}>
-              <div className={styles.color__text}>
-                <span className={styles.color__description}>
-                  Available colors
-                </span>
-
-                <span className={styles.color__description}>
-                  ID:123
-                </span>
-              </div>
-
-              <ul className={styles.color__list}>
-                {productDetail?.colorsAvailable.map(color => (
-                  <li
-                    key={color}
-                    className={cn(styles.color__item, {
-                      [styles.color__item_active]: color === productColor,
-                    })}
-                  >
-                    <button
-                      onClick={() => changeProductColor(color)}
-                      style={{ backgroundColor: `${color}` }}
-                      className={styles.color__button}
-                      type="button"
-                    />
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className={styles.capacity}>
-              <p className={styles.capacity__text}>
-                Select capacity
-              </p>
-
-              <ul className={styles.capacity__list}>
-                {productDetail?.capacityAvailable.map(capacityItem => (
-                  <li
-                    key={capacityItem}
-                    className={cn(styles.capacity__item, {
-                      [
-                      styles.capacity__item_active
-                      ]: capacityItem === productDetail.capacity,
-                    })}
-                  >
-                    <button
-                      type="button"
-                      className={cn(styles.capacity__button, {
-                        [
-                        styles.capacity__button_active
-                        ]: capacityItem === productDetail.capacity,
-                      })}
-                      onClick={() => changeCapacity(capacityItem.toLowerCase())}
-                    >
-                      {capacityItem}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className={styles.price}>
-              <p className={styles.price__amount}>
-                <span className={styles.price__discount}>
-                  {`$${productDetail?.priceDiscount}`}
-                </span>
-
-                <span className={styles.price__regular}>
-                  {`$${productDetail?.priceRegular}`}
-                </span>
-              </p>
-
-              <div className={styles.price__buttons}>
-                <PrimaryButton
-                  defaultAction={() => { }}
-                  defaultTitle="Checkout"
-                />
-
-                <IconButton
-                  defaultAction={() => { }}
-                />
-              </div>
-
-              <div className={styles.details}>
-                {Object.values(TechSpecs).slice(0, 4).map(item => {
-                  return (
-                    <p key={item} className={styles.details__text}>
-                      <span className={styles.details__key}>
-                        {convertTechDetails(item)}
-                      </span>
-
-                      <span className={styles.details__value}>
-                        {productDetail !== null && productDetail[item]}
-                      </span>
-                    </p>
-                  );
-                })}
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div className={styles.block_about}>
-          <section className={styles.about}>
-            <SecondaryTitle>
-              About
-            </SecondaryTitle>
-
-            {productDetail?.description.map(info => {
-              const { text, title } = info;
-
-              return (
-                <article key={title} className={styles.description}>
-                  <h3 className={styles.description__title}>
-                    {title}
-                  </h3>
-
-                  <p className={styles.description__text}>
-                    {text}
-                  </p>
-                </article>
-              );
-            })}
-          </section>
-        </div>
-
-        <div className={styles.block_tech}>
-          <section className={styles.tech}>
-            <SecondaryTitle>
-              Tech specs
-            </SecondaryTitle>
-
-            <article className={styles.tech__details}>
-              {Object.values(TechSpecs).map(item => (
-                <p key={item} className={styles.tech__wrapper}>
-                  <span className={styles.tech__key}>
-                    {convertTechDetails(item)}
-                  </span>
-
-                  <span className={styles.tech__value}>
-                    {productDetail !== null && productDetail[item]}
-                  </span>
-                </p>
-              ))}
-            </article>
-          </section>
-        </div>
-
-        <section className={styles.recommended}>
-          <YouMayAlsoLike />
-        </section>
+        <h1 className={styles.section_image__title}>{productDetail?.name}</h1>
       </div>
-    );
+
+      <GalleryProductDetails
+        productDetail={productDetail}
+        productImage={productImage}
+        setProductImage={setProductImage}
+      />
+
+      <section className={styles.block_info}>
+        <article className={styles.block_info__information}>
+          <ProductColorsDetails
+            productDetail={productDetail}
+            productColor={productColor}
+            changeProductColor={changeProductColor}
+          />
+
+          <ProductCapacityDetails
+            productDetail={productDetail}
+            changeCapacity={changeCapacity}
+          />
+
+          <ProductPriceDetails productDetail={productDetail} />
+        </article>
+      </section>
+
+      <section className={styles.block_about}>
+        <ProductAboutDetails productDetail={productDetail} />
+      </section>
+
+      <section className={styles.block_tech}>
+        <ProductTechDetails
+          productDetail={productDetail}
+          productType={productType}
+        />
+      </section>
+
+      <section className={styles.recommended}>
+        <YouMayAlsoLike />
+      </section>
+    </div>
+  );
 };

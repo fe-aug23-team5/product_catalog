@@ -10,6 +10,7 @@ import { NavBar } from '../../features/NavBar';
 import { BurgerMenu } from '../BurgerMenu';
 import { GlobalContext } from '../../shared/utils/GlobalProvider';
 import { IconWithCounter } from '../../features/IconWithCounter';
+import { SearchBar } from '../../features/SearchBar';
 
 export const Header: React.FC = () => {
   const [isShownMenu, setIsShownMenu] = useState(false);
@@ -40,17 +41,21 @@ export const Header: React.FC = () => {
         </div>
       </div>
 
-      <div className={styles.header__rightSide}>
-        <IconWithCounter
-          to="/favourites"
-          icon={Favorites}
-          count={favourites.length}
-        />
-        <IconWithCounter
-          to="/cart"
-          icon={Cart}
-          count={cart.length}
-        />
+      <div className={styles.header__rightSideContainer}>
+        <SearchBar text="phones" />
+
+        <div className={styles.header__rightSide}>
+          <IconWithCounter
+            to="/favourites"
+            icon={Favorites}
+            count={favourites.length}
+          />
+          <IconWithCounter
+            to="/cart"
+            icon={Cart}
+            count={cart.length}
+          />
+        </div>
       </div>
 
       <button

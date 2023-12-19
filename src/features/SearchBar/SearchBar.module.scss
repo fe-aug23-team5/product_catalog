@@ -1,0 +1,65 @@
+@import '../../shared/styles/variables.scss';
+@import '../../shared/styles/mixin.scss';
+
+@font-face {
+  font-family: 'Mont-SemiBold';
+  src: url('../../../public/fonts/Mont-SemiBold.otf');
+}
+
+.box {
+  width: 327px;
+  min-width: 160px;
+  height: 100%;
+  padding: 0;
+  align-items: center;
+  display: flex;
+  position: relative;
+  flex-direction: row-reverse;
+}
+
+.input {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding-block: 1px;
+  padding-inline-start: 24px;
+  order: 1;
+
+  box-shadow: -1px 0px 0px 0px $elements;
+  border: none;
+
+  display: flex;
+  outline: none;
+
+  color: $gray-primary;
+  font-family: 'Mont-SemiBold';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+
+  &::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  &::placeholder {
+    color: $icons;
+  } 
+
+  &__select-open {
+    background-color: $hover-and-bg;
+  }
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  align-items: center;
+  display: inline-flex;
+  position: absolute;
+  z-index: 4;
+  order: 2;
+  margin-right: 24px;
+}

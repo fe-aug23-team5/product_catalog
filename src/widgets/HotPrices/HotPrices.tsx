@@ -1,29 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
+import { getDiscountProducts } from '../../shared/api/getProductHelper';
 import { ProductSlider } from '../../features/ProductSlider';
-import { Loader } from '../Loader';
-import { getDiscountPhones } from '../../shared/api/phones';
-import { Phone } from '../../shared/types/Phone';
 import { ProductCard } from '../../entities/ProductCard';
+import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
+import { Notification } from '../../shared/ui/Notification';
+import { Product } from '../../shared/types/Product';
+import { Loader } from '../Loader';
 
 export const HotPrices: React.FC = () => {
-  const [discountPhones, setDiscountPhones] = useState<Phone[]>([]);
+  const [discountProducts, setDiscountProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-  const fetchNewPhones = async () => {
+  const fetchDiscountProducts = async () => {
     try {
-      const phones = await getDiscountPhones();
+      const products = await getDiscountProducts();
 
-      setDiscountPhones(phones);
-    } catch (error) {
-      throw new Error('Unexpected Error');
+      setDiscountProducts(products);
+
+      if (products.length === 0) {
+        setError(true);
+      }
+    } catch (err) {
+      setError(true);
     }
   };
 
   useEffect(() => {
     setIsLoading(true);
 
-    fetchNewPhones()
+    fetchDiscountProducts()
       .finally(() => setIsLoading(false));
   }, []);
 
@@ -33,15 +39,29 @@ export const HotPrices: React.FC = () => {
         Hot Prices
       </SecondaryTitle>
 
-      {isLoading
-        ? <Loader />
-        : (
-          <ProductSlider>
-            {discountPhones.map((phone) => {
-              return <ProductCard key={phone.phoneId} phone={phone} />;
-            })}
-          </ProductSlider>
-        )}
+      {isLoading && <Loader />}
+
+      {error && (
+        <Notification message="Sorry, data is unavailable at the moment" />
+      )}
+
+      {!isLoading && discountProducts.length > 0 && (
+        <ProductSlider>
+          {discountProducts.map(product => {
+            return (
+              <ProductCard
+                key={product.itemId}
+                product={product}
+                link={product.category}
+              />
+            );
+          })}
+        </ProductSlider>
+      )}
+
+      {!isLoading && discountProducts.length === 0 && !error && (
+        <h2>Nothing to display</h2>
+      )}
     </>
   );
 };

@@ -2,28 +2,34 @@ import React, { useEffect, useState } from 'react';
 import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 import { ProductSlider } from '../../features/ProductSlider';
 import { Loader } from '../Loader';
-import { getSuggestedPhones } from '../../shared/api/phones';
-import { Phone } from '../../shared/types/Phone';
 import { ProductCard } from '../../entities/ProductCard';
+import { Product } from '../../shared/types/Product';
+import { getSuggestedProducts } from '../../shared/api/getProductHelper';
+import { Notification } from '../../shared/ui/Notification';
 
 export const YouMayAlsoLike: React.FC = () => {
-  const [suggestions, setSuggestions] = useState<Phone[]>([]);
+  const [suggestions, setSuggestions] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-  const fetchNewPhones = async () => {
+  const fetchSuggested = async () => {
     try {
-      const phones = await getSuggestedPhones();
+      const products = await getSuggestedProducts();
 
-      setSuggestions(phones);
-    } catch (error) {
-      throw new Error('Unexpected Error');
+      setSuggestions(products);
+
+      if (products.length === 0) {
+        setError(true);
+      }
+    } catch (err) {
+      setError(true);
     }
   };
 
   useEffect(() => {
     setIsLoading(true);
 
-    fetchNewPhones()
+    fetchSuggested()
       .finally(() => setIsLoading(false));
   }, []);
 
@@ -33,15 +39,29 @@ export const YouMayAlsoLike: React.FC = () => {
         You may also like
       </SecondaryTitle>
 
-      {isLoading
-        ? <Loader />
-        : (
-          <ProductSlider>
-            {suggestions.map(phone => {
-              return <ProductCard key={phone.phoneId} phone={phone} />;
-            })}
-          </ProductSlider>
-        )}
+      {isLoading && <Loader />}
+
+      {error && (
+        <Notification message="Sorry, data is unavailable at the moment" />
+      )}
+
+      {!isLoading && suggestions.length > 0 && (
+        <ProductSlider>
+          {suggestions.map(product => {
+            return (
+              <ProductCard
+                key={product.itemId}
+                product={product}
+                link={product.category}
+              />
+            );
+          })}
+        </ProductSlider>
+      )}
+
+      {!isLoading && suggestions.length === 0 && !error && (
+        <h2>Nothing to display</h2>
+      )}
     </>
   );
 };

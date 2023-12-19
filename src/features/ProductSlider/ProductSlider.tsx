@@ -1,14 +1,11 @@
 import React, { ReactNode } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Slider from 'react-slick';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import 'slick-carousel/slick/slick.css';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import 'slick-carousel/slick/slick-theme.css';
 import './ProductSlider.scss';
 import classNames from 'classnames';
 
-interface SliderCustomProps {
+interface Props {
   children: ReactNode;
 }
 
@@ -37,51 +34,37 @@ function SampleNextArrow(props: ArrowProps) {
   );
 }
 
-export const ProductSlider: React.FC<SliderCustomProps> = ({ children }) => {
+export const ProductSlider: React.FC<Props> = ({ children }) => {
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     arrows: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
     initialSlide: 0,
-    nextArrow: (
-      <SampleNextArrow
-        isDisabled={false}
-        onClick={() => {}}
-      />
-    ),
     prevArrow: (
       <SamplePrevArrow
         isDisabled={false}
         onClick={() => {}}
       />
     ),
+    nextArrow: (
+      <SampleNextArrow
+        isDisabled={false}
+        onClick={() => {}}
+      />
+    ),
     responsive: [
       {
-        breakpoint: 1170,
-        settings: {
-          slidesToShow: 3.5,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 1060,
+        breakpoint: 1100,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 840,
-        settings: {
-          slidesToShow: 2.5,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 710,
+        breakpoint: 850,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -90,17 +73,31 @@ export const ProductSlider: React.FC<SliderCustomProps> = ({ children }) => {
       {
         breakpoint: 560,
         settings: {
-          slidesToShow: 1.5,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 435,
-        settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
+    //   {
+    //     breakpoint: 710,
+    //     settings: {
+    //       slidesToShow: 2,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 560,
+    //     settings: {
+    //       slidesToShow: 1.5,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 435,
+    //     settings: {
+    //       slidesToShow: 1,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
     ],
   };
 

@@ -1,35 +1,35 @@
 import React from 'react';
-import { Phone } from '../types/Phone';
 import { Context } from '../types/Context';
 import { ProviderProps } from '../types/ProviderProps';
 import { useLocalStorage } from './useLocalStorage';
+import { PhoneWithQuantity } from '../types/PhoneWithQuantity';
 
 export const GlobalContext = React.createContext<Context>({
   cart: [],
-  addCartItem: () => { },
-  deleteCartItem: () => { },
-  clearCart: () => { },
-  updateCartItemQuantity: () => { },
+  addCartItem: () => {},
+  deleteCartItem: () => {},
+  clearCart: () => {},
+  updateCartItemQuantity: () => {},
   favourites: [],
-  addFavouriteItem: () => { },
-  deleteFavouriteItem: () => { },
+  addFavouriteItem: () => {},
+  deleteFavouriteItem: () => {},
 });
 
 export const GlobalProvider: React.FC<ProviderProps> = ({ children }) => {
-  const [cart, setCart] = useLocalStorage<Phone[]>('cart', []);
-  const [favourites, setFavourites]
-    = useLocalStorage<Phone[]>('favourites', []);
+  const [cart, setCart] = useLocalStorage<PhoneWithQuantity[]>('cart', []);
+  const [favourites, setFavourites] = useLocalStorage<PhoneWithQuantity[]>(
+    'favourites',
+    [],
+  );
 
-  const addCartItem = (value: Phone) => {
-    const updatedValue: Phone = { ...value, quantity: 1 };
-
-    const updatedCart: Phone[] = [...cart, updatedValue];
+  const addCartItem = (itemId: string) => {
+    const updatedCart = [...cart, { itemId, quantity: 1 }];
 
     setCart(updatedCart);
   };
 
-  const deleteCartItem = (phoneId: string) => {
-    const updatedCart = cart.filter(item => item.phoneId !== phoneId);
+  const deleteCartItem = (itemId: string) => {
+    const updatedCart = cart.filter(item => item.itemId !== itemId);
 
     setCart(updatedCart);
   };
@@ -38,9 +38,9 @@ export const GlobalProvider: React.FC<ProviderProps> = ({ children }) => {
     setCart([]);
   };
 
-  const updateCartItemQuantity = (phoneId: string, newQuantity: number) => {
+  const updateCartItemQuantity = (itemId: string, newQuantity: number) => {
     const updatedCart = cart.map(item => {
-      if (item.phoneId === phoneId) {
+      if (item.itemId === itemId) {
         return { ...item, quantity: newQuantity };
       }
 
@@ -50,15 +50,15 @@ export const GlobalProvider: React.FC<ProviderProps> = ({ children }) => {
     setCart(updatedCart);
   };
 
-  const addFavouriteItem = (value: Phone) => {
-    const updatedFavourites: Phone[] = [...favourites, value];
+  const addFavouriteItem = (itemId: string) => {
+    const updatedFavourites = [...favourites, { itemId }];
 
     setFavourites(updatedFavourites);
   };
 
-  const deleteFavouriteItem = (phoneId: string) => {
+  const deleteFavouriteItem = (itemId: string) => {
     const updatedFavourites
-      = favourites.filter(item => item.phoneId !== phoneId);
+      = favourites.filter(item => item.itemId !== itemId);
 
     setFavourites(updatedFavourites);
   };
@@ -75,8 +75,6 @@ export const GlobalProvider: React.FC<ProviderProps> = ({ children }) => {
   };
 
   return (
-    <GlobalContext.Provider value={value}>
-      {children}
-    </GlobalContext.Provider>
+    <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>
   );
 };

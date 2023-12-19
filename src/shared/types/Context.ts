@@ -1,12 +1,12 @@
-import { Phone } from './Phone';
+import { PhoneWithQuantity } from './PhoneWithQuantity';
 
 export type Context = {
-  cart: Phone[];
-  addCartItem: (value: Phone) => void;
-  deleteCartItem: (phoneId: string) => void;
+  cart: PhoneWithQuantity[];
+  addCartItem: (itemId: string) => void;
+  deleteCartItem: (itemId: string) => void;
   clearCart: () => void;
-  updateCartItemQuantity: (phoneId: string, newQuantity: number) => void;
-  favourites: Phone[];
-  addFavouriteItem: (value: Phone) => void;
-  deleteFavouriteItem: (phoneId: string) => void;
+  updateCartItemQuantity?: (itemId: string, newQuantity: number) => void;
+  favourites: PhoneWithQuantity[];
+  addFavouriteItem: (itemId: string) => void;
+  deleteFavouriteItem: (itemId: string) => void;
 };

@@ -10,13 +10,13 @@ import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 export const CartItem: React.FC<CartItemProps> = ({
   name,
   image,
+  itemId,
   price,
-  phoneId,
   quantity,
   handleDecrease,
   handleIncrease,
-  deleteCartItem,
   calculatePrice,
+  deleteCartItem,
 }) => {
   return (
     <li className={styles.cart_item}>
@@ -24,12 +24,12 @@ export const CartItem: React.FC<CartItemProps> = ({
         <button
           className={styles.cart_item_delete_button}
           type="button"
-          onClick={() => deleteCartItem(phoneId)}
+          onClick={() => deleteCartItem(itemId)}
         >
           <img src={closeIcon} alt="close icon" />
         </button>
 
-        <Link to={`/phones/${phoneId}`}>
+        <Link to={`/phones/${itemId}`}>
           <img
             className={styles.cart_item_image}
             src={`${BASE_URL_IMG}${image}`}
@@ -39,26 +39,30 @@ export const CartItem: React.FC<CartItemProps> = ({
 
         <h3 className={styles.cart_item_title}>{name}</h3>
       </div>
+
       <div className={styles.cart_item_manuals_container}>
         <div className={styles.cart_item_button_container}>
           <button
             type="button"
             className={styles.cart_item_quantity_button}
-            onClick={() => handleDecrease(phoneId)}
+            onClick={() => handleDecrease(itemId)}
           >
             <img src={minusIcon} alt="minus icon" />
           </button>
+
           <div className={styles.cart_item_quantity_container}>
             <p className={styles.cart_item_quantity}>{quantity}</p>
           </div>
+
           <button
             type="button"
             className={styles.cart_item_quantity_button}
-            onClick={() => handleIncrease(phoneId)}
+            onClick={() => handleIncrease(itemId)}
           >
             <img src={plusIcon} alt="plus icon" />
           </button>
         </div>
+
         <div className={styles.cart_item_price_container}>
           <p className={styles.cart_item_price}>
             {`$${calculatePrice(price, quantity)}`}
