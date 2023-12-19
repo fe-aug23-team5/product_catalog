@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './ProductDetails.module.scss';
-import { getProductById } from '../../shared/api/getProductHelper';
+import { getProductDetailsById } from '../../shared/api/getProductHelper';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 import { IconButton } from '../../shared/ui/IconButton';
@@ -86,7 +86,7 @@ export const ProductDetailsPage: React.FC = () => {
   useEffect(() => {
     setIsLoad(true);
 
-    getProductById(productType, `${location.pathname.split('/')[2]}`)
+    getProductDetailsById(productType, `${location.pathname.split('/')[2]}`)
       .then((data) => {
         setProductDetail(data);
         setProductImage(`${BASE_URL_IMG}${data.images[0]}`);
