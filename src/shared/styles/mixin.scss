@@ -129,3 +129,20 @@
     grid-column: span $columns-desktop;
   }
 }
+
+@mixin reveal-animation {
+  animation: 0.5s ease-in reveal;
+
+  @keyframes reveal {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 100;
+    }
+  }
+}
+
+@mixin catalog-min-height {
+  min-height: 530px;
+}

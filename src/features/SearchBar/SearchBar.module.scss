@@ -7,14 +7,25 @@
 }
 
 .box {
-  width: 327px;
-  min-width: 160px;
+  display: flex;
+  width: 100%;
+  max-width: 327px;
   height: 100%;
   padding: 0;
   align-items: center;
   display: flex;
   position: relative;
   flex-direction: row-reverse;
+
+  @include onTablet {
+    width: 160px;
+    max-width: none; 
+  }
+
+  @include onDesktop {
+    width: 327px;
+    max-width: none; 
+  }
 }
 
 .input {
@@ -22,7 +33,7 @@
   height: 100%;
   box-sizing: border-box;
   padding-block: 1px;
-  padding-inline-start: 24px;
+  padding-inline-start: 14px;
   order: 1;
 
   box-shadow: -1px 0px 0px 0px $elements;
@@ -33,10 +44,15 @@
 
   color: $gray-primary;
   font-family: 'Mont-SemiBold';
-  font-size: 14px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+
+  @include onDesktop {
+    padding-inline-start: 24px;
+    font-size: 14px;
+  }  
 
   &::-webkit-search-cancel-button {
     -webkit-appearance: none;
@@ -45,6 +61,7 @@
 
   &::placeholder {
     color: $icons;
+    transition: opacity 0.3s ease; 
   } 
 
   &__select-open {
@@ -62,4 +79,8 @@
   z-index: 4;
   order: 2;
   margin-right: 24px;
+}
+
+.hidden {
+  display: none;
 }
