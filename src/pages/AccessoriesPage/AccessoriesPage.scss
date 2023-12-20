@@ -59,6 +59,7 @@
 
 .phones {
   &__container {
+    @include catalog-min-height;
     @include pageGrid;
     row-gap: 40px;
     margin-bottom: 24px;
@@ -66,6 +67,7 @@
     @include onTablet {
       margin-bottom: 40px;
     }
+    @include reveal-animation;
   }
 
   &__pagination {
