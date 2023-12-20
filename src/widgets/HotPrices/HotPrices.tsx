@@ -40,7 +40,7 @@ export const HotPrices: React.FC = () => {
   const mediumScreen = useMediaQuery('(max-width: 850px)');
   const bigScreen = useMediaQuery('(max-width: 1100px)');
 
-  let cardsCount = 0;
+  let cardsCount = 4;
 
   if (smallScreen) {
     cardsCount = 1;
@@ -48,8 +48,6 @@ export const HotPrices: React.FC = () => {
     cardsCount = 2;
   } else if (bigScreen) {
     cardsCount = 3;
-  } else {
-    cardsCount = 4;
   }
 
   return (

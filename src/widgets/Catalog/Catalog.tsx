@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loader } from '../Loader';
+// import { Loader } from '../Loader';
 import { ProductCard } from '../../entities/ProductCard';
 import { Phone } from '../../shared/types/Phone';
 import { Tablet } from '../../shared/types/Tablet';
@@ -15,7 +15,7 @@ export const Catalog: React.FC<Props> = ({
 }) => {
   return (
     <>
-      {isLoading && <Loader />}
+      {/* {isLoading && <Loader />} */}
 
       {
         !isLoading && allProducts.length && (

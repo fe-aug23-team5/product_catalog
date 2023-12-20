@@ -11,6 +11,8 @@ import { getSearchWith } from '../../shared/helpers/searchHelper';
 import { Catalog } from '../../widgets/Catalog';
 import { FetchError } from '../../shared/ui/FetchError/FetchError';
 import { Notification } from '../../shared/ui/Notification';
+// import { Loader } from '../../widgets/Loader';
+import { SkeletonCard } from '../../widgets/SceletonCard';
 
 export const PhonesPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -53,7 +55,7 @@ export const PhonesPage: React.FC = () => {
     };
 
     setSearchParams(getSearchWith(visibleSearchParams, searchParams));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   const handleSortByChange = (value: string) => {
@@ -114,6 +116,14 @@ export const PhonesPage: React.FC = () => {
             </div>
           )}
 
+          {isLoading && (
+            <div className="loader__container">
+              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+              {/* @ts-ignore */}
+              <SkeletonCard cards={4} />
+            </div>
+          )}
+
           {!error && allPhones.length > 0 && (
             <Catalog
               isLoading={isLoading}
@@ -131,7 +141,7 @@ export const PhonesPage: React.FC = () => {
         </div>
       </div>
 
-      {!error && allPhones.length > 0 && (
+      {!error && allPhones.length > 0 && !isLoading && (
         <div className="phones__pagination">
           <Pagination totalCount={totalCount} />
         </div>
