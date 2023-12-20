@@ -21,16 +21,18 @@ export const SearchBar: React.FC = () => {
     }
   }, [location.search]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
+  const handleInputChange = (value: string) => {
+    setInputValue(value);
+  };
 
-    setInputValue(newValue);
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      const newSearchParams
+        = getSearchWith({ query: inputValue }, new URLSearchParams());
 
-    const newSearchParams
-      = getSearchWith({ query: newValue }, new URLSearchParams());
-
-    if (currentCategory) {
-      navigate(`/${currentCategory}?${newSearchParams}`);
+      if (currentCategory) {
+        navigate(`/${currentCategory}?${newSearchParams}`);
+      }
     }
   };
 
@@ -43,23 +45,16 @@ export const SearchBar: React.FC = () => {
   };
 
   const getPlaceholder = () => {
-    if (currentCategory === 'phones') {
-      return 'Search in Phones...';
+    switch (currentCategory) {
+      case 'phones':
+        return 'Search in Phones...';
+      case 'tablets':
+        return 'Search in Tablets...';
+      case 'accessories':
+        return 'Search in Accessories...';
+      default:
+        return 'Search...';
     }
-
-    if (currentCategory === 'tablets') {
-      return 'Search in Tablets...';
-    }
-
-    if (currentCategory === 'accessories') {
-      return 'Search in Accessories...';
-    }
-
-    if (currentCategory === 'favourites') {
-      return 'Search in Favorites...';
-    }
-
-    return 'Search...';
   };
 
   const handleClearClick = () => {
@@ -77,7 +72,8 @@ export const SearchBar: React.FC = () => {
   const isCloseIconVisible = inputValue.length;
 
   const isHomeOrCart = location.pathname === '/'
-    || location.pathname === '/cart';
+    || location.pathname === '/cart'
+    || location.pathname === '/favourites';
 
   return (
     <div className={`${styles.box} ${isHomeOrCart ? styles.hidden : ''}`}>
@@ -88,8 +84,9 @@ export const SearchBar: React.FC = () => {
         placeholder={getPlaceholder()}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
-        onChange={handleInputChange}
         value={inputValue}
+        onChange={(e) => handleInputChange(e.target.value)}
+        onKeyDown={handleKeyDown}
       />
 
       {isCloseIconVisible ? (
