@@ -13,7 +13,7 @@ export const BrandNewModels: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  console.log(newProducts);
+  // console.log(newProducts);
 
   const fetchNewProducts = async () => {
     try {

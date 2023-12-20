@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../shared/static/logo.svg';
 import upArrow from '../../shared/static/icons/up-arrow-black.svg';
 import styles from './Footer.module.scss';
+import { ModalWindow } from '../../features/ModalWindow';
+import teamData from '../../shared/static/team';
+import githubSvg from '../../shared/static/icons/github.svg';
+import linkedinSvg from '../../shared/static/icons/linkedIn.svg';
+// import secret from '../../shared/static/teamPhoto/mentor.jpg';
 
 enum NavTitle {
   GITHUB = 'github',
@@ -11,6 +16,16 @@ enum NavTitle {
 }
 
 export const Footer: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -31,23 +46,98 @@ export const Footer: React.FC = () => {
 
         <nav className={styles.nav}>
           <ul className={styles.nav__list}>
-            {Object.values(NavTitle).map(title => (
-              <li className={styles.nav__item} key={title}>
-                <Link
-                  className={styles.nav__link}
-                  to={`/${title}`}
-                >
-                  {title}
-                </Link>
-              </li>
-            ))}
+            <li className={styles.nav__item}>
+              <a
+                href="https://github.com/fe-aug23-team5/product_catalog"
+                className={styles.nav__link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {NavTitle.GITHUB}
+              </a>
+            </li>
+
+            <li className={styles.nav__item}>
+              <button
+                type="button"
+                className={styles.nav__link}
+                onClick={handleModalOpen}
+              >
+                {NavTitle.CONTACTS}
+              </button>
+            </li>
+
+            <li className={styles.nav__item}>
+              <Link
+                className={styles.nav__link}
+                to={`/${NavTitle.RIGHTS.toLowerCase()}`}
+              >
+                {NavTitle.RIGHTS}
+              </Link>
+            </li>
           </ul>
         </nav>
 
+        {isModalOpen && (
+          <ModalWindow onClose={closeModal}>
+            <div className={styles.modal__container}>
+              {/* <img
+                className={styles.secret__icon}
+                src={secret}
+                alt="Secret Icon"
+              /> */}
+              <ul className={styles.modalBody}>
+                {teamData.map((person) => (
+                  <li key={person.id} className={styles.person__card}>
+                    <img
+                      src={person.photo}
+                      alt={person.name}
+                      className={styles.person__photo}
+                    />
+
+                    <p className={styles.person__name}>{person.name}</p>
+
+                    <ul className={styles.social__list}>
+                      <li className={styles.social__item}>
+                        <a
+                          href={person.links.github}
+                          className={styles.social__link}
+                          aria-label="github link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <img
+                            className={styles.social__icon}
+                            src={githubSvg}
+                            alt="GitHub Icon"
+                          />
+                        </a>
+                      </li>
+                      <li className={styles.social__item}>
+                        <a
+                          href={person.links.linkedin}
+                          className={styles.social__link}
+                          aria-label="linkedin link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <img
+                            className={styles.social__icon}
+                            src={linkedinSvg}
+                            alt="Linkedin Icon"
+                          />
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </ModalWindow>
+        )}
+
         <div className={styles.back_to_top}>
-          <p className={styles.back_to_top__discription}>
-            Back to top
-          </p>
+          <p className={styles.back_to_top__discription}>Back to top</p>
 
           <button
             className={styles.back_to_top__icon}
