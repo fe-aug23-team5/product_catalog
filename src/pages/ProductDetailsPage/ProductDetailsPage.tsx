@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import styles from './ProductDetails.module.scss';
-import { getProductDetailsById } from '../../shared/api/getProductHelper';
+import { getDetailsHelper } from '../../shared/api/getProductHelper';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 import { Breadcrumbs } from '../../features/Breadcrumbs';
 import { Loader } from '../../widgets/Loader';
@@ -38,7 +38,7 @@ export const ProductDetailsPage: React.FC = () => {
   useEffect(() => {
     setProductType(location.pathname.split('-').at(1) || 'iphone');
 
-    getProductDetailsById(productType, `${location.pathname.split('/')[2]}`)
+    getDetailsHelper(location.pathname)
       .then((data) => {
         setProductDetail(data);
         setProductImage(`${BASE_URL_IMG}${data.images[0]}`);
