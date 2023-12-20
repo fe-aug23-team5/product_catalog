@@ -9,6 +9,8 @@ import { getSearchWith } from '../../shared/helpers/searchHelper';
 import { Catalog } from '../../widgets/Catalog';
 import { getAllAccWithParams } from '../../shared/api/accessories';
 import { Accessory } from '../../shared/types/Accessory';
+import { FetchError } from '../../shared/ui/FetchError/FetchError';
+import { Notification } from '../../shared/ui/Notification';
 
 export const AccessoriesPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,9 +19,10 @@ export const AccessoriesPage: React.FC = () => {
   const page = searchParams.get('page');
   const query = searchParams.get('query');
 
-  const [isLoading, setIsLoading] = useState(false);
   const [allAcc, setAllAcc] = useState<Accessory[]>([]);
   const [totalCount, setTotalCount] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const fetchAccessories = async () => {
     setIsLoading(true);
@@ -29,8 +32,8 @@ export const AccessoriesPage: React.FC = () => {
 
       setAllAcc(acc.data);
       setTotalCount(acc.totalCount);
-    } catch (error) {
-      throw new Error('Unexpected Error');
+    } catch {
+      setError(true);
     } finally {
       setIsLoading(false);
     }
@@ -50,8 +53,8 @@ export const AccessoriesPage: React.FC = () => {
     };
 
     setSearchParams(getSearchWith(visibleSearchParams, searchParams));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortBy, perPage, page, searchParams, setSearchParams]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   const handleSortByChange = (value: string) => {
     setSearchParams(getSearchWith({ sortBy: value }, searchParams));
@@ -59,6 +62,11 @@ export const AccessoriesPage: React.FC = () => {
 
   const handlePerPageChange = (value: string) => {
     setSearchParams(getSearchWith({ perPage: value }, searchParams));
+  };
+
+  const handleRetry = () => {
+    setError(false);
+    fetchAccessories();
   };
 
   return (
@@ -98,14 +106,33 @@ export const AccessoriesPage: React.FC = () => {
 
       <div className="phones">
         <div className="phones__container">
-          <Catalog
-            isLoading={isLoading}
-            allProducts={allAcc}
-          />
+
+          {error && (
+            <div className="phones__error">
+              <FetchError onClick={handleRetry} />
+            </div>
+          )}
+
+          {!error && allAcc.length > 0 && (
+            <Catalog
+              isLoading={isLoading}
+              allProducts={allAcc}
+            />
+          )}
+
+          {!error && !isLoading && allAcc.length === 0 && (
+            <div className="phones__error">
+              <Notification
+                message="Sorry, there are no
+              accessories matching following criteria"
+              />
+            </div>
+          )}
+
         </div>
       </div>
 
-      {allAcc.length > 0 && (
+      {!error && allAcc.length > 0 && (
         <div className="phones__pagination">
           <Pagination totalCount={totalCount} />
         </div>
