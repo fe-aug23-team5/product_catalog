@@ -10,15 +10,9 @@
     @include cardAndFavPageGrid;
     width: 100%;
     max-width: $fixed-desktop-grid;
-    // margin-top: 24px;
     margin-bottom: 64px;
 
-    @include onTablet {
-      // margin-top: 32px;
-    }
-
     @include onDesktop {
-      // margin-top: 56px;
       margin-bottom: 80px;
     }
 
@@ -37,6 +31,10 @@
 
     &__title {
       @include style-primary-title;
+    }
+
+    &__error {
+      @include element-full-width-grid;
     }
   }
 }

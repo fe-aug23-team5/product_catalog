@@ -42,7 +42,9 @@ export const Header: React.FC = () => {
       </div>
 
       <div className={styles.header__rightSideContainer}>
-        <SearchBar text="phones" />
+        <div className={styles.bar}>
+          <SearchBar />
+        </div>
 
         <div className={styles.header__rightSide}>
           <IconWithCounter
@@ -56,19 +58,19 @@ export const Header: React.FC = () => {
             count={cart.length}
           />
         </div>
+
+        <button
+          className={styles.header__menu_button}
+          onClick={() => {
+            openMenu(true);
+          }}
+          type="button"
+        >
+          <img src={menuIcon} alt="Menu icon" />
+        </button>
+
+        <BurgerMenu isShownMenu={isShownMenu} openMenu={openMenu} />
       </div>
-
-      <button
-        className={styles.header__menu_button}
-        onClick={() => {
-          openMenu(true);
-        }}
-        type="button"
-      >
-        <img src={menuIcon} alt="Menu icon" />
-      </button>
-
-      <BurgerMenu isShownMenu={isShownMenu} openMenu={openMenu} />
     </header>
   );
 };

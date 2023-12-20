@@ -1,33 +1,25 @@
-/* eslint-disable max-len */
 import { getData } from '../helpers/fetchClient';
-import { Product } from '../types/Product';
-import { getAccById, getAccDetailsById } from './accessories';
-import { getPhoneById, getPhoneDetailsById } from './phones';
-import { getTabletById, getTabletDetailsById } from './tablets';
+import { Product, ProductDetails } from '../types/Product';
+import { getAccById } from './accessories';
+import { getPhoneById } from './phones';
+import { getTabletById } from './tablets';
+
+export const getDetailsHelper = (path: string) => {
+  const itemType = path.split('/').at(1);
+  const itemId = path.split('/').at(2);
+
+  return getData<ProductDetails>(`/${itemType}/details/${itemId}`);
+};
 
 export const getProductById = (productType: string, productId: string) => {
   switch (productType) {
-    case 'iphone':
-      return getPhoneById(productId);
     case 'ipad':
       return getTabletById(productId);
     case 'watch':
       return getAccById(productId);
+    case 'iphone':
     default:
       return getPhoneById(productId);
-  }
-};
-
-export const getProductDetailsById = (productType: string, productId: string) => {
-  switch (productType) {
-    case 'iphone':
-      return getPhoneDetailsById(productId);
-    case 'ipad':
-      return getTabletDetailsById(productId);
-    case 'watch':
-      return getAccDetailsById(productId);
-    default:
-      return getPhoneDetailsById(productId);
   }
 };
 
