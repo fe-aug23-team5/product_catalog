@@ -77,7 +77,7 @@ export const SearchBar: React.FC = () => {
   const isCloseIconVisible = inputValue.length;
 
   const isHomeOrCart = location.pathname === '/'
-  || location.pathname === '/cart';
+    || location.pathname === '/cart';
 
   return (
     <div className={`${styles.box} ${isHomeOrCart ? styles.hidden : ''}`}>
@@ -101,7 +101,9 @@ export const SearchBar: React.FC = () => {
           <img src={close} alt="Close icon" />
         </button>
       ) : (
-        <span className={styles.icon}>
+        <span
+          className={styles.icon}
+        >
           <img src={search} alt="Icon Search" />
         </span>
       )}

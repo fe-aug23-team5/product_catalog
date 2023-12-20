@@ -52,4 +52,8 @@
       grid-column: span $columns-desktop;
     }
   }
+
+  &__fetcherror {
+    @include element-full-width-grid;
+  }
 }

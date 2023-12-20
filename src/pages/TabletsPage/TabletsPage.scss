@@ -59,7 +59,6 @@
 }
 
 .phones {
-  
   &__container {
     @include catalog-min-height;
     @include pageGrid;
@@ -78,6 +77,10 @@
     @include onDesktop {
       margin-bottom: 80px;
     }
+  }
+
+  &__error {
+    @include element-full-width-grid;
   }
 }
 
