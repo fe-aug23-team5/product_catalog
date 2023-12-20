@@ -103,3 +103,69 @@
     border: 1px solid $primary;
   }
 }
+
+.modal__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modalBody {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.person__card {
+  text-align: center;
+  width: 180px;
+  padding: 10px;
+  border: 1px solid $elements;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.7);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.person__photo {
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 5px;
+  outline: 1px solid $accent;
+}
+
+.person__name {
+  margin-bottom: 5px;
+}
+
+.secret__icon {
+  width: 170px;
+  margin-bottom: 20px;
+  box-shadow: 1px 1px 27px 12px rgba(0, 144, 255, 0.43);
+}
+
+.social__list {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.social__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social__link {
+  height: 30px;
+}
+
+.social__icon {
+  height: 30px;
+}

@@ -42,7 +42,9 @@ export const Header: React.FC = () => {
       </div>
 
       <div className={styles.header__rightSideContainer}>
-        <SearchBar />
+        <div className={styles.bar}>
+          <SearchBar />
+        </div>
 
         <div className={styles.header__rightSide}>
           <IconWithCounter

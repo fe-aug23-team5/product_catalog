@@ -1,46 +1,51 @@
-# Getting Started with Create React App
+# Nice Gadgets | Online store
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+Welcome to our E-Commerce Web Shop project!
+This application serves as a feature-rich online platform for buying and selling various products.
+The project was developed collaboratively by a talented team of six developers, leveraging a modern technology stack to ensure a seamless and enjoyable shopping experience.
 
-In the project directory, you can run:
 
-### `npm start`
+## Technologies used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `React with TypeScript`
+Leveraging the power of React for building a dynamic and interactive user interface, and enhancing it with TypeScript for robust type checking and improved code quality.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### `JSX`
+Utilizing JSX, a syntax extension for JavaScript recommended by React, to write HTML elements and components in a familiar, HTML-like syntax within JavaScript code.
 
-### `npm test`
+### `SCSS Preprocessor with Module Files`
+Enhancing the styling of our application with SCSS, a powerful preprocessor scripting language that is interpreted or compiled into Cascading Style Sheets (CSS).
+Utilizing SCSS module files for modular and scoped styling, promoting better organization and reusability of styles.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `Slick-Slide Library for Sliders`
+Implementing slick-slider, a responsive carousel slider library for React, to create visually appealing and interactive image sliders and carousels within the application.
 
-### `npm run build`
+### `Headless UI Library for UI Components`
+Incorporating a headless UI library to build flexible and customizable user interface components that can be easily integrated and styled according to the project's design requirements.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `React Router DOM Library`
+Implementing React Router DOM to enable navigation and routing within the application, facilitating seamless transitions between different pages and views.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Key Features
 
-### `npm run eject`
+### `Product Catalog`
+Browse through an extensive catalog of products with detailed information and images.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### `Shopping Cart`
+Easily add, remove, and manage products in your shopping cart before checkout.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `Search and Filters`
+Effortlessly find products using search functionality and convenient filters.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Contributors
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+* [Anna Baseniuk](https://www.linkedin.com/in/anna-baseniuk-0062342a4/)
+* [Dmytro Tilug](https://www.linkedin.com/in/dmytro-tilug-73474a224/)
+* [Oleh Kuper](https://www.linkedin.com/in/oleh-kuper-939a432a2/)
+* [Olena Hrasovska](https://www.linkedin.com/in/olenahrasovska/)
+* [Yevhenii Polishchuk](https://www.linkedin.com/in/yevhenii--polishchuk/)
+* [Yuliia Bakun](https://www.linkedin.com/in/yuliia-bakun-aab255216/)

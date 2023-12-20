@@ -39,9 +39,16 @@
 }
 
 .modal__wrapper {
+  min-height: 300px;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  justify-content: center;
+  gap: 50px;
+  padding: 20px;
+
+  @include onTablet {
+    padding: 40px;
+  }
 }
 
 .modal__text {

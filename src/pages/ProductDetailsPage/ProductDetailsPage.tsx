@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import styles from './ProductDetails.module.scss';
-import { getProductDetailsById } from '../../shared/api/getProductHelper';
+import { getDetailsHelper } from '../../shared/api/getProductHelper';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
 import { Breadcrumbs } from '../../features/Breadcrumbs';
 import { Loader } from '../../widgets/Loader';
@@ -16,15 +16,17 @@ import { ProductCapacityDetails } from '../../features/ProductCapacityDetails';
 import { ProductPriceDetails } from '../../features/ProductPriceDetails';
 import { ProductTechDetails } from '../../features/ProductTechDetails';
 import { ProductAboutDetails } from '../../features/ProductAboutDetails';
+import { ModalWindow } from '../../features/ModalWindow';
 
 export const ProductDetailsPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [
-    productDetail, setProductDetail,
-  ] = useState<ProductDetails | null>(null);
+  const [productDetail, setProductDetail] = useState<ProductDetails | null>(
+    null,
+  );
   const [productImage, setProductImage] = useState('');
-  const [isLoad, setIsLoad] = useState(false);
+  const [isLoad, setIsLoad] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [capacity, setCapacity] = useState(productDetail?.capacity);
   const [productColor, setProductColor] = useState(
     location.pathname.split('-').at(-1),
@@ -34,10 +36,9 @@ export const ProductDetailsPage: React.FC = () => {
   );
 
   useEffect(() => {
-    setIsLoad(true);
     setProductType(location.pathname.split('-').at(1) || 'iphone');
 
-    getProductDetailsById(productType, `${location.pathname.split('/')[2]}`)
+    getDetailsHelper(location.pathname)
       .then((data) => {
         setProductDetail(data);
         setProductImage(`${BASE_URL_IMG}${data.images[0]}`);
@@ -45,7 +46,10 @@ export const ProductDetailsPage: React.FC = () => {
       .catch((error) => {
         console.log(error);
       })
-      .finally(() => setIsLoad(false));
+      .finally(() => {
+        setIsLoad(false);
+        setIsModalOpen(false);
+      });
   }, [capacity, productColor, productType, location.pathname]);
 
   const changeProductColor = (color: string) => {
@@ -59,7 +63,7 @@ export const ProductDetailsPage: React.FC = () => {
       .slice(0, -1)
       .join('-');
 
-    setIsLoad(true);
+    setIsModalOpen(true);
     setProductColor(color);
 
     if (productType === 'iphone') {
@@ -81,12 +85,10 @@ export const ProductDetailsPage: React.FC = () => {
       .split('/')[2]
       .split('-')
       .slice(0, -1)
-      .join('-')
-      .split('-')
       .map((item) => (regex.test(item) ? value : item))
       .join('-');
 
-    setIsLoad(true);
+    setIsModalOpen(true);
     setCapacity(value);
 
     if (productType === 'iphone') {
@@ -94,63 +96,72 @@ export const ProductDetailsPage: React.FC = () => {
     } else if (productType === 'ipad') {
       navigate(`/tablets/${productId}-${location.pathname.split('-').at(-1)}`);
     } else if (productType === 'watch') {
-      navigate(`/accessories/${productId}-${location.pathname.split('-').at(-1)}`);
+      navigate(
+        `/accessories/${productId}-${location.pathname.split('-').at(-1)}`,
+      );
     }
   };
 
   return isLoad ? (
     <Loader />
   ) : (
-    <div className={styles.product_details}>
-      <div className={styles.block_top}>
-        <div className={styles.bread_crumbs}>
-          <Breadcrumbs productName={productDetail?.name} />
+    <>
+      <div className={styles.product_details}>
+        <div className={styles.block_top}>
+          <div className={styles.bread_crumbs}>
+            <Breadcrumbs productName={productDetail?.name} />
+          </div>
+
+          <div className={styles.goback_button}>
+            <BackButton />
+          </div>
+
+          <h1 className={styles.section_image__title}>{productDetail?.name}</h1>
         </div>
 
-        <div className={styles.goback_button}>
-          <BackButton />
-        </div>
-
-        <h1 className={styles.section_image__title}>{productDetail?.name}</h1>
-      </div>
-
-      <GalleryProductDetails
-        productDetail={productDetail}
-        productImage={productImage}
-        setProductImage={setProductImage}
-      />
-
-      <section className={styles.block_info}>
-        <article className={styles.block_info__information}>
-          <ProductColorsDetails
-            productDetail={productDetail}
-            productColor={productColor}
-            changeProductColor={changeProductColor}
-          />
-
-          <ProductCapacityDetails
-            productDetail={productDetail}
-            changeCapacity={changeCapacity}
-          />
-
-          <ProductPriceDetails productDetail={productDetail} />
-        </article>
-      </section>
-
-      <section className={styles.block_about}>
-        <ProductAboutDetails productDetail={productDetail} />
-      </section>
-
-      <section className={styles.block_tech}>
-        <ProductTechDetails
+        <GalleryProductDetails
           productDetail={productDetail}
-          productType={productType}
+          productImage={productImage}
+          setProductImage={setProductImage}
         />
-      </section>
 
-      <section className={styles.recommended}>
-        <YouMayAlsoLike />
-      </section>
-    </div>
+        <section className={styles.block_info}>
+          <article className={styles.block_info__information}>
+            <ProductColorsDetails
+              productDetail={productDetail}
+              productColor={productColor}
+              changeProductColor={changeProductColor}
+            />
+
+            <ProductCapacityDetails
+              productDetail={productDetail}
+              changeCapacity={changeCapacity}
+            />
+
+            <ProductPriceDetails productDetail={productDetail} />
+          </article>
+        </section>
+
+        <section className={styles.block_about}>
+          <ProductAboutDetails productDetail={productDetail} />
+        </section>
+
+        <section className={styles.block_tech}>
+          <ProductTechDetails
+            productDetail={productDetail}
+            productType={productType}
+          />
+        </section>
+
+        <section className={styles.recommended}>
+          <YouMayAlsoLike />
+        </section>
+      </div>
+      {isModalOpen && (
+        <ModalWindow onClose={() => {}}>
+          <Loader />
+        </ModalWindow>
+      )}
+    </>
   );
 };
