@@ -77,27 +77,6 @@ export const ProductSlider: React.FC<Props> = ({ children }) => {
           slidesToScroll: 1,
         },
       },
-    //   {
-    //     breakpoint: 710,
-    //     settings: {
-    //       slidesToShow: 2,
-    //       slidesToScroll: 1,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 560,
-    //     settings: {
-    //       slidesToShow: 1.5,
-    //       slidesToScroll: 1,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 435,
-    //     settings: {
-    //       slidesToShow: 1,
-    //       slidesToScroll: 1,
-    //     },
-    //   },
     ],
   };
 
