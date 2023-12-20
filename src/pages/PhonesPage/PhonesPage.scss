@@ -77,4 +77,8 @@
       margin-bottom: 80px;
     }
   }
+
+  &__error {
+    @include element-full-width-grid;
+  }
 }
