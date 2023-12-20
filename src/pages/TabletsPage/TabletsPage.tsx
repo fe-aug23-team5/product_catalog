@@ -15,15 +15,11 @@ export const TabletsPage: React.FC = () => {
   const sortBy = searchParams.get('sortBy') || 'name';
   const perPage = searchParams.get('perPage') || '16';
   const page = searchParams.get('page');
+  const query = searchParams.get('query');
 
   const [isLoading, setIsLoading] = useState(false);
   const [allTablets, setAllTablets] = useState<Tablet[]>([]);
   const [totalCount, setTotalCount] = useState<number>(0);
-
-  // const newSearchParams = useSearchParams();
-  // if (newSearchParams.toString().split(',')[0] !== searchParams) {
-  //   setSearchParams(newSearchParams.toString().split(',')[0]);
-  // }
 
   const fetchTablets = async () => {
     setIsLoading(true);
@@ -50,9 +46,11 @@ export const TabletsPage: React.FC = () => {
       sortBy: sortBy === 'name' ? null : sortBy,
       perPage: perPage === '16' ? null : perPage,
       page: page === '1' ? null : page,
+      query: query === '' ? null : query,
     };
 
     setSearchParams(getSearchWith(visibleSearchParams, searchParams));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortBy, perPage, page, searchParams, setSearchParams]);
 
   const handleSortByChange = (value: string) => {
