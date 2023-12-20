@@ -43,9 +43,9 @@ Effortlessly find products using search functionality and convenient filters.
 
 ## Contributors
 
-[Anna Baseniuk](https://www.linkedin.com/in/anna-baseniuk-0062342a4/).
-[Dmytro Tilug](https://www.linkedin.com/in/dmytro-tilug-73474a224/).
-[Oleh Kuper](https://www.linkedin.com/in/oleh-kuper-939a432a2/).
-[Olena Hrasovska](https://www.linkedin.com/in/olenahrasovska/).
-[Yevhenii Polishchuk](https://www.linkedin.com/in/yevhenii--polishchuk/).
-[Yuliia Bakun](https://www.linkedin.com/in/yuliia-bakun-aab255216/).
+* [Anna Baseniuk](https://www.linkedin.com/in/anna-baseniuk-0062342a4/)
+* [Dmytro Tilug](https://www.linkedin.com/in/dmytro-tilug-73474a224/)
+* [Oleh Kuper](https://www.linkedin.com/in/oleh-kuper-939a432a2/)
+* [Olena Hrasovska](https://www.linkedin.com/in/olenahrasovska/)
+* [Yevhenii Polishchuk](https://www.linkedin.com/in/yevhenii--polishchuk/)
+* [Yuliia Bakun](https://www.linkedin.com/in/yuliia-bakun-aab255216/)
