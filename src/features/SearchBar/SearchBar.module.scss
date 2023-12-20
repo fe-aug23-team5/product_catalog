@@ -15,6 +15,7 @@
   display: flex;
   position: relative;
   flex-direction: row-reverse;
+  border-right: 1px solid $elements;
 }
 
 .input {
