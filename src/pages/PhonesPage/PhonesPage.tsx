@@ -54,7 +54,7 @@ export const PhonesPage: React.FC = () => {
 
     setSearchParams(getSearchWith(visibleSearchParams, searchParams));
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortBy, perPage, page, searchParams, setSearchParams]);
+  }, [searchParams]);
 
   const handleSortByChange = (value: string) => {
     setSearchParams(getSearchWith({ sortBy: value }, searchParams));
@@ -121,7 +121,7 @@ export const PhonesPage: React.FC = () => {
             />
           )}
 
-          {!error && allPhones.length === 0 && (
+          {!error && !isLoading && allPhones.length === 0 && (
             <div className="phones__error">
               <Notification
                 message="Sorry, there are no phones matching following criteria"
