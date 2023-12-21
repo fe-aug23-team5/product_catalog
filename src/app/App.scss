@@ -20,8 +20,6 @@ body {
   padding-inline: 16px;
   background-color: $hover-and-bg;
   @include flex-justify-center-align-center;
-  // display: flex;
-  // justify-content: center;
 
   @include onTablet {
     min-height: calc(100vh - 144px);
