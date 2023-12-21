@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 
 import styles from './NavBar.module.scss';
+import { scrollToTop } from '../../shared/helpers/scrollFunct';
 
 enum NavTitles {
   HOME = 'home',
@@ -28,7 +29,10 @@ export const NavBar: React.FC<Props> = ({ openMenu }) => {
             <NavLink
               to={title === NavTitles.HOME ? '/' : `/${title}`}
               className={isActiveItem}
-              onClick={() => openMenu(false)}
+              onClick={() => {
+                openMenu(false);
+                scrollToTop();
+              }}
             >
               {title}
             </NavLink>

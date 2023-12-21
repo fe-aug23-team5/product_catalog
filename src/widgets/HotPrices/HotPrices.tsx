@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from '@react-hook/media-query';
 import { getDiscountProducts } from '../../shared/api/getProductHelper';
-// import { ProductSlider } from '../../features/ProductSlider';
-// import { ProductCard } from '../../entities/ProductCard';
-// import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
+import { ProductSlider } from '../../features/ProductSlider';
+import { ProductCard } from '../../entities/ProductCard';
+import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 import { Notification } from '../../shared/ui/Notification';
 import { Product } from '../../shared/types/Product';
-// import { Loader } from '../Loader';
 import { SkeletonCard } from '../SceletonCard';
 import styles from './HotPrices.module.scss';
-import { TestSlider } from '../../features/TestSlider/TestSlider';
 
 export const HotPrices: React.FC = () => {
   const [discountProducts, setDiscountProducts] = useState<Product[]>([]);
@@ -53,9 +51,9 @@ export const HotPrices: React.FC = () => {
 
   return (
     <>
-      {/* <SecondaryTitle>
+      <SecondaryTitle>
         Hot Prices
-      </SecondaryTitle> */}
+      </SecondaryTitle>
 
       {isLoading && (
         <div className={styles.loader__container}>
@@ -70,21 +68,17 @@ export const HotPrices: React.FC = () => {
       )}
 
       {!isLoading && discountProducts.length > 0 && (
-        // <ProductSlider>
-        //   {discountProducts.map(product => {
-        //     return (
-        //       <ProductCard
-        //         key={product.itemId}
-        //         product={product}
-        //         link={product.category}
-        //       />
-        //     );
-        //   })}
-        // </ProductSlider>
-        <TestSlider
-          heading="Hot Prices"
-          products={discountProducts}
-        />
+        <ProductSlider>
+          {discountProducts.map(product => {
+            return (
+              <ProductCard
+                key={product.itemId}
+                product={product}
+                link={product.category}
+              />
+            );
+          })}
+        </ProductSlider>
       )}
 
       {!isLoading && discountProducts.length === 0 && !error && (

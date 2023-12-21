@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-// import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
-// import { ProductSlider } from '../../features/ProductSlider';
-// import { ProductCard } from '../../entities/ProductCard';
+import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
+import { ProductSlider } from '../../features/ProductSlider';
+import { ProductCard } from '../../entities/ProductCard';
 import { Loader } from '../Loader';
 import { Product } from '../../shared/types/Product';
 import { getSuggestedProducts } from '../../shared/api/getProductHelper';
 import { Notification } from '../../shared/ui/Notification';
-import { TestSlider } from '../../features/TestSlider/TestSlider';
 
 export const YouMayAlsoLike: React.FC = () => {
   const [suggestions, setSuggestions] = useState<Product[]>([]);
@@ -36,9 +35,9 @@ export const YouMayAlsoLike: React.FC = () => {
 
   return (
     <>
-      {/* <SecondaryTitle>
+      <SecondaryTitle>
         You may also like
-      </SecondaryTitle> */}
+      </SecondaryTitle>
 
       {isLoading && <Loader />}
 
@@ -47,18 +46,17 @@ export const YouMayAlsoLike: React.FC = () => {
       )}
 
       {!isLoading && suggestions.length > 0 && (
-        // <ProductSlider>
-        //   {suggestions.map(product => {
-        //     return (
-        //       <ProductCard
-        //         key={product.itemId}
-        //         product={product}
-        //         link={product.category}
-        //       />
-        //     );
-        //   })}
-        // </ProductSlider>
-        <TestSlider products={suggestions} heading="You may also like" />
+        <ProductSlider>
+          {suggestions.map(product => {
+            return (
+              <ProductCard
+                key={product.itemId}
+                product={product}
+                link={product.category}
+              />
+            );
+          })}
+        </ProductSlider>
       )}
 
       {!isLoading && suggestions.length === 0 && !error && (
