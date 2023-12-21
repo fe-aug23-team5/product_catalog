@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useMediaQuery } from '@react-hook/media-query';
 import { getNewestProducts } from '../../shared/api/getProductHelper';
 // import { ProductSlider } from '../../features/ProductSlider';
 // import { ProductCard } from '../../entities/ProductCard';
 // import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 import { Notification } from '../../shared/ui/Notification/Notification';
 import { Product } from '../../shared/types/Product';
-import { Loader } from '../Loader';
+// import { Loader } from '../Loader';
+import { SkeletonCard } from '../SceletonCard';
+import styles from './BrandNewModels.module.scss';
 import { TestSlider } from '../../features/TestSlider/TestSlider';
 
 export const BrandNewModels: React.FC = () => {
@@ -34,13 +37,35 @@ export const BrandNewModels: React.FC = () => {
       .finally(() => setIsLoading(false));
   }, []);
 
+  const smallScreen = useMediaQuery('(max-width: 560px)');
+  const mediumScreen = useMediaQuery('(max-width: 850px)');
+  const bigScreen = useMediaQuery('(max-width: 1100px)');
+
+  let cardsCount = 0;
+
+  if (smallScreen) {
+    cardsCount = 1;
+  } else if (mediumScreen) {
+    cardsCount = 2;
+  } else if (bigScreen) {
+    cardsCount = 3;
+  } else {
+    cardsCount = 4;
+  }
+
   return (
     <>
       {/* <SecondaryTitle>
         Brand new models
       </SecondaryTitle> */}
 
-      {isLoading && <Loader />}
+      {isLoading && (
+        <div className={styles.loader__container}>
+          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+          {/* @ts-ignore */}
+          <SkeletonCard cards={cardsCount} />
+        </div>
+      )}
 
       {error && (
         <Notification message="Sorry, data is unavailable at the moment" />
@@ -65,3 +90,5 @@ export const BrandNewModels: React.FC = () => {
     </>
   );
 };
+
+export default BrandNewModels;

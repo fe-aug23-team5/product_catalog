@@ -9,6 +9,9 @@ import { getSearchWith } from '../../shared/helpers/searchHelper';
 import { Catalog } from '../../widgets/Catalog';
 import { Tablet } from '../../shared/types/Tablet';
 import { getAllTabletsWithParams } from '../../shared/api/tablets';
+import { FetchError } from '../../shared/ui/FetchError/FetchError';
+import { Notification } from '../../shared/ui/Notification';
+import { SkeletonCard } from '../../widgets/SceletonCard';
 
 export const TabletsPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,9 +20,10 @@ export const TabletsPage: React.FC = () => {
   const page = searchParams.get('page');
   const query = searchParams.get('query');
 
-  const [isLoading, setIsLoading] = useState(false);
   const [allTablets, setAllTablets] = useState<Tablet[]>([]);
   const [totalCount, setTotalCount] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const fetchTablets = async () => {
     setIsLoading(true);
@@ -29,8 +33,8 @@ export const TabletsPage: React.FC = () => {
 
       setAllTablets(tablets.data);
       setTotalCount(tablets.totalCount);
-    } catch (error) {
-      throw new Error('Unexpected Error');
+    } catch {
+      setError(true);
     } finally {
       setIsLoading(false);
     }
@@ -50,8 +54,8 @@ export const TabletsPage: React.FC = () => {
     };
 
     setSearchParams(getSearchWith(visibleSearchParams, searchParams));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortBy, perPage, page, searchParams, setSearchParams]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   const handleSortByChange = (value: string) => {
     setSearchParams(getSearchWith({ sortBy: value }, searchParams));
@@ -59,6 +63,11 @@ export const TabletsPage: React.FC = () => {
 
   const handlePerPageChange = (value: string) => {
     setSearchParams(getSearchWith({ perPage: value }, searchParams));
+  };
+
+  const handleRetry = () => {
+    setError(false);
+    fetchTablets();
   };
 
   return (
@@ -98,14 +107,42 @@ export const TabletsPage: React.FC = () => {
 
       <div className="phones">
         <div className="phones__container">
-          <Catalog
-            isLoading={isLoading}
-            allProducts={allTablets}
-          />
+
+          {isLoading && (
+            <div className="loader__container">
+              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+              {/* @ts-ignore */}
+              <SkeletonCard cards={4} />
+            </div>
+          )}
+
+          {error && (
+            <div className="phones__error">
+              <FetchError
+                onClick={handleRetry}
+              />
+            </div>
+          )}
+
+          {!error && allTablets.length > 0 && (
+            <Catalog
+              isLoading={isLoading}
+              allProducts={allTablets}
+            />
+          )}
+
+          {!error && !isLoading && allTablets.length === 0 && (
+            <div className="phones__error">
+              <Notification
+                message="Sorry, there are no
+                tablets matching following criteria"
+              />
+            </div>
+          )}
         </div>
       </div>
 
-      {allTablets.length > 0 && (
+      {!error && allTablets.length > 0 && !isLoading && (
         <div className="phones__pagination">
           <Pagination totalCount={totalCount} />
         </div>

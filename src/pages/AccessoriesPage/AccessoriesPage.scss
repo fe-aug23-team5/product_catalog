@@ -77,4 +77,14 @@
       margin-bottom: 80px;
     }
   }
+
+  &__error {
+    @include element-full-width-grid;
+  }
+}
+
+.loader__container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
 }

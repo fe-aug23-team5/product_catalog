@@ -11,6 +11,8 @@ import { getSearchWith } from '../../shared/helpers/searchHelper';
 import { Catalog } from '../../widgets/Catalog';
 import { FetchError } from '../../shared/ui/FetchError/FetchError';
 import { Notification } from '../../shared/ui/Notification';
+// import { Loader } from '../../widgets/Loader';
+import { SkeletonCard } from '../../widgets/SceletonCard';
 
 export const PhonesPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -53,8 +55,8 @@ export const PhonesPage: React.FC = () => {
     };
 
     setSearchParams(getSearchWith(visibleSearchParams, searchParams));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortBy, perPage, page, searchParams, setSearchParams]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   const handleSortByChange = (value: string) => {
     setSearchParams(getSearchWith({ sortBy: value }, searchParams));
@@ -114,6 +116,14 @@ export const PhonesPage: React.FC = () => {
             </div>
           )}
 
+          {isLoading && (
+            <div className="loader__container">
+              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+              {/* @ts-ignore */}
+              <SkeletonCard cards={4} />
+            </div>
+          )}
+
           {!error && allPhones.length > 0 && (
             <Catalog
               isLoading={isLoading}
@@ -121,7 +131,7 @@ export const PhonesPage: React.FC = () => {
             />
           )}
 
-          {!error && allPhones.length === 0 && (
+          {!error && !isLoading && allPhones.length === 0 && (
             <div className="phones__error">
               <Notification
                 message="Sorry, there are no phones matching following criteria"
@@ -131,7 +141,7 @@ export const PhonesPage: React.FC = () => {
         </div>
       </div>
 
-      {!error && allPhones.length > 0 && (
+      {!error && allPhones.length > 0 && !isLoading && (
         <div className="phones__pagination">
           <Pagination totalCount={totalCount} />
         </div>

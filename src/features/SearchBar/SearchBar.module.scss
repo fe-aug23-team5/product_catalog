@@ -15,6 +15,7 @@
   display: flex;
   position: relative;
   flex-direction: row-reverse;
+  border-right: 1px solid $elements;
 }
 
 .input {
@@ -23,9 +24,7 @@
   box-sizing: border-box;
   padding-block: 1px;
   padding-inline: 10%;
-  // padding-right: 25px;
   padding-right: 30px;
-  // padding-right: 50px;
 
   box-shadow: -1px 0px 0px 0px $elements;
   border: none;
@@ -41,7 +40,6 @@
   line-height: normal;
 
   @include onDesktop {
-    // padding-inline: 24px;
     padding-inline: 24px;
     font-size: 0.88rem;
     padding-right: 50px;
