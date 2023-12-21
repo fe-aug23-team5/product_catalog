@@ -1,74 +1,94 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
-import styles from './TestSlider.module.scss';
+import cn from 'classnames';
+import './TestSlider.scss';
 import { Product } from '../../shared/types/Product';
-import { getNewestProducts } from '../../shared/api/getProductHelper';
 import { ProductCard } from '../../entities/ProductCard';
-// import { ProductCard } from '../../entities/ProductCard';
+import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 
-// type Props = {
-//   children: React.ReactNode,
-// };
+type Props = {
+  products: Product[];
+  heading: string;
+};
 
-export const TestSlider: React.FC = () => {
-  const [discountProducts, setDiscountProducts] = useState<Product[]>([]);
+export const TestSlider: React.FC<Props> = ({ products, heading }) => {
   const [index, setIndex] = useState(0);
 
+  const slide = (): number => {
+    return window.innerWidth < 1200 ? 253 : 288;
+    // return 253;
+  };
+
+  const disableNextButton = () => {
+    const screenWidth = window.innerWidth < 1200
+      ? window.innerWidth
+      : 1200;
+    const maxIndex = Math.max(
+      0,
+      products.length - Math.floor(screenWidth / slide()),
+    );
+
+    return maxIndex;
+  };
+
   useEffect(() => {
-    getNewestProducts().then((data) => setDiscountProducts(data.slice(0, 7)));
+    window.addEventListener('resize', slide);
+
+    return () => {
+      window.removeEventListener('resize', slide);
+    };
   }, []);
 
   const updateIndex = (i: number) => {
-    let indexToUpdate = i;
+    // let indexToUpdate = i;
 
-    if (indexToUpdate < 0) {
-      indexToUpdate = discountProducts.length - 1;
-    } else if (index >= discountProducts.length) {
-      indexToUpdate = 0;
-    }
+    // if (indexToUpdate < 0) {
+    //   indexToUpdate = products.length - 1;
+    // } else if (index >= products.length) {
+    //   indexToUpdate = 0;
+    // }
 
-    setIndex(indexToUpdate);
+    setIndex(i);
   };
 
-  console.log(discountProducts);
-
   return (
-    <div className={styles.box}>
-      <div className={styles.container}>
-        <div className={styles.buttons}>
+    <div className="slider">
+      <div className="slider__buttons">
+        <SecondaryTitle>{heading}</SecondaryTitle>
+
+        <div className="buttons_wrapper">
           <button
             onClick={() => updateIndex(index - 1)}
-            className={styles.btn}
+            className={cn('previous button', {
+              disable: index === 0,
+            })}
             type="button"
             disabled={index === 0}
-          >
-            previous
-          </button>
+          />
 
           <button
             onClick={() => updateIndex(index + 1)}
-            className={styles.btn}
+            className={cn('next button', {
+              disable: index === disableNextButton(),
+            })}
             type="button"
-            disabled={index === discountProducts.length - 4}
-          >
-            next
-          </button>
+            disabled={index === disableNextButton()}
+          />
         </div>
+      </div>
 
-        <div
-          className={styles.box__slider}
-          style={{
-            transform: `translateX(-${index * 277}px)`,
-          }}
-        >
-          {discountProducts.map((product) => (
-            <ProductCard
-              product={product}
-              key={product.id}
-              link={product.category}
-            />
-          ))}
-        </div>
+      <div
+        className="slider__box"
+        style={{
+          transform: `translateX(-${index * slide()}px)`,
+        }}
+      >
+        {products.map((product) => (
+          <div key={product.id} className="wrapper">
+            <ProductCard product={product} link={product.category} />
+          </div>
+        ))}
       </div>
     </div>
   );

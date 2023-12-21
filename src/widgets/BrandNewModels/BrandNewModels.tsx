@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { getNewestProducts } from '../../shared/api/getProductHelper';
-import { ProductSlider } from '../../features/ProductSlider';
-import { ProductCard } from '../../entities/ProductCard';
-import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
+// import { ProductSlider } from '../../features/ProductSlider';
+// import { ProductCard } from '../../entities/ProductCard';
+// import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 import { Notification } from '../../shared/ui/Notification/Notification';
 import { Product } from '../../shared/types/Product';
 import { Loader } from '../Loader';
+import { TestSlider } from '../../features/TestSlider/TestSlider';
 
 export const BrandNewModels: React.FC = () => {
   const [newProducts, setNewProducts] = useState<Product[]>([]);
@@ -35,9 +36,9 @@ export const BrandNewModels: React.FC = () => {
 
   return (
     <>
-      <SecondaryTitle>
+      {/* <SecondaryTitle>
         Brand new models
-      </SecondaryTitle>
+      </SecondaryTitle> */}
 
       {isLoading && <Loader />}
 
@@ -46,15 +47,16 @@ export const BrandNewModels: React.FC = () => {
       )}
 
       {!isLoading && newProducts.length > 0 && (
-        <ProductSlider>
-          {newProducts.map(product => (
-            <ProductCard
-              key={product.itemId}
-              product={product}
-              link={product.category}
-            />
-          ))}
-        </ProductSlider>
+        // <ProductSlider>
+        //   {newProducts.map(product => (
+        //     <ProductCard
+        //       key={product.itemId}
+        //       product={product}
+        //       link={product.category}
+        //     />
+        //   ))}
+        // </ProductSlider>
+        <TestSlider products={newProducts} heading="Brand new models" />
       )}
 
       {!isLoading && newProducts.length === 0 && !error && (

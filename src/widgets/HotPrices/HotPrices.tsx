@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { getDiscountProducts } from '../../shared/api/getProductHelper';
-import { ProductSlider } from '../../features/ProductSlider';
-import { ProductCard } from '../../entities/ProductCard';
-import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
+// import { ProductSlider } from '../../features/ProductSlider';
+// import { ProductCard } from '../../entities/ProductCard';
+// import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 import { Notification } from '../../shared/ui/Notification';
 import { Product } from '../../shared/types/Product';
 import { Loader } from '../Loader';
+import { TestSlider } from '../../features/TestSlider/TestSlider';
 
 export const HotPrices: React.FC = () => {
   const [discountProducts, setDiscountProducts] = useState<Product[]>([]);
@@ -35,9 +36,9 @@ export const HotPrices: React.FC = () => {
 
   return (
     <>
-      <SecondaryTitle>
+      {/* <SecondaryTitle>
         Hot Prices
-      </SecondaryTitle>
+      </SecondaryTitle> */}
 
       {isLoading && <Loader />}
 
@@ -46,17 +47,21 @@ export const HotPrices: React.FC = () => {
       )}
 
       {!isLoading && discountProducts.length > 0 && (
-        <ProductSlider>
-          {discountProducts.map(product => {
-            return (
-              <ProductCard
-                key={product.itemId}
-                product={product}
-                link={product.category}
-              />
-            );
-          })}
-        </ProductSlider>
+        // <ProductSlider>
+        //   {discountProducts.map(product => {
+        //     return (
+        //       <ProductCard
+        //         key={product.itemId}
+        //         product={product}
+        //         link={product.category}
+        //       />
+        //     );
+        //   })}
+        // </ProductSlider>
+        <TestSlider
+          heading="Hot Prices"
+          products={discountProducts.slice(0, 7)}
+        />
       )}
 
       {!isLoading && discountProducts.length === 0 && !error && (
