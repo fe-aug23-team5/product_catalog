@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
+import cn from 'classnames';
 import { createPortal } from 'react-dom';
 import { ModalProps } from '../../shared/types/ModalProps';
 import styles from './ModalWindow.module.scss';
 
-export const ModalWindow: React.FC<ModalProps> = ({ onClose, children }) => {
+// eslint-disable-next-line max-len
+export const ModalWindow: React.FC<ModalProps> = ({ onClose, children, isModalOpen }) => {
   const modalRoot = document.getElementById('modal-root') as HTMLElement;
 
   useEffect(() => {
@@ -38,7 +40,13 @@ export const ModalWindow: React.FC<ModalProps> = ({ onClose, children }) => {
       role="button"
       tabIndex={0}
     >
-      <div className={styles.modal__content}>{children}</div>
+      <div
+        className={cn(styles.modal__content, {
+          [styles.another_modal_content]: isModalOpen,
+        })}
+      >
+        {children}
+      </div>
     </div>,
     modalRoot,
   );
