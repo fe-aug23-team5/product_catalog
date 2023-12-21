@@ -11,6 +11,7 @@ import { Tablet } from '../../shared/types/Tablet';
 import { getAllTabletsWithParams } from '../../shared/api/tablets';
 import { FetchError } from '../../shared/ui/FetchError/FetchError';
 import { Notification } from '../../shared/ui/Notification';
+import { SkeletonCard } from '../../widgets/SceletonCard';
 
 export const TabletsPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -107,6 +108,14 @@ export const TabletsPage: React.FC = () => {
       <div className="phones">
         <div className="phones__container">
 
+          {isLoading && (
+            <div className="loader__container">
+              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+              {/* @ts-ignore */}
+              <SkeletonCard cards={4} />
+            </div>
+          )}
+
           {error && (
             <div className="phones__error">
               <FetchError
@@ -133,7 +142,7 @@ export const TabletsPage: React.FC = () => {
         </div>
       </div>
 
-      {!error && allTablets.length > 0 && (
+      {!error && allTablets.length > 0 && !isLoading && (
         <div className="phones__pagination">
           <Pagination totalCount={totalCount} />
         </div>
