@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useMediaQuery } from '@react-hook/media-query';
 import './AccessoriesPage.scss';
 import { useSearchParams } from 'react-router-dom';
 import { Dropdown } from '../../shared/ui/Dropdown';
 import { Pagination } from '../../features/Pagination';
-import { Breadcrumbs } from '../../features/Breadcrumbs';
+import { Breadcrumbs } from '../../shared/ui/Breadcrumbs';
 import { sortOptions, itemsOnPage } from '../../shared/helpers/searchParams';
 import { getSearchWith } from '../../shared/helpers/searchHelper';
 import { Catalog } from '../../widgets/Catalog';
@@ -70,6 +71,20 @@ export const AccessoriesPage: React.FC = () => {
     fetchAccessories();
   };
 
+  const smallScreen = useMediaQuery('(max-width: 640px)');
+  const mediumScreen = useMediaQuery('(max-width: 800px)');
+  const bigScreen = useMediaQuery('(max-width: 1200px)');
+
+  let cardsCount = 4;
+
+  if (smallScreen) {
+    cardsCount = 1;
+  } else if (mediumScreen) {
+    cardsCount = 2;
+  } else if (bigScreen) {
+    cardsCount = 3;
+  }
+
   return (
     <div className="phonesPage">
       <div className="phonesPage__top">
@@ -106,15 +121,15 @@ export const AccessoriesPage: React.FC = () => {
       </div>
 
       <div className="phones">
-        <div className="phones__container">
+        {isLoading && (
+          <div className="loader__container">
+            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+            {/* @ts-ignore */}
+            <SkeletonCard cards={cardsCount} />
+          </div>
+        )}
 
-          {isLoading && (
-            <div className="loader__container">
-              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-              {/* @ts-ignore */}
-              <SkeletonCard cards={4} />
-            </div>
-          )}
+        <div className="phones__container">
 
           {error && (
             <div className="phones__error">
