@@ -83,7 +83,7 @@ export const HotPrices: React.FC = () => {
         // </ProductSlider>
         <TestSlider
           heading="Hot Prices"
-          products={discountProducts.slice(0, 7)}
+          products={discountProducts}
         />
       )}
 

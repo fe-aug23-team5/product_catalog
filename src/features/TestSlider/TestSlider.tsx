@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import cn from 'classnames';
 import './TestSlider.scss';
@@ -17,7 +16,6 @@ export const TestSlider: React.FC<Props> = ({ products, heading }) => {
 
   const slide = (): number => {
     return window.innerWidth < 1200 ? 253 : 288;
-    // return 253;
   };
 
   const disableNextButton = () => {
@@ -41,14 +39,6 @@ export const TestSlider: React.FC<Props> = ({ products, heading }) => {
   }, []);
 
   const updateIndex = (i: number) => {
-    // let indexToUpdate = i;
-
-    // if (indexToUpdate < 0) {
-    //   indexToUpdate = products.length - 1;
-    // } else if (index >= products.length) {
-    //   indexToUpdate = 0;
-    // }
-
     setIndex(i);
   };
 
