@@ -8,6 +8,7 @@ import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 import { getAllPhones } from '../../shared/api/phones';
 import { getAllTablets } from '../../shared/api/tablets';
 import { getAllAcc } from '../../shared/api/accessories';
+import { scrollToTop } from '../../shared/helpers/scrollFunct';
 
 export const CategoriesMenu: React.FC = () => {
   const [phonesCount, setPhonesCount] = useState(0);
@@ -40,7 +41,11 @@ export const CategoriesMenu: React.FC = () => {
 
       <div className="categories_menu">
         <article className="category_item">
-          <Link to="/phones" className="category_link">
+          <Link
+            to="/phones"
+            className="category_link"
+            onClick={scrollToTop}
+          >
             <img
               className="category_image"
               src={phonesImg}
@@ -56,7 +61,11 @@ export const CategoriesMenu: React.FC = () => {
         </article>
 
         <article className="category_item">
-          <Link to="/tablets" className="category_link">
+          <Link
+            to="/tablets"
+            className="category_link"
+            onClick={scrollToTop}
+          >
             <img
               className="category_image"
               src={tabletsImg}
@@ -72,7 +81,11 @@ export const CategoriesMenu: React.FC = () => {
         </article>
 
         <article className="category_item">
-          <Link to="/accessories" className="category_link">
+          <Link
+            to="/accessories"
+            className="category_link"
+            onClick={scrollToTop}
+          >
             <img
               className="category_image"
               src={accImg}

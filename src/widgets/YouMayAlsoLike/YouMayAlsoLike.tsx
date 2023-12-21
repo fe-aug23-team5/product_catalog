@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 import { ProductSlider } from '../../features/ProductSlider';
-import { Loader } from '../Loader';
 import { ProductCard } from '../../entities/ProductCard';
+import { Loader } from '../Loader';
 import { Product } from '../../shared/types/Product';
 import { getSuggestedProducts } from '../../shared/api/getProductHelper';
 import { Notification } from '../../shared/ui/Notification';

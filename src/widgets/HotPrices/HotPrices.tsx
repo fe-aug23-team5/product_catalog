@@ -6,7 +6,6 @@ import { ProductCard } from '../../entities/ProductCard';
 import { SecondaryTitle } from '../../shared/ui/SecondaryTitle';
 import { Notification } from '../../shared/ui/Notification';
 import { Product } from '../../shared/types/Product';
-// import { Loader } from '../Loader';
 import { SkeletonCard } from '../SceletonCard';
 import styles from './HotPrices.module.scss';
 

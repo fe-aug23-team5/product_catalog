@@ -1,0 +1,60 @@
+@import '../../shared/styles/variables.scss';
+@import '../../shared/styles/mixin.scss';
+
+.slider {
+  overflow: hidden;
+
+  &__box {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.3s linear;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+
+    margin-bottom: 24px;
+  }
+}
+
+.wrapper {
+  width: 237px;
+  flex-shrink: 0;
+
+  @include onDesktop {
+    width: 272px;
+  }
+}
+
+.buttons_wrapper {
+  display: flex;
+  gap: 16px;
+}
+
+.button {
+  border: 1px solid $primary;
+  border-radius: 50%;
+
+  width: 32px;
+  height: 32px;
+}
+
+.next {
+  background-image: url('../../shared/static/icons/right-arrow-black.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.previous {
+  background-image: url('../../shared/static/icons/left-arrow-black.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.disable {
+  cursor: not-allowed;
+  border: 1px solid $secondary;
+}
