@@ -1,0 +1,40 @@
+@import '../../styles/mixin.scss';
+
+.breadcrumbs {
+  @include element-full-width-grid;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  white-space: nowrap;
+
+  &_link {
+    margin-right: 8px;
+    display: flex;
+  }
+
+  &_link img {
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  &_link a {
+    text-decoration: none;
+    color: $primary;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+  }
+
+  &_last {
+    color: $secondary;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+
+    @include onTablet {
+      max-width: 400px;
+    }
+  }
+}

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './FavouritesPage.module.scss';
 import { GlobalContext } from '../../shared/utils/GlobalProvider';
 import { ProductCard } from '../../entities/ProductCard';
-import { Breadcrumbs } from '../../features/Breadcrumbs';
+import { Breadcrumbs } from '../../shared/ui/Breadcrumbs';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 import favoriteIcon from '../../shared/static/favorite.png';
 import { Product } from '../../shared/types/Product';
