@@ -22,7 +22,7 @@ export const Pagination: React.FC<Props> = memo(({ totalCount }) => {
   }
 
   if (pagesNumber > 6) {
-    if (currentPage === 1) {
+    if (currentPage === 1 || currentPage === 2) {
       pages.current = allPages.slice(0, 5);
     } else if (currentPage === allPages[allPages.length - 1]) {
       pages.current = allPages.slice(currentPage - 5, currentPage);
@@ -119,7 +119,8 @@ export const Pagination: React.FC<Props> = memo(({ totalCount }) => {
           </li>
         ))}
         {pages.current[pages.current.length - 1]
-        !== allPages[allPages.length - 1] && (
+        !== allPages[allPages.length - 1]
+        && (
           <>
             <li>...</li>
             <li key={allPages[allPages.length - 1]}>

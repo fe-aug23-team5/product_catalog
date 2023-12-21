@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './ProductDetails.module.scss';
 import { getDetailsHelper } from '../../shared/api/getProductHelper';
 import { BASE_URL_IMG } from '../../shared/helpers/fetchClient';
-import { Breadcrumbs } from '../../features/Breadcrumbs';
+import { Breadcrumbs } from '../../shared/ui/Breadcrumbs';
 import { Loader } from '../../widgets/Loader';
 import { YouMayAlsoLike } from '../../widgets/YouMayAlsoLike';
 import { BackButton } from '../../shared/ui/BackButton';
