@@ -103,7 +103,9 @@ export const ProductDetailsPage: React.FC = () => {
   };
 
   return isLoad ? (
-    <Loader />
+    <ModalWindow onClose={() => {}}>
+      <Loader />
+    </ModalWindow>
   ) : (
     <>
       <div className={styles.product_details}>
