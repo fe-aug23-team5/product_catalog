@@ -19,9 +19,7 @@ export const TestSlider: React.FC<Props> = ({ products, heading }) => {
   };
 
   const disableNextButton = () => {
-    const screenWidth = window.innerWidth < 1200
-      ? window.innerWidth
-      : 1200;
+    const screenWidth = window.innerWidth < 1200 ? window.innerWidth : 1200;
     const maxIndex = Math.max(
       0,
       products.length - Math.floor(screenWidth / slide()),
@@ -43,42 +41,44 @@ export const TestSlider: React.FC<Props> = ({ products, heading }) => {
   };
 
   return (
-    <div className="slider">
-      <div className="slider__buttons">
-        <SecondaryTitle>{heading}</SecondaryTitle>
+    <div className="container">
+      <div className="slider">
+        <div className="slider__buttons">
+          <SecondaryTitle>{heading}</SecondaryTitle>
 
-        <div className="buttons_wrapper">
-          <button
-            onClick={() => updateIndex(index - 1)}
-            className={cn('previous button', {
-              disable: index === 0,
-            })}
-            type="button"
-            disabled={index === 0}
-          />
+          <div className="buttons_wrapper">
+            <button
+              onClick={() => updateIndex(index - 1)}
+              className={cn('previous button', {
+                disable: index === 0,
+              })}
+              type="button"
+              disabled={index === 0}
+            />
 
-          <button
-            onClick={() => updateIndex(index + 1)}
-            className={cn('next button', {
-              disable: index === disableNextButton(),
-            })}
-            type="button"
-            disabled={index === disableNextButton()}
-          />
-        </div>
-      </div>
-
-      <div
-        className="slider__box"
-        style={{
-          transform: `translateX(-${index * slide()}px)`,
-        }}
-      >
-        {products.map((product) => (
-          <div key={product.id} className="wrapper">
-            <ProductCard product={product} link={product.category} />
+            <button
+              onClick={() => updateIndex(index + 1)}
+              className={cn('next button', {
+                disable: index === disableNextButton(),
+              })}
+              type="button"
+              disabled={index === disableNextButton()}
+            />
           </div>
-        ))}
+        </div>
+
+        <div
+          className="slider__box"
+          style={{
+            transform: `translateX(-${index * slide()}px)`,
+          }}
+        >
+          {products.map((product) => (
+            <div key={product.id} className="wrapper">
+              <ProductCard product={product} link={product.category} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

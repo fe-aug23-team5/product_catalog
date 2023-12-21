@@ -26,7 +26,7 @@ export const ProductDetailsPage: React.FC = () => {
   );
   const [productImage, setProductImage] = useState('');
   const [isLoad, setIsLoad] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const [capacity, setCapacity] = useState(productDetail?.capacity);
   const [productColor, setProductColor] = useState(
     location.pathname.split('-').at(-1),
@@ -103,7 +103,10 @@ export const ProductDetailsPage: React.FC = () => {
   };
 
   return isLoad ? (
-    <ModalWindow onClose={() => {}}>
+    <ModalWindow
+      onClose={() => {}}
+      isModalOpen={isModalOpen}
+    >
       <Loader />
     </ModalWindow>
   ) : (
@@ -160,7 +163,10 @@ export const ProductDetailsPage: React.FC = () => {
         </section>
       </div>
       {isModalOpen && (
-        <ModalWindow onClose={() => {}}>
+        <ModalWindow
+          onClose={() => {}}
+          isModalOpen={isModalOpen}
+        >
           <Loader />
         </ModalWindow>
       )}

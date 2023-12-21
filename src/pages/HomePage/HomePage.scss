@@ -4,6 +4,7 @@
 .homepage {
   @include pageGrid();
   row-gap: 57px;
+  overflow: hidden;
 
   margin-top: 24px;
   margin-bottom: 64px;
