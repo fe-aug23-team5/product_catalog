@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/product_catalog/static/css/main.b905aabc.css",
-    "main.js": "/product_catalog/static/js/main.bc84672f.js",
+    "main.js": "/product_catalog/static/js/main.d5d0e466.js",
     "static/media/banner-accessories-phone.png": "/product_catalog/static/media/banner-accessories-phone.87d30deaaf6a23797a63.png",
     "static/media/banner-tablets-phone.png": "/product_catalog/static/media/banner-tablets-phone.02e85c91bbfb6baaeff0.png",
     "static/media/category-phones.png": "/product_catalog/static/media/category-phones.4ada54a392eb210fa728.png",
@@ -15,6 +15,7 @@
     "static/media/banner-tablets.jpg": "/product_catalog/static/media/banner-tablets.1b08ee522b28c492bd52.jpg",
     "static/media/banner-phones.png": "/product_catalog/static/media/banner-phones.71e7e0917555f044d60b.png",
     "static/media/banner-accessories.jpg": "/product_catalog/static/media/banner-accessories.6dc854ddc34722c1c65a.jpg",
+    "static/media/mentor.jpg": "/product_catalog/static/media/mentor.51106b3fca91612bc8d1.jpg",
     "static/media/category-cases.png": "/product_catalog/static/media/category-cases.3d709b95c6777bd6adf7.png",
     "static/media/yulabakun.jpeg": "/product_catalog/static/media/yulabakun.a432572634a98f5353a1.jpeg",
     "static/media/tilugdmytro.jpeg": "/product_catalog/static/media/tilugdmytro.00ed7e5a67e3df6ebc44.jpeg",
@@ -48,10 +49,10 @@
     "index.html": "/product_catalog/index.html",
     "static/media/minus.svg": "/product_catalog/static/media/minus.e5b18b4612754a9fa92fb42bdb3ac95d.svg",
     "main.b905aabc.css.map": "/product_catalog/static/css/main.b905aabc.css.map",
-    "main.bc84672f.js.map": "/product_catalog/static/js/main.bc84672f.js.map"
+    "main.d5d0e466.js.map": "/product_catalog/static/js/main.d5d0e466.js.map"
   },
   "entrypoints": [
     "static/css/main.b905aabc.css",
-    "static/js/main.bc84672f.js"
+    "static/js/main.d5d0e466.js"
   ]
 }
