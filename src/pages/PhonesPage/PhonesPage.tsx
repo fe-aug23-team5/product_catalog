@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useMediaQuery } from '@react-hook/media-query';
 import './PhonesPage.scss';
 import { useSearchParams } from 'react-router-dom';
 import { Phone } from '../../shared/types/Phone';
@@ -11,7 +12,6 @@ import { getSearchWith } from '../../shared/helpers/searchHelper';
 import { Catalog } from '../../widgets/Catalog';
 import { FetchError } from '../../shared/ui/FetchError/FetchError';
 import { Notification } from '../../shared/ui/Notification';
-// import { Loader } from '../../widgets/Loader';
 import { SkeletonCard } from '../../widgets/SceletonCard';
 
 export const PhonesPage: React.FC = () => {
@@ -71,6 +71,20 @@ export const PhonesPage: React.FC = () => {
     fetchPhones();
   };
 
+  const smallScreen = useMediaQuery('(max-width: 640px)');
+  const mediumScreen = useMediaQuery('(max-width: 800px)');
+  const bigScreen = useMediaQuery('(max-width: 1200px)');
+
+  let cardsCount = 4;
+
+  if (smallScreen) {
+    cardsCount = 1;
+  } else if (mediumScreen) {
+    cardsCount = 2;
+  } else if (bigScreen) {
+    cardsCount = 3;
+  }
+
   return (
     <div className="phonesPage">
       <div className="phonesPage__top">
@@ -107,20 +121,21 @@ export const PhonesPage: React.FC = () => {
       </div>
 
       <div className="phones">
+
+        {isLoading && (
+          <div className="loader__container">
+            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+            {/* @ts-ignore */}
+            <SkeletonCard cards={cardsCount} />
+          </div>
+        )}
+
         <div className="phones__container">
           {error && (
             <div className="phones__error">
               <FetchError
                 onClick={handleRetry}
               />
-            </div>
-          )}
-
-          {isLoading && (
-            <div className="loader__container">
-              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-              {/* @ts-ignore */}
-              <SkeletonCard cards={4} />
             </div>
           )}
 
