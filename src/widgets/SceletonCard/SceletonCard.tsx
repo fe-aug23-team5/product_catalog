@@ -1,5 +1,4 @@
 /* eslint-disable react/no-array-index-key */
-/* tslint:disable */
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
