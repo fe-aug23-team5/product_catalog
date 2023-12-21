@@ -4,7 +4,7 @@ import './AccessoriesPage.scss';
 import { useSearchParams } from 'react-router-dom';
 import { Dropdown } from '../../shared/ui/Dropdown';
 import { Pagination } from '../../features/Pagination';
-import { Breadcrumbs } from '../../features/Breadcrumbs';
+import { Breadcrumbs } from '../../shared/ui/Breadcrumbs';
 import { sortOptions, itemsOnPage } from '../../shared/helpers/searchParams';
 import { getSearchWith } from '../../shared/helpers/searchHelper';
 import { Catalog } from '../../widgets/Catalog';
