@@ -35,9 +35,11 @@ export const CategoriesMenu: React.FC = () => {
 
   return (
     <section className="categories_section">
-      <SecondaryTitle>
-        Shop by category
-      </SecondaryTitle>
+      <div className="categories_title">
+        <SecondaryTitle>
+          Shop by category
+        </SecondaryTitle>
+      </div>
 
       <div className="categories_menu">
         <article className="category_item">
