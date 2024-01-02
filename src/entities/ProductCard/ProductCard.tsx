@@ -6,6 +6,7 @@ import { GlobalContext } from '../../shared/utils/GlobalProvider';
 import { PrimaryButton } from '../../shared/ui/PrimaryButton';
 import { IconButton } from '../../shared/ui/IconButton';
 import { Product } from '../../shared/types/Product';
+import { scrollToTop } from '../../shared/helpers/scrollFunct';
 
 type Props = {
   product: Product;
@@ -55,7 +56,11 @@ export const ProductCard: React.FC<Props> = ({ product, link }) => {
   return (
     <article className={classes.card}>
       <div>
-        <Link to={`/${link}/${product.itemId}`} replace>
+        <Link
+          to={`/${link}/${product.itemId}`}
+          replace
+          onClick={scrollToTop}
+        >
           <img
             className={classes.photo}
             src={`${BASE_URL_IMG}${product.image}`}

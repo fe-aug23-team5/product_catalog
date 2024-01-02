@@ -4,6 +4,7 @@ import { CartTotalProps } from '../../shared/types/CartTotalProps';
 import styles from './CartTotal.module.scss';
 import { ModalWindow } from '../../features/ModalWindow';
 import { GlobalContext } from '../../shared/utils/GlobalProvider';
+import { removeScrollForBody } from '../../shared/helpers/removeScrollForBody';
 
 export const CartTotal: React.FC<CartTotalProps> = ({
   calculateTotalPrice,
@@ -14,10 +15,12 @@ export const CartTotal: React.FC<CartTotalProps> = ({
   const { clearCart } = useContext(GlobalContext);
 
   const handleModalOpen = () => {
+    removeScrollForBody(true);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
+    removeScrollForBody(false);
     setIsModalOpen(false);
   };
 

@@ -11,6 +11,7 @@ import { BurgerMenu } from '../BurgerMenu';
 import { GlobalContext } from '../../shared/utils/GlobalProvider';
 import { IconWithCounter } from '../../features/IconWithCounter';
 import { SearchBar } from '../../features/SearchBar';
+import { removeScrollForBody } from '../../shared/helpers/removeScrollForBody';
 
 export const Header: React.FC = () => {
   const [isShownMenu, setIsShownMenu] = useState(false);
@@ -18,14 +19,7 @@ export const Header: React.FC = () => {
   const { cart, favourites } = useContext(GlobalContext);
 
   const openMenu = (value: boolean) => {
-    const body = document.querySelector('body') as HTMLElement;
-
-    if (value) {
-      body.classList.add(styles.disable_scroll);
-    } else {
-      body.classList.remove(styles.disable_scroll);
-    }
-
+    removeScrollForBody(value);
     setIsShownMenu(value);
   };
 
