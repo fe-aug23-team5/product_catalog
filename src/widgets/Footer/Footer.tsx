@@ -7,7 +7,8 @@ import { ModalWindow } from '../../features/ModalWindow';
 import teamData from '../../shared/static/team';
 import githubSvg from '../../shared/static/icons/github.svg';
 import linkedinSvg from '../../shared/static/icons/linkedIn.svg';
-import secret from '../../shared/static/teamPhoto/mentor.jpg';
+import { removeScrollForBody } from '../../shared/helpers/removeScrollForBody';
+import { scrollToTop } from '../../shared/helpers/scrollFunct';
 
 enum NavTitle {
   GITHUB = 'github',
@@ -19,18 +20,13 @@ export const Footer: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleModalOpen = () => {
+    removeScrollForBody(true);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
+    removeScrollForBody(false);
     setIsModalOpen(false);
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
   };
 
   return (
@@ -81,11 +77,6 @@ export const Footer: React.FC = () => {
         {isModalOpen && (
           <ModalWindow onClose={closeModal}>
             <div className={styles.modal__container}>
-              <img
-                className={styles.secret__icon}
-                src={secret}
-                alt="Secret Icon"
-              />
               <ul className={styles.modalBody}>
                 {teamData.map((person) => (
                   <li key={person.id} className={styles.person__card}>

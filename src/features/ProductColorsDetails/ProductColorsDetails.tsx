@@ -3,6 +3,7 @@ import cn from 'classnames';
 import styles from './ProductColorsDetails.module.scss';
 import { ProductDetails } from '../../shared/types/Product';
 import { HashProductColors } from '../../shared/types/ProductColors';
+import { scrollToTop } from '../../shared/helpers/scrollFunct';
 
 type Props = {
   productDetail: ProductDetails | null;
@@ -15,13 +16,18 @@ export const ProductColorsDetails: React.FC<Props> = ({
   productColor,
   changeProductColor,
 }) => {
+  const handleClick = (color: string) => {
+    changeProductColor(color);
+    scrollToTop();
+  };
+
   return (
     <div className={styles.color}>
       <div className={styles.color__text}>
         <span className={styles.color__description}>Available colors</span>
 
         <span className={styles.color__description}>
-          {`ID ${productDetail?.id.toUpperCase()}`}
+          {`ID: ${productDetail?.id.toUpperCase()}`}
         </span>
       </div>
 
@@ -34,7 +40,7 @@ export const ProductColorsDetails: React.FC<Props> = ({
             })}
           >
             <button
-              onClick={() => changeProductColor(color)}
+              onClick={() => handleClick(color)}
               style={{ backgroundColor: HashProductColors[color] }}
               className={styles.color__button}
               type="button"

@@ -3,6 +3,7 @@ import { Context } from '../types/Context';
 import { ProviderProps } from '../types/ProviderProps';
 import { useLocalStorage } from './useLocalStorage';
 import { PhoneWithQuantity } from '../types/PhoneWithQuantity';
+import { removeScrollForBody } from '../helpers/removeScrollForBody';
 
 export const GlobalContext = React.createContext<Context>({
   cart: [],
@@ -35,6 +36,7 @@ export const GlobalProvider: React.FC<ProviderProps> = ({ children }) => {
   };
 
   const clearCart = () => {
+    removeScrollForBody(false);
     setCart([]);
   };
 

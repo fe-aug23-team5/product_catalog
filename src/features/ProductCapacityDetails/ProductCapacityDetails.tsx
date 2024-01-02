@@ -3,6 +3,7 @@ import cn from 'classnames';
 
 import styles from './ProductCapacityDetails.module.scss';
 import { ProductDetails } from '../../shared/types/Product';
+import { scrollToTop } from '../../shared/helpers/scrollFunct';
 
 type Props = {
   productDetail: ProductDetails | null;
@@ -13,6 +14,11 @@ export const ProductCapacityDetails: React.FC<Props> = ({
   productDetail,
   changeCapacity,
 }) => {
+  const handleClick = (capacity: string) => {
+    changeCapacity(capacity);
+    scrollToTop();
+  };
+
   return (
     <div className={styles.capacity}>
       <p className={styles.capacity__text}>Select capacity</p>
@@ -32,7 +38,7 @@ export const ProductCapacityDetails: React.FC<Props> = ({
                 [styles.capacity__button_active]:
                   capacityItem === productDetail.capacity,
               })}
-              onClick={() => changeCapacity(capacityItem.toLowerCase())}
+              onClick={() => handleClick(capacityItem.toLowerCase())}
             >
               {capacityItem}
             </button>

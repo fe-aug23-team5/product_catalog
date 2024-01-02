@@ -13,14 +13,19 @@ body {
   font-family: 'Mont-regular', sans-serif;
 }
 
+body.disable_scroll {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
 .main {
   width: 100%;
   min-height: calc(100vh - 321px);
   padding-inline: 16px;
   background-color: $hover-and-bg;
-  @include flex-justify-center-align-center;
-
+  
   @include onTablet {
+    @include flex-justify-center-align-center;
     min-height: calc(100vh - 144px);
     padding-inline: 32px;
   }

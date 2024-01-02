@@ -63,5 +63,10 @@
 
 .button__container {
   display: flex;
+  flex-direction: column;
   gap: 15px;
+
+  @include onTablet {
+    flex-direction: row;
+  }
 }
