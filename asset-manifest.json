@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/product_catalog/static/css/main.6dc5ac00.css",
-    "main.js": "/product_catalog/static/js/main.6b7d8721.js",
+    "main.css": "/product_catalog/static/css/main.3a59f66c.css",
+    "main.js": "/product_catalog/static/js/main.9dbbb512.js",
     "static/media/banner-accessories-phone.png": "/product_catalog/static/media/banner-accessories-phone.87d30deaaf6a23797a63.png",
     "static/media/banner-tablets-phone.png": "/product_catalog/static/media/banner-tablets-phone.02e85c91bbfb6baaeff0.png",
     "static/media/category-phones.png": "/product_catalog/static/media/category-phones.4ada54a392eb210fa728.png",
@@ -15,7 +15,6 @@
     "static/media/banner-tablets.jpg": "/product_catalog/static/media/banner-tablets.1b08ee522b28c492bd52.jpg",
     "static/media/banner-phones.png": "/product_catalog/static/media/banner-phones.71e7e0917555f044d60b.png",
     "static/media/banner-accessories.jpg": "/product_catalog/static/media/banner-accessories.6dc854ddc34722c1c65a.jpg",
-    "static/media/mentor.jpg": "/product_catalog/static/media/mentor.51106b3fca91612bc8d1.jpg",
     "static/media/category-cases.png": "/product_catalog/static/media/category-cases.3d709b95c6777bd6adf7.png",
     "static/media/yulabakun.jpeg": "/product_catalog/static/media/yulabakun.a432572634a98f5353a1.jpeg",
     "static/media/tilugdmytro.jpeg": "/product_catalog/static/media/tilugdmytro.00ed7e5a67e3df6ebc44.jpeg",
@@ -48,11 +47,11 @@
     "static/media/up-arrow-black.svg": "/product_catalog/static/media/up-arrow-black.0fcb96c35770c29a1c3b74b359f6ffa5.svg",
     "index.html": "/product_catalog/index.html",
     "static/media/minus.svg": "/product_catalog/static/media/minus.e5b18b4612754a9fa92fb42bdb3ac95d.svg",
-    "main.6dc5ac00.css.map": "/product_catalog/static/css/main.6dc5ac00.css.map",
-    "main.6b7d8721.js.map": "/product_catalog/static/js/main.6b7d8721.js.map"
+    "main.3a59f66c.css.map": "/product_catalog/static/css/main.3a59f66c.css.map",
+    "main.9dbbb512.js.map": "/product_catalog/static/js/main.9dbbb512.js.map"
   },
   "entrypoints": [
-    "static/css/main.6dc5ac00.css",
-    "static/js/main.6b7d8721.js"
+    "static/css/main.3a59f66c.css",
+    "static/js/main.9dbbb512.js"
   ]
 }
